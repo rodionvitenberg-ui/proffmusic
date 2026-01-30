@@ -1,5 +1,5 @@
 'use client';
-
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { Play, Pause, ShoppingBag, Check, Zap, Banknote, Tag as TagIcon } from 'lucide-react';
 import { Track, useCartStore, usePlayerStore } from '@/lib/store';
@@ -62,9 +62,10 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
           
           {/* 1. Обложка + Play */}
           <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-800 shadow-inner group">
-            <img 
+            <Image
               src={track.cover_image || '/placeholder.jpg'} 
               alt={track.title}
+              fill
               className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
             />
             <div className={cn(

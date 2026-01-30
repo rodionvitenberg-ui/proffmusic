@@ -16,7 +16,7 @@ export function LibrarySection() {
   async function fetchLibrary(pageNum: number) {
     setLoading(true);
     try {
-      const res = await api.get(`/tracks/?page=${pageNum}&ordering=-created_at`);
+      const res = await api.get(`/api/tracks/?page=${pageNum}&ordering=-created_at`);
       const newTracks = res.data.results || res.data;
       
       if (pageNum === 1) {

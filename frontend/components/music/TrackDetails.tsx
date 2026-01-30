@@ -4,6 +4,7 @@ import { Play, Pause, ShoppingBag, Clock, Tag as TagIcon, Check } from 'lucide-r
 import { Track, useCartStore, usePlayerStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
+import Image from 'next/image';
 
 // Фейковая визуализация волны (столбики)
 const WaveformBars = ({ playing }: { playing: boolean }) => (
@@ -54,7 +55,7 @@ export function TrackDetails({ track }: { track: Track }) {
           
           {/* ОБЛОЖКА */}
           <div className="relative group shrink-0 w-full md:w-[400px] aspect-square rounded-xl overflow-hidden shadow-2xl bg-[#181818]">
-            <img 
+            <Image 
               src={track.cover_image || '/placeholder.jpg'} 
               alt={track.title} 
               className="w-full h-full object-cover"

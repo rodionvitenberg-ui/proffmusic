@@ -34,7 +34,7 @@ export const useAuthStore = create<AuthState>()(
             login: async (email, password) => {
                 try {
                     // 1. Получаем токены
-                    const res = await api.post('/auth/jwt/create/', { email, password });
+                    const res = await api.post('/api/auth/jwt/create/', { email, password });
                     const { access, refresh } = res.data;
 
                     // 2. Сохраняем токен в стейт и в localStorage (для axios интерцептора)
@@ -51,7 +51,7 @@ export const useAuthStore = create<AuthState>()(
 
             register: async (email, password, re_password) => {
                 // Djoser требует re_password
-                await api.post('/auth/users/', { email, password, username: email, re_password });
+                await api.post('/api/auth/users/', { email, password, username: email, re_password });
                 // После регистрации сразу логиним
                 await get().login(email, password);
             },
@@ -64,7 +64,7 @@ export const useAuthStore = create<AuthState>()(
             fetchProfile: async () => {
                 try {
                     // Djoser endpoint 'me' возвращает профиль
-                    const res = await api.get('/auth/users/me/');
+                    const res = await api.get('/api/auth/users/me/');
                     set({ user: res.data });
                 } catch (error) {
                     // Если токен протух - разлогиниваем
@@ -78,7 +78,7 @@ export const useAuthStore = create<AuthState>()(
                 
                 // Важно: для файлов Content-Type должен быть multipart/form-data
                 // Axios обычно сам ставит, если видит FormData, но заголовок Bearer нужен
-                const res = await api.post('/users/upload_avatar/', formData, {
+                const res = await api.post('/api/users/upload_avatar/', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
                 

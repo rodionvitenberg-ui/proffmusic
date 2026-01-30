@@ -13,7 +13,7 @@ export default function CollectionsPage() {
   useEffect(() => {
     async function fetchCollections() {
       try {
-        const res = await api.get('/collections/?ordering=-created_at');
+        const res = await api.get('/api/collections/?ordering=-created_at');
         setCollections(res.data.results || res.data);
       } catch (err) {
         console.error(err);

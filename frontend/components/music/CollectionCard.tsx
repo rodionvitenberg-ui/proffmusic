@@ -7,6 +7,7 @@ import { Collection, useCartStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/ui/toast';
+import Image from 'next/image';
 
 export function CollectionCard({ collection }: { collection: Collection }) {
   const router = useRouter();
@@ -40,9 +41,10 @@ export function CollectionCard({ collection }: { collection: Collection }) {
       
       {/* 1. Обложка */}
       <Link href={`/collections/${collection.slug}`} className="block relative aspect-square rounded-lg overflow-hidden bg-gray-800 shadow-inner">
-        <img 
+        <Image 
           src={collection.cover_image || '/placeholder.jpg'} 
           alt={collection.title}
+          fill
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
         />
         {/* Бейдж с количеством треков */}

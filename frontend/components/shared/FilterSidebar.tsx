@@ -42,8 +42,8 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
     const fetchData = async () => {
       try {
         const [catRes, tagRes] = await Promise.all([
-          api.get('/categories/'),
-          api.get('/tags/')
+          api.get('/api/categories/'),
+          api.get('/api/tags/')
         ]);
         setCategories(catRes.data);
         const loadedTags: Tag[] = tagRes.data;

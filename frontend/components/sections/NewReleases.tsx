@@ -15,7 +15,7 @@ export function NewReleases() {
   useEffect(() => {
     async function fetchNew() {
       try {
-        const res = await api.get('/tracks/?is_new=true');
+        const res = await api.get('/api/tracks/?is_new=true');
         setNewReleases(res.data.results || res.data);
       } catch (err) {
         console.error('Ошибка загрузки новинок:', err);

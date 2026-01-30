@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
   try {
-    const res = await api.get<Collection>(`/collections/${slug}/`);
+    const res = await api.get<Collection>(`/api/collections/${slug}/`);
     const collection = res.data;
     
     // Фикс:
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function getCollection(slug: string) {
   try {
-    const res = await api.get<Collection>(`/collections/${slug}/`);
+    const res = await api.get<Collection>(`/api/collections/${slug}/`);
     return res.data;
   } catch (e) {
     return null;
