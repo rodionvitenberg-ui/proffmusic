@@ -57,7 +57,8 @@ export function TrackDetails({ track }: { track: Track }) {
           <div className="relative group shrink-0 w-full md:w-[400px] aspect-square rounded-xl overflow-hidden shadow-2xl bg-[#181818]">
             <Image 
               src={track.cover_image || '/placeholder.jpg'} 
-              alt={track.title} 
+              alt={track.title}
+              fill 
               className="w-full h-full object-cover"
             />
             {/* Оверлей на обложке */}
@@ -147,7 +148,7 @@ export function TrackDetails({ track }: { track: Track }) {
             </div>
 
             {/* Гарантии */}
-            <div className="grid grid-cols-2 gap-4 text-xs text-gray-500">
+            <div className="grid grid-cols-3 gap-4 text-xs text-gray-500">
                <div className="flex items-center gap-2">
                  <Check size={14} className="text-green-500" /> WAV (44.1kHz, 16bit) + MP3
                </div>
@@ -156,9 +157,6 @@ export function TrackDetails({ track }: { track: Track }) {
                </div>
                <div className="flex items-center gap-2">
                  <Check size={14} className="text-green-500" /> YouTube Safe (No Content ID)
-               </div>
-               <div className="flex items-center gap-2">
-                 <Check size={14} className="text-green-500" /> Ссылка навсегда
                </div>
             </div>
 

@@ -1,10 +1,10 @@
 'use client';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Play, Pause, ShoppingBag, Check, Zap, Banknote, Tag as TagIcon } from 'lucide-react';
+import { Play, Pause, ShoppingBag, Check, Banknote, Tag as TagIcon } from 'lucide-react';
 import { Track, useCartStore, usePlayerStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/Button'; // Убедись, что Button импортируется корректно
+import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/ui/toast';
 import { CardFlip, CardFlipFront, CardFlipBack } from '@/components/ui/card-flip';
 import Link from 'next/link';
@@ -81,11 +81,20 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
             </div>
           </div>
 
-          {/* 2. Заголовок */}
+          {/* 2. Заголовок (Ссылка на трек) */}
           <div className="mt-1">
-            <h3 className={cn("font-bold text-lg text-white truncate", isCurrent && "text-green-400")}>
-              {track.title}
-            </h3>
+            <Link 
+              href={`/tracks/${track.slug}`}
+              onClick={(e) => e.stopPropagation()} // Важно: предотвращаем переворот карточки
+              className="block w-fit max-w-full"
+            >
+              <h3 className={cn(
+                "font-bold text-lg text-white truncate transition-colors hover:text-border", 
+                isCurrent && "text-green-400"
+              )}>
+                {track.title}
+              </h3>
+            </Link>
           </div>
 
           {/* 3. Категория и Цена (в одну строку) */}
@@ -104,7 +113,7 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
             <Button
               variant="outline"
               onClick={handleBuyNow}
-              className="w-full h-10 border-white/20 border-white/20 hover:border-white font-bold uppercase tracking-wide text-xs text-white"
+              className="w-full h-10 border-white/20 hover:border-white font-bold uppercase tracking-wide text-xs text-white"
             >
               <Banknote size={14} className="mr-2" />
               Купить
