@@ -25,7 +25,7 @@ export default function CheckoutPage() {
     return () => clearTimeout(timer);
   }, [items, router]);
 
-  const total = items.reduce((sum, item) => sum + parseFloat(item.price), 0);
+  const total = items.reduce((sum, item) => sum + item.price, 0);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ export default function CheckoutPage() {
       };
 
       // 2. Отправляем запрос
-      const res = await api.post('/orders/checkout/', payload);
+      const res = await api.post('/api/orders/checkout/', payload);
       
       // 3. Получаем payment_url и переходим
       if (res.data.payment_url) {
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
           <Button 
             type="submit" 
             size="lg" 
-            className="w-full py-4 text-base hover:bg-white hover:text-blackrelative overflow-hidden"
+            className="w-full py-4 text-base hover:bg-white hover:text-black relative overflow-hidden"
             disabled={isLoading}
           >
             {isLoading ? (

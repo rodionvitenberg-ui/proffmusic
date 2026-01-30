@@ -55,7 +55,7 @@ function MusicContent() {
       setLoading(true);
       try {
         const queryString = searchParams.toString();
-        const res = await api.get(`/tracks/?${queryString}&ordering=-created_at`);
+        const res = await api.get(`/api/tracks/?${queryString}&ordering=-created_at`);
         setTracks(res.data.results || res.data);
       } catch (err) {
         console.error(err);

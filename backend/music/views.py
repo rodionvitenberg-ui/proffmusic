@@ -27,14 +27,17 @@ class TrackViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Каталог треков с фильтрацией.
     """
-    queryset = Track.objects.all()
+    queryset = Track.objects.all().distinct()
     serializer_class = TrackSerializer
+    
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category__slug', 'tags__slug', 'is_new']
+    
+    filterset_class = TrackFilter 
+    
     search_fields = ['title', 'description_full']
     ordering_fields = ['price', 'created_at']
     lookup_field = 'slug'
-
+    
 class CollectionViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API для сборников.
@@ -78,17 +81,3 @@ def download_collection_zip(request, slug):
     
     return response
 
-class TrackViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Каталог треков с фильтрацией.
-    """
-    queryset = Track.objects.all().distinct()
-    serializer_class = TrackSerializer
-    
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    
-    filterset_class = TrackFilter 
-    
-    search_fields = ['title', 'description_full']
-    ordering_fields = ['price', 'created_at']
-    lookup_field = 'slug'

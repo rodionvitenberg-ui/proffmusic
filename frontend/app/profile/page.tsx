@@ -25,7 +25,7 @@ export default function ProfilePage() {
   // 1. Проверка авторизации
   useEffect(() => {
     const timer = setTimeout(() => {
-        if (!isAuthenticated) router.push('/login');
+        if (!isAuthenticated) router.push('/api/login');
     }, 500);
     return () => clearTimeout(timer);
   }, [isAuthenticated, router]);
@@ -33,7 +33,7 @@ export default function ProfilePage() {
   // 2. Загрузка истории заказов
   useEffect(() => {
     if (isAuthenticated) {
-        api.get('/users/orders/')
+        api.get('/api/users/orders/')
            .then(res => setOrders(res.data))
            .catch(console.error)
            .finally(() => setLoadingOrders(false));

@@ -6,26 +6,24 @@ from django.template.loader import render_to_string
 from yookassa import Configuration, Payment
 from .models import Order, DownloadToken, OrderItem
 
-Configuration.account_id = settings.YOOKASSA_SHOP_ID
-Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
+# Настраиваем ЮКассу только если есть ключи (чтобы не падало при старте)
+if settings.YOOKASSA_SHOP_ID and settings.YOOKASSA_SECRET_KEY:
+    Configuration.account_id = settings.YOOKASSA_SHOP_ID
+    Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
 
 def check_access(user, email, product):
     """
     Проверяет, купил ли пользователь данный продукт (Трек или Сборник).
-    product: экземпляр Track или Collection
     """
-    # 1. Ищем оплаченные заказы
     orders = Order.objects.filter(status='paid')
     
-    # 2. Фильтруем по пользователю (если вошел) или по email (гость)
     if user and user.is_authenticated:
         orders = orders.filter(user=user)
     elif email:
         orders = orders.filter(email=email)
     else:
-        return False # Нет ни юзера, ни email
+        return False
 
-    # 3. Проверяем, есть ли товар внутри этих заказов
     for order in orders:
         for item in order.items.all():
             if item.track == product or item.collection == product:
@@ -36,23 +34,43 @@ def check_access(user, email, product):
 def generate_download_links(order):
     """
     Создает ОДНУ мастер-ссылку на весь заказ.
-    Возвращает список из одного токена (для совместимости с остальным кодом).
     """
-    # Проверяем, может токен уже есть, чтобы не дублировать
-    token, created = DownloadToken.objects.get_or_create(
-        order=order,
-        track=None,      # Важно: эти поля теперь пустые,
-        collection=None  # так как ссылка не привязана к конкретному товару
-    )
-    
+    token, created = DownloadToken.objects.get_or_create(order=order)
     return [token]
 
-def create_payment(order, ip_address):
+def create_payment(order, ip):
     """
-    Создает платеж в ЮКассе и возвращает URL для перенаправления пользователя.
+    Создает платеж. 
+    ЕСЛИ DEBUG=True и нет ключей ЮКассы -> возвращает ссылку на локальный эмулятор.
     """
+    
+    # --- MOCK MODE (ЭМУЛЯТОР) ---
+    # Если мы в разработке и ключи не заданы (или специально хотим мок)
+    if settings.DEBUG:
+        print("⚠️ MOCK PAYMENT MODE ACTIVATED")
+        # Возвращаем ссылку на нашу страницу-заглушку на фронте
+        # Предполагаем, что фронт крутится на localhost:3000
+        frontend_url = "http://localhost:3000" 
+        return f"{frontend_url}/mock-payment?order_id={order.id}&amount={order.amount}"
+
+    # --- REAL MODE (БОЕВОЙ) ---
     idempotence_key = str(uuid.uuid4())
     
+    items = []
+    for item in order.items.all():
+        name = item.track.title if item.track else item.collection.title
+        items.append({
+            "description": name[:128],
+            "quantity": "1.00",
+            "amount": {
+                "value": str(item.price),
+                "currency": "RUB"
+            },
+            "vat_code": "1",
+            "payment_mode": "full_payment",
+            "payment_subject": "service"
+        })
+
     payment = Payment.create({
         "amount": {
             "value": str(order.amount),
@@ -63,7 +81,7 @@ def create_payment(order, ip_address):
             "return_url": settings.YOOKASSA_RETURN_URL
         },
         "capture": True,
-        "description": f"Заказ №{str(order.id)[:8]} на ProffMusic",
+        "description": f"Заказ №{order.id}",
         "metadata": {
             "order_id": str(order.id)
         },
@@ -71,64 +89,43 @@ def create_payment(order, ip_address):
             "customer": {
                 "email": order.email
             },
-            "items": _build_receipt_items(order)
+            "items": items
         }
     }, idempotence_key)
 
-    # Сохраняем ID платежа, чтобы потом проверить статус
+    # Сохраняем ID платежа, чтобы потом проверять статус
     order.yookassa_payment_id = payment.id
     order.save()
 
     return payment.confirmation.confirmation_url
 
-def _build_receipt_items(order):
-    """
-    Формирует список товаров для чека (требование 54-ФЗ).
-    """
-    items = []
-    for item in order.items.all():
-        name = item.track.title if item.track else item.collection.title
-        items.append({
-            "description": name[:128], # Ограничение ЮКассы
-            "quantity": "1.00",
-            "amount": {
-                "value": str(item.price),
-                "currency": "RUB"
-            },
-            "vat_code": "1", # 1 = без НДС (для ИП/самозанятых часто подходит, уточни у бухгалтера)
-            "payment_mode": "full_payment",
-            "payment_subject": "service" # Или 'commodity'
-        })
-    return items
-
 def send_order_email(order):
     """
     Генерирует ссылку и отправляет письмо.
     """
-    # 1. Генерируем токен (используем нашу функцию из шага выше)
-    # Импорт внутри функции, чтобы избежать циклического импорта
     from .services import generate_download_links 
     tokens = generate_download_links(order)
-    master_token = tokens[0] # Мы договорились, что ссылка одна на заказ
+    master_token = tokens[0]
 
-    # 2. Формируем ссылку (в продакшене тут будет домен сайта)
     download_url = f"{settings.SITE_URL}/api/orders/download/{master_token.token}/"
 
-    # 3. Отправляем письмо
     subject = f"Ваш заказ №{str(order.id)[:8]} готов!"
     message = f"""
     Спасибо за покупку!
     
-    Ваша ссылка для скачивания:
+    Ваша ссылка для скачивания файлов:
     {download_url}
     
     Ссылка действительна 48 часов.
     """
     
-    send_mail(
-        subject,
-        message,
-        settings.DEFAULT_FROM_EMAIL,
-        [order.email],
-        fail_silently=False,
-    )
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [order.email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        print(f"Ошибка отправки письма: {e}")

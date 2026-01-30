@@ -5,7 +5,8 @@ import { Collection, useCartStore, usePlayerStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { TrackCard } from '@/components/shared/TrackCard';
-import { toast } from '@/components/ui/toast'; // <--- Импорт тоста
+import { toast } from '@/components/ui/toast';
+import Image from 'next/image';
 
 export function CollectionDetails({ collection }: { collection: Collection }) {
   const { addToCart, isInCart } = useCartStore();
@@ -50,9 +51,10 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
           
           {/* Обложка */}
           <div className="w-64 h-64 sm:w-80 sm:h-80 shrink-0 rounded-lg shadow-2xl overflow-hidden bg-gray-800 border border-white/10">
-            <img 
+            <Image 
               src={collection.cover_image || '/placeholder.jpg'} 
-              alt={collection.title} 
+              alt={collection.title}
+              fill 
               className="w-full h-full object-cover"
             />
           </div>

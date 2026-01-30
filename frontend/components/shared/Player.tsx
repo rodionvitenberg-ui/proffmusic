@@ -1,9 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link'; // Импорт Link
+import Link from 'next/link';
 import { usePlayerStore } from '@/lib/store';
 import { Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react';
+import Image from 'next/image';
+
+// Форматирование времени (125.5 -> 2:05)
+const formatTime = (time: number) => {
+  if (!time || isNaN(time)) return '0:00';
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60);
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
 
 export function Player() {
   const { 
@@ -15,182 +24,197 @@ export function Player() {
     pause
   } = usePlayerStore();
   
-  // Состояние гидратации (чтобы избежать ошибок при SSR + LocalStorage)
   const [mounted, setMounted] = useState(false);
-  
   const audioRef = useRef<HTMLAudioElement>(null);
+  
+  // Локальные стейты для UI
   const [volume, setVolume] = useState(0.7);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [isDragging, setIsDragging] = useState(false); // Чтобы ползунок не прыгал, когда мы его тянем
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // 1. Синхронизация стейта и аудио-элемента
+  // 1. Управление Play/Pause через пропсы стора
   useEffect(() => {
-    if (!mounted) return;
+    if (!audioRef.current || !currentTrack) return;
 
-    if (currentTrack && audioRef.current) {
-      if (isPlaying) {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Автоплей заблокирован браузером или ошибка загрузки
-            pause();
-          });
-        }
-      } else {
-        audioRef.current.pause();
+    if (isPlaying) {
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.error("Autoplay prevented:", error);
+          pause(); // Если браузер блокирует, ставим паузу в сторе
+        });
       }
+    } else {
+      audioRef.current.pause();
     }
-  }, [isPlaying, currentTrack, pause, mounted]);
+  }, [isPlaying, currentTrack, pause]);
 
-  // 2. Обновление громкости
+  // 2. Управление громкостью
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
   }, [volume]);
 
-  // 3. Обработчик времени (срабатывает, пока играет музыка)
-  const onTimeUpdate = () => {
-    if (audioRef.current && !isDragging) { // Не обновляем, если пользователь тянет ползунок
+  // --- ХЕНДЛЕРЫ АУДИО СОБЫТИЙ ---
+
+  const handleTimeUpdate = () => {
+    // Обновляем прогресс только если пользователь НЕ тянет ползунок прямо сейчас
+    if (audioRef.current && !isDragging) {
       setProgress(audioRef.current.currentTime);
-      setDuration(audioRef.current.duration || 0);
     }
   };
 
-  const onLoadedMetadata = (e: React.SyntheticEvent<HTMLAudioElement>) => {
-     setDuration(e.currentTarget.duration);
-  }
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+      if (isPlaying) audioRef.current.play().catch(() => pause());
+    }
+  };
 
-  // 4. Когда трек закончился
-  const onEnded = () => {
+  const handleEnded = () => {
     playNext();
   };
 
-  // 5. Начало перетаскивания ползунка
+  // --- ЛОГИКА ПЕРЕМОТКИ (SEEK) ---
+
   const handleSeekStart = () => {
     setIsDragging(true);
-  }
+  };
 
-  // 6. Процесс перетаскивания (только визуально)
   const handleSeekMove = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Просто обновляем визуальное положение ползунка
     setProgress(Number(e.target.value));
-  }
+  };
 
-  // 7. Конец перетаскивания (применяем время)
   const handleSeekEnd = (e: React.MouseEvent<HTMLInputElement> | React.TouchEvent<HTMLInputElement>) => {
     if (audioRef.current) {
-      const newTime = Number(e.currentTarget.value);
+      // Применяем новое время к аудио
+      const newTime = Number((e.currentTarget as HTMLInputElement).value);
       audioRef.current.currentTime = newTime;
-      setIsDragging(false);
+      setProgress(newTime);
     }
-  }
-
-  // Форматирование времени
-  const formatTime = (time: number) => {
-    if (isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    setIsDragging(false);
   };
 
   if (!mounted || !currentTrack) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#121212] border-t border-white/10 px-4 py-3 z-50 transition-transform duration-300">
+    <>
+      {/* Скрытый нативный аудиоплеер для обработки логики */}
       <audio
         ref={audioRef}
-        src={currentTrack.audio_file_preview || ''}
-        onTimeUpdate={onTimeUpdate}
-        onLoadedMetadata={onLoadedMetadata}
-        onEnded={onEnded}
+        src={currentTrack.audio_file_preview}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleEnded}
       />
 
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        
-        {/* Инфо о треке */}
-        <div className="flex items-center gap-4 w-1/3 min-w-[150px]">
-          <img 
-            src={currentTrack.cover_image || '/placeholder.jpg'} 
-            alt={currentTrack.title} 
-            className="w-12 h-12 rounded bg-gray-800 object-cover shadow-sm"
-          />
-          <div className="truncate flex flex-col">
-            {/* ТЕПЕРЬ ЭТО ССЫЛКА */}
-            <Link 
-              href={`/tracks/${currentTrack.slug}`} 
-              className="text-white font-medium text-sm truncate hover:text-purple-400 transition-colors"
-            >
-              {currentTrack.title}
-            </Link>
-            <Link 
-              href={`/music?category__slug=${currentTrack.category?.slug}`}
-              className="text-gray-400 text-xs truncate hover:text-gray-300 transition-colors"
-            >
-              {currentTrack.category?.name || 'Музыка'}
-            </Link>
-          </div>
-        </div>
-
-        {/* Контроллеры и Прогресс */}
-        <div className="flex flex-col items-center w-full max-w-lg gap-1">
-          <div className="flex items-center gap-6">
-            <button onClick={playPrev} className="text-gray-400 hover:text-white transition active:scale-95">
-              <SkipBack size={20} />
-            </button>
-            
-            <button 
-              onClick={togglePlay} 
-              className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 active:scale-95 transition shadow-lg"
-            >
-              {isPlaying ? <Pause size={20} fill="black" /> : <Play size={20} fill="black" className="ml-1" />}
-            </button>
-            
-            <button onClick={playNext} className="text-gray-400 hover:text-white transition active:scale-95">
-              <SkipForward size={20} />
-            </button>
+      {/* UI ПЛЕЕРА */}
+      <div className="fixed bottom-0 left-0 right-0 bg-[#121212] border-t border-white/10 z-50 px-4 py-3 shadow-2xl animate-in slide-in-from-bottom duration-500">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          
+          {/* 1. Информация о треке */}
+          <div className="flex items-center gap-3 w-1/3 min-w-[140px]">
+            <div className="h-12 w-12 bg-gray-800 rounded overflow-hidden shrink-0 border border-white/10 relative">
+              {currentTrack.cover_image && (
+                <Image 
+                   src={currentTrack.cover_image} 
+                   alt={currentTrack.title}
+                   fill 
+                   className="object-cover w-full h-full"
+                />
+              )}
+            </div>
+            <div className="min-w-0 overflow-hidden">
+              <h4 className="text-white font-bold text-sm truncate">{currentTrack.title}</h4>
+              <p className="text-gray-400 text-xs truncate">
+                {currentTrack.category?.name || 'ProffMusic'}
+              </p>
+            </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full text-xs text-gray-400 font-mono select-none">
-            <span className="w-9 text-right">{formatTime(progress)}</span>
-            
-            {/* Улучшенный Input Range */}
+          {/* 2. Контроллеры и Ползунок */}
+          <div className="flex flex-col items-center justify-center flex-1 max-w-xl">
+            {/* Кнопки */}
+            <div className="flex items-center gap-4 mb-1">
+              <button onClick={playPrev} className="text-gray-400 hover:text-white transition active:scale-95">
+                <SkipBack size={20} />
+              </button>
+              
+              <button 
+                onClick={togglePlay}
+                className="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition active:scale-95 shadow-lg"
+              >
+                {isPlaying ? <Pause size={18} fill="black" /> : <Play size={18} fill="black" className="ml-0.5" />}
+              </button>
+
+              <button onClick={playNext} className="text-gray-400 hover:text-white transition active:scale-95">
+                <SkipForward size={20} />
+              </button>
+            </div>
+
+            {/* Слайдер времени (Input Range) */}
+            <div className="flex items-center gap-3 w-full text-xs text-gray-400 font-mono select-none">
+              <span className="w-9 text-right tabular-nums">
+                {formatTime(progress)}
+              </span>
+              
+              <div className="relative flex-1 h-4 flex items-center group">
+                 <input
+                  type="range"
+                  min={0}
+                  max={duration && !isNaN(duration) ? duration : 100}
+                  value={progress}
+                  onMouseDown={handleSeekStart}
+                  onTouchStart={handleSeekStart}
+                  onChange={handleSeekMove}
+                  onMouseUp={handleSeekEnd}
+                  onTouchEnd={handleSeekEnd}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                />
+                
+                {/* Кастомный прогресс-бар */}
+                <div className="w-full h-1 bg-gray-700 rounded-lg overflow-hidden relative">
+                    <div 
+                        className="h-full bg-white group-hover:bg-purple-400 transition-colors"
+                        style={{ width: `${(progress / (duration || 1)) * 100}%` }}
+                    />
+                </div>
+                {/* Точка ползунка */}
+                <div 
+                    className="absolute h-3 w-3 bg-white rounded-full shadow pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ left: `${(progress / (duration || 1)) * 100}%`, transform: 'translateX(-50%)' }}
+                />
+              </div>
+              
+              <span className="w-9 tabular-nums">
+                {formatTime(duration)}
+              </span>
+            </div>
+          </div>
+
+          {/* 3. Громкость */}
+          <div className="hidden md:flex items-center justify-end w-1/3 gap-2">
+            <Volume2 size={18} className="text-gray-400" />
             <input
               type="range"
               min={0}
-              max={duration && !isNaN(duration) ? duration : 100}
-              value={progress}
-              onMouseDown={handleSeekStart}
-              onTouchStart={handleSeekStart}
-              onChange={handleSeekMove}
-              onMouseUp={handleSeekEnd}
-              onTouchEnd={handleSeekEnd}
-              className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-white hover:accent-purple-400 transition-colors"
+              max={1}
+              step={0.01}
+              value={volume}
+              onChange={(e) => setVolume(Number(e.target.value))}
+              className="w-24 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-gray-400 hover:accent-white transition-colors"
             />
-            
-            <span className="w-9">{formatTime(duration)}</span>
           </div>
+          
         </div>
-
-        {/* Громкость */}
-        <div className="hidden md:flex items-center justify-end w-1/3 gap-2">
-          <Volume2 size={18} className="text-gray-400" />
-          <input
-            type="range"
-            min={0}
-            max={1}
-            step={0.01}
-            value={volume}
-            onChange={(e) => setVolume(Number(e.target.value))}
-            className="w-24 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-gray-400 hover:accent-white"
-          />
-        </div>
-
       </div>
-    </div>
+    </>
   );
 }

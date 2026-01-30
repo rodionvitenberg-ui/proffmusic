@@ -9,7 +9,7 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
     
     # Требуем email при создании суперюзера через консоль
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name']
     USERNAME_FIELD = 'email' # Логин по email
 
     def __str__(self):

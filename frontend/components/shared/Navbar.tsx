@@ -57,7 +57,7 @@ export function Navbar() {
     setMounted(true);
     const fetchCategories = async () => {
       try {
-        const res = await api.get('/categories/');
+        const res = await api.get('/api/categories/');
         setCategories(res.data);
       } catch (e) {
         console.error('Не удалось загрузить категории меню', e);
