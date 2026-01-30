@@ -1,0 +1,19 @@
+# System
+.DS_Store
+
+# Frontend (Node)
+node_modules/
+.next/
+dist/
+build/
+.env.local
+.env
+
+# Backend (Python/Django)
+__pycache__/
+*.py[cod]
+venv/
+.env
+db.sqlite3
+media/
+staticfiles/
