@@ -9,11 +9,11 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-// Функция загрузки трека
+// Функция загрузки трека (вынесена для переиспользования)
 async function getTrack(slug: string) {
   try {
     const decodedSlug = decodeURIComponent(slug);
-    const res = await api.get<Track>(`/api/tracks/${decodedSlug}/`);
+    const res = await api.get<Track>(`/tracks/${decodedSlug}/`);
     return res.data;
   } catch (e) {
     return null;
@@ -31,6 +31,7 @@ async function getRelatedTracks(categorySlug: string | undefined, currentId: num
   }
 }
 
+// 1. ИСПРАВЛЕНИЕ МЕТАДАННЫХ
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const track = await getTrack(slug);
@@ -39,11 +40,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Трек не найден | ProffMusic' };
   }
 
+  // Фикс: проверяем, есть ли картинка. Если нет — передаем пустой массив или дефолтную картинку.
+  const images = track.cover_image ? [track.cover_image] : [];
+
   return {
-    title: `${track.title} - ${track.category?.name || 'Music'} | ProffMusic`,
-    description: track.description_full || `Слушать трек ${track.title} на ProffMusic`,
+    title: `${track.title} | Скачать музыку | ProffMusic`,
+    description: track.description_short || `Купить лицензионный трек ${track.title}.`,
     openGraph: {
-      images: [track.cover_image || '/logo.png'],
+      title: track.title,
+      description: track.description_short,
+      images: images, // Теперь тут массив строк, без undefined
     },
   };
 }
@@ -63,7 +69,7 @@ export default async function TrackPage({ params }: Props) {
     '@type': 'MusicRecording',
     name: track.title,
     duration: track.duration ? `PT${track.duration}` : undefined,
-    image: track.cover_image || '',
+    image: track.cover_image || '', // Фикс для JSON-LD
     description: track.description_full,
     offers: {
       '@type': 'Offer',
@@ -80,21 +86,15 @@ export default async function TrackPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      {/* ИСПРАВЛЕНИЕ ЗАЗОРА:
-         1. 'bg-[#0f0f0f]' — чтобы фон страницы сливался с компонентом TrackDetails.
-         2. 'min-h-screen' — растягивает фон на всю высоту, убирая белые/черные полосы снизу.
-         3. 'flex flex-col' — для правильного позиционирования дочерних элементов.
-      */}
-      <div className="w-full bg-[#0f0f0f] min-h-screen flex flex-col">
-        
+      <div className="min-h-screen bg-[#0f0f0f]">
         <TrackDetails track={track} />
 
         {relatedTracks.length > 0 && (
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/5 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/5">
             <h2 className="text-2xl font-bold text-white mb-8">Похожие треки</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedTracks.map((related) => (
-                <TrackCard key={related.id} track={related} />
+                <TrackCard key={related.id} track={related} playlist={relatedTracks} />
               ))}
             </div>
           </div>

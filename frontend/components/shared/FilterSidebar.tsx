@@ -277,7 +277,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
   return (
     <>
       {/* ДЕСКТОП САЙДБАР */}
-      <aside className="hidden lg:block w-64 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto pr-2 custom-scrollbar">
+      <aside className="hidden lg:block w-64 shrink-0 sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto pr-2 custom-scrollbar [scrollbar-gutter:stable]">
         <SidebarContent />
       </aside>
 
@@ -306,7 +306,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
             </div>
             
             {/* СКРОЛЛИРУЕМЫЙ КОНТЕНТ (Вот он теперь занимает всё свободное место) */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-2">
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-2 [scrollbar-gutter:stable]">
               <SidebarContent />
             </div>
             

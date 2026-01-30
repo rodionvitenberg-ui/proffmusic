@@ -34,11 +34,6 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Логика:
-      // 1. Если скроллим ВНИЗ и прокрутили больше 50px -> Скрываем
-      // 2. Если скроллим ВВЕРХ -> Показываем
-      // 3. Если мы в самом верху (< 10px) -> Всегда показываем
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setIsVisible(false);
       } else {
@@ -71,8 +66,6 @@ export function Navbar() {
       className={cn(
         // Базовые стили
         "fixed top-0 left-0 right-0 z-[100] bg-secondary/90 backdrop-blur-md border-b border-white/10 transform-gpu will-change-transform transition-transform duration-300 ease-in-out",
-        // Условие скрытия: Скрываем, только если isVisible=false И меню закрыто (!isOpen).
-        // Если открыто мобильное меню, хедер должен быть виден всегда.
         (!isVisible && !isOpen) ? "-translate-y-full" : "translate-y-0"
       )}
     >
