@@ -36,10 +36,10 @@ export default function ContactsPage() {
                     Для решения технических вопросов и проблем с заказами. Отвечаем в течение 24 часов.
                 </p>
                 <a 
-                    href="mailto:support@proffmusic.ru" 
+                    href="mailto:shop@proffmusic.ru" 
                     className="text-2xl font-bold text-white hover:text-green-400 transition-colors break-all"
                 >
-                    support@proffmusic.ru
+                    shop@proffmusic.ru
                 </a>
             </div>
 
@@ -56,23 +56,8 @@ export default function ContactsPage() {
                     href="#" 
                     className="text-2xl font-bold text-white hover:text-blue-400 transition-colors"
                 >
-                    @proffmusic_support
+                    @proffmusic
                 </a>
-            </div>
-        </div>
-
-        {/* ЮРИДИЧЕСКИЙ БЛОК (Реквизиты) */}
-        <div className="bg-[#151515] rounded-xl p-8 border border-white/5 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-                <h3 className="text-lg font-bold text-white mb-1">Юридическая информация</h3>
-                <p className="text-gray-500 text-sm">
-                    Официальные реквизиты для контрагентов
-                </p>
-            </div>
-            <div className="text-sm text-gray-400 text-right space-y-1">
-                <p>ИП Иванов Иван Иванович</p>
-                <p>ОГРНИП: 3123456789000</p>
-                <p>ИНН: 770000000000</p>
             </div>
         </div>
 

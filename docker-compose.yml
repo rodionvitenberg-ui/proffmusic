@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env.prod
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    restart: always
+
+  backend:
+    build: ./backend
+    command: /entrypoint.sh
+    volumes:
+      - static_volume:/app/staticfiles
+      - media_volume:/app/media
+      - protected_volume:/app/protected_media
+    env_file:
+      - .env.prod
+    depends_on:
+      - db
+    restart: always
+
+  frontend:
+    build: ./frontend
+    env_file:
+      - .env.prod
+    depends_on:
+      - backend
+    restart: always
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "127.0.0.1:8090:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/app/backend/staticfiles
+      - media_volume:/app/backend/media
+      - protected_volume:/app/backend/protected_media
+    depends_on:
+      - backend
+      - frontend
+    restart: always
+
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:
+  protected_volume:
