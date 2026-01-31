@@ -13,7 +13,7 @@ type Props = {
 async function getTrack(slug: string) {
   try {
     const decodedSlug = decodeURIComponent(slug);
-    const res = await api.get<Track>(`/tracks/${decodedSlug}/`);
+    const res = await api.get<Track>(`/api/tracks/${decodedSlug}/`);
     return res.data;
   } catch (e) {
     return null;
@@ -86,7 +86,7 @@ export default async function TrackPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <div className="min-h-screen bg-[#0f0f0f]">
+      <div className="min-h-screen bg-background">
         <TrackDetails track={track} />
 
         {relatedTracks.length > 0 && (

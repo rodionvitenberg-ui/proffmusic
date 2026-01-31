@@ -10,7 +10,6 @@ interface LabelProps extends React.ComponentProps<typeof LabelPrimitive.Root> {
   disableAnimation?: boolean
 }
 
-
 function mergeRefs<T>(
   ...refs: Array<React.Ref<T> | undefined>
 ): React.RefCallback<T> {
@@ -26,7 +25,7 @@ function mergeRefs<T>(
 const MotionLabel = React.forwardRef<
   HTMLLabelElement,
   LabelProps & { children?: React.ReactNode }
->(({ direction = "left", disableAnimation, className, ...props }, ref) => {
+>(({ direction = "left", disableAnimation, className, asChild, ...props }, ref) => {
   const localRef = React.useRef<HTMLLabelElement>(null)
   const isInView = useInView(localRef, { once: false, margin: "-50px" })
 
@@ -45,21 +44,30 @@ const MotionLabel = React.forwardRef<
   )
 
   if (disableAnimation) {
-    return <LabelPrimitive.Root ref={mergeRefs(ref, localRef)} className={baseClasses} {...props} />
+    return (
+      <LabelPrimitive.Root 
+        ref={mergeRefs(ref, localRef)} 
+        className={baseClasses} 
+        asChild={asChild}
+        {...props} 
+      />
+    )
   }
 
   return (
     <motion.label
       ref={mergeRefs(ref, localRef)}
+      className={baseClasses}
       initial={variants[direction].initial}
       animate={isInView ? variants[direction].animate : variants[direction].initial}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={baseClasses}
-      {...props}
+      transition={{ duration: 0.5 }}
+      // ВАЖНО: Кастуем props к any, чтобы TypeScript не ругался на несовпадение onDrag
+      {...(props as any)}
     />
   )
 })
+MotionLabel.displayName = LabelPrimitive.Root.displayName
 
-MotionLabel.displayName = "MotionLabel"
+const Label = MotionLabel
 
-export { MotionLabel as Label }
+export { Label }

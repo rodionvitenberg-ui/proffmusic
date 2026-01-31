@@ -48,36 +48,37 @@ export function Footer() {
               <li><Link href="/about" className="hover:text-white transition">О нас</Link></li>
               <li><Link href="/license" className="hover:text-white transition">Лицензия</Link></li>
               <li><Link href="/contacts" className="hover:text-white transition">Контакты</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition">Политика конфиденциальности</Link></li>
             </ul>
           </div>
 
           {/* 4. Контакты и Соцсети */}
           <div>
-            <h3 className="font-bold text-white mb-4">Следите за нами</h3>
-            <div className="flex gap-4 mb-6">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition">
-                <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition">
-                <Youtube size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white hover:text-black transition">
-                <Send size={20} />
-              </a>
-            </div>
-            
             <h3 className="font-bold text-white mb-2">Поддержка</h3>
-            <a href="mailto:support@proffmusic.ru" className="flex items-center gap-2 hover:text-white transition">
-              <Mail size={16} /> support@proffmusic.ru
+            <a href="mailto:shop@proffmusic.ru" className="flex items-center gap-2 hover:text-white transition">
+              <Mail size={16} />shop@proffmusic.ru
             </a>
           </div>
 
         </div>
 
-        {/* Низ футера: Копирайт */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p>© {currentYear} ProffMusic. Все права защищены.</p>
+        {/* НИЖНЯЯ ПОЛОСА (Изменено) */}
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          
+          {/* ЛЕВАЯ СТОРОНА: Копирайт + Ссылки */}
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
+            <p>© {currentYear} ProffMusic.</p>
+            <div className="flex gap-4 text-xs font-medium text-gray-500">
+            </div>
+          </div>
+
+          {/* ПРАВАЯ СТОРОНА: Инициалы RV */}
+          <div 
+            className="text-xs font-mono text-gray-700 uppercase tracking-widest hover:text-gray-500 transition-colors cursor-default select-none"
+            title="Developed by Rodion Vitenberg"
+          >
+             ikSoft
+          </div>
+
         </div>
 
       </div>
