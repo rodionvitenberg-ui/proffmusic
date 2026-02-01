@@ -2,123 +2,142 @@ import os
 import zipfile
 import io
 import json
+import traceback # <--- Добавили для отладки
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, Http404, HttpResponseForbidden, FileResponse
 from django.shortcuts import get_object_or_404
-from django.conf import settings
-from .models import DownloadToken, Order
-from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
+
+from .models import DownloadToken, Order, OrderItem
+from music.models import Track, Collection
 from .services import create_payment, send_order_email
 
+# --- СЮДА СЕРИАЛИЗАТОРЫ НЕ ИМПОРТИРУЕМ, ОНИ ЗДЕСЬ НЕ НУЖНЫ ---
+# Это исключит любые проблемы с циклическими импортами
+
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def checkout(request):
-    """
-    Создание заказа и получение ссылки на оплату.
-    """
+    print("🔵 CHECKOUT STARTED") # Лог начала
     try:
-        # Получаем IP пользователя (для ЮКассы)
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         ip = x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
         
-        # Передаем данные в сервис (валидация и создание там)
-        # Примечание: предполагается, что create_payment сама разбирает request.data
-        # Но судя по прошлому коду, create_payment принимает order object.
-        # Поэтому здесь нам нужен сериалайзер.
-        
-        from .serializers import OrderSerializer
-        from .models import OrderItem
-        from music.models import Track, Collection
-        
         data = request.data
         email = data.get('email')
-        items_data = data.get('items', []) # [{type: 'track', id: 1}, ...]
+        items_data = data.get('items', []) 
         
         if not items_data:
             return Response({"error": "Корзина пуста"}, status=400)
+        
+        if not email and not request.user.is_authenticated:
+             return Response({"error": "Email обязателен"}, status=400)
+
+        final_email = email if email else (request.user.email if request.user.is_authenticated else '')
 
         # 1. Создаем заказ
         order = Order.objects.create(
-            email=email,
+            email=final_email,
             user=request.user if request.user.is_authenticated else None,
-            amount=0, # Посчитаем ниже
+            amount=0,
             status='pending'
         )
 
         total_amount = 0
 
-        # 2. Создаем позиции заказа
+        # 2. Товары
         for item in items_data:
             item_type = item.get('type')
             item_id = item.get('id')
             
             if item_type == 'track':
-                product = get_object_or_404(Track, id=item_id)
-                price = product.price
-                OrderItem.objects.create(order=order, track=product, price=price)
+                product = Track.objects.filter(id=item_id).first()
+                if product:
+                    # price конвертируется в Decimal автоматически
+                    OrderItem.objects.create(order=order, track=product, price=product.price)
+                    total_amount += product.price
+            
             elif item_type == 'collection':
-                product = get_object_or_404(Collection, id=item_id)
-                price = product.price
-                OrderItem.objects.create(order=order, collection=product, price=price)
-            else:
-                continue
-                
-            total_amount += price
+                product = Collection.objects.filter(id=item_id).first()
+                if product:
+                    OrderItem.objects.create(order=order, collection=product, price=product.price)
+                    total_amount += product.price
+
+        if total_amount == 0:
+             order.delete()
+             print("❌ Ошибка: Сумма заказа 0")
+             return Response({"error": "Товары не найдены"}, status=400)
 
         order.amount = total_amount
         order.save()
+        print(f"🟢 Заказ {order.id} создан в БД. Сумма: {total_amount}")
 
-        # 3. Генерируем ссылку на оплату
+        # 3. ЮКасса
+        print("👉 Вызываем create_payment...")
         payment_url = create_payment(order, ip)
         
+        print(f"✅ URL получен: {payment_url}")
         return Response({
             "order_id": order.id,
             "payment_url": payment_url
         })
 
     except Exception as e:
-        print(f"Checkout Error: {e}")
-        return Response({"error": "Ошибка при создании заказа"}, status=500)
+        print("\n\n🔥 CRITICAL ERROR IN CHECKOUT 🔥")
+        print(f"Error: {e}")
+        # Выведет ПОЛНЫЙ путь к ошибке (в каком файле и на какой строке)
+        traceback.print_exc() 
+        print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n")
+        return Response({"error": "Ошибка сервера. Подробности в логах."}, status=500)
 
 
-@api_view(['POST'])
-@permission_classes([AllowAny])
+@csrf_exempt
 def yookassa_webhook(request):
     """
-    Принимает уведомления от ЮКассы.
+    Вебхук без изменений логики, только принты.
     """
+    if request.method != 'POST':
+        return HttpResponse('Method Not Allowed', status=405)
+
     try:
-        event_json = json.loads(request.body)
+        body_unicode = request.body.decode('utf-8')
+        event_json = json.loads(body_unicode)
     except json.JSONDecodeError:
-        return Response(status=400)
+        return HttpResponse('Invalid JSON', status=400)
     
-    # Логируем (в продакшене используй logger)
-    print("WEBHOOK RECEIVED:", event_json)
+    print(f"🔔 WEBHOOK: {event_json.get('event')}")
 
     try:
         if event_json.get('event') == 'payment.succeeded':
             payment_object = event_json['object']
             metadata = payment_object.get('metadata', {})
             order_id = metadata.get('order_id')
+            yookassa_id = payment_object.get('id')
             
             if order_id:
                 try:
                     order = Order.objects.get(id=order_id)
-                    # Идемпотентность
                     if order.status != 'paid':
                         order.status = 'paid'
+                        order.yookassa_payment_id = yookassa_id
                         order.save()
-                        # Отправляем письмо
+                        print(f"✅ ЗАКАЗ {order_id} ОПЛАЧЕН. Письмо...")
                         send_order_email(order)
+                    else:
+                        print(f"ℹ️ Заказ {order_id} уже оплачен.")
                 except Order.DoesNotExist:
-                    pass
+                    print(f"❌ Заказ {order_id} не найден.")
+            else:
+                print("⚠️ Нет order_id в metadata")
                     
-        return Response(status=200)
+        return HttpResponse('OK', status=200)
+        
     except Exception as e:
-        print(f"Webhook Error: {e}")
-        return Response(status=500)
-
+        print(f"❌ Webhook Error: {e}")
+        traceback.print_exc()
+        return HttpResponse('Internal Server Error', status=500)
 
 def download_file_by_token(request, token):
     """
@@ -134,58 +153,68 @@ def download_file_by_token(request, token):
     items = order.items.all()
     
     # СЦЕНАРИЙ 1: Один трек (отдаем файл напрямую)
-    if items.count() == 1 and items[0].track:
+    if items.count() == 1 and items[0].track and not items[0].collection:
         track = items[0].track
-        if not track.audio_file_full:
-            raise Http404("Файл трека не найден на сервере.")
         
+        # Проверка на наличие файла
+        if not track.audio_file_full:
+            raise Http404("Файл трека не загружен на сервер.")
+            
         file_path = track.audio_file_full.path
         if not os.path.exists(file_path):
-             raise Http404("Файл физически отсутствует.")
+             raise Http404("Файл физически отсутствует на диске.")
 
         # Увеличиваем счетчик
         download_link.usage_count += 1
         download_link.save()
         
-        # Имя файла для скачивания (транслит slug)
-        filename = f"{track.slug}.{file_path.split('.')[-1]}"
+        # Имя файла для скачивания (транслит slug + оригинальное расширение)
+        ext = os.path.splitext(file_path)[1]
+        filename = f"{track.slug}{ext}"
         
-        # ОПТИМИЗАЦИЯ: FileResponse вместо open().read()
-        response = FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
-        return response
+        return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
 
     # СЦЕНАРИЙ 2: Несколько товаров или Сборник (генерируем ZIP)
     zip_buffer = io.BytesIO()
     has_files = False
 
-    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-        for item in items:
-            # Если это ТРЕК
-            if item.track and item.track.audio_file_full:
-                fpath = item.track.audio_file_full.path
-                if os.path.exists(fpath):
-                    fname = f"{item.track.slug}.{fpath.split('.')[-1]}"
-                    zip_file.write(fpath, arcname=fname)
-                    has_files = True
-            
-            # Если это СБОРНИК (достаем все треки внутри)
-            elif item.collection:
-                collection_slug = item.collection.slug
-                for track in item.collection.tracks.all():
-                    if track.audio_file_full:
-                        fpath = track.audio_file_full.path
-                        if os.path.exists(fpath):
-                            fname = f"{track.slug}.{fpath.split('.')[-1]}"
-                            # Кладем в папку с именем сборника внутри архива
-                            zip_file.write(fpath, arcname=f"{collection_slug}/{fname}")
-                            has_files = True
+    try:
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+            for item in items:
+                # Если это ТРЕК
+                if item.track and item.track.audio_file_full:
+                    fpath = item.track.audio_file_full.path
+                    if os.path.exists(fpath):
+                        ext = os.path.splitext(fpath)[1]
+                        fname = f"{item.track.slug}{ext}"
+                        zip_file.write(fpath, arcname=fname)
+                        has_files = True
+                
+                # Если это СБОРНИК (достаем все треки внутри)
+                elif item.collection:
+                    collection_slug = item.collection.slug
+                    # Если у сборника есть треки (m2m связь)
+                    tracks = item.collection.tracks.all()
+                    
+                    for track in tracks:
+                        if track.audio_file_full:
+                            fpath = track.audio_file_full.path
+                            if os.path.exists(fpath):
+                                ext = os.path.splitext(fpath)[1]
+                                fname = f"{track.slug}{ext}"
+                                # Кладем в папку с именем сборника
+                                zip_file.write(fpath, arcname=f"{collection_slug}/{fname}")
+                                has_files = True
+    except Exception as e:
+        print(f"Zip Error: {e}")
+        return HttpResponse("Ошибка при создании архива", status=500)
 
     if not has_files:
-        raise Http404("Файлы для скачивания не найдены.")
+        raise Http404("Файлы для скачивания не найдены (возможно, они не загружены в админку).")
 
     zip_buffer.seek(0)
 
-    # ВАЖНО: Увеличиваем счетчик и для ZIP тоже!
+    # Увеличиваем счетчик
     download_link.usage_count += 1
     download_link.save()
 

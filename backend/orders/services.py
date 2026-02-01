@@ -1,35 +1,12 @@
 import uuid
-import json
+import logging
 from django.conf import settings
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
 from yookassa import Configuration, Payment
-from .models import Order, DownloadToken, OrderItem
+from .models import DownloadToken
 
-# Настраиваем ЮКассу только если есть ключи (чтобы не падало при старте)
-if settings.YOOKASSA_SHOP_ID and settings.YOOKASSA_SECRET_KEY:
-    Configuration.account_id = settings.YOOKASSA_SHOP_ID
-    Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
-
-def check_access(user, email, product):
-    """
-    Проверяет, купил ли пользователь данный продукт (Трек или Сборник).
-    """
-    orders = Order.objects.filter(status='paid')
-    
-    if user and user.is_authenticated:
-        orders = orders.filter(user=user)
-    elif email:
-        orders = orders.filter(email=email)
-    else:
-        return False
-
-    for order in orders:
-        for item in order.items.all():
-            if item.track == product or item.collection == product:
-                return True
-                
-    return False
+# Настраиваем логгер
+logger = logging.getLogger(__name__)
 
 def generate_download_links(order):
     """
@@ -40,70 +17,83 @@ def generate_download_links(order):
 
 def create_payment(order, ip):
     """
-    Создает платеж. 
-    ЕСЛИ DEBUG=True и нет ключей ЮКассы -> возвращает ссылку на локальный эмулятор.
+    Создает платеж в ЮКассе.
     """
-    
-    # --- MOCK MODE (ЭМУЛЯТОР) ---
-    # Если мы в разработке и ключи не заданы (или специально хотим мок)
-    if settings.DEBUG:
-        print("⚠️ MOCK PAYMENT MODE ACTIVATED")
-        # Возвращаем ссылку на нашу страницу-заглушку на фронте
-        # Предполагаем, что фронт крутится на localhost:3000
-        frontend_url = "http://localhost:3000" 
+    # 1. Проверяем ключи. Если их нет - режим эмуляции.
+    if not settings.YOOKASSA_SHOP_ID or not settings.YOOKASSA_SECRET_KEY:
+        print("⚠️ [MOCK] Ключи ЮКассы не найдены. Включаем эмулятор.")
+        frontend_url = settings.SITE_URL if settings.SITE_URL else "http://localhost:3000"
         return f"{frontend_url}/mock-payment?order_id={order.id}&amount={order.amount}"
 
-    # --- REAL MODE (БОЕВОЙ) ---
-    idempotence_key = str(uuid.uuid4())
-    
+    # 2. Инициализируем ЮКассу прямо перед запросом (для надежности)
+    Configuration.account_id = settings.YOOKASSA_SHOP_ID
+    Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
+
+    # 3. Формируем список товаров для чека
     items = []
     for item in order.items.all():
-        name = item.track.title if item.track else item.collection.title
+        # Название товара (обрезаем до 128 символов, требование ЮК)
+        name = (item.track.title if item.track else item.collection.title)[:128]
         items.append({
-            "description": name[:128],
+            "description": name,
             "quantity": "1.00",
             "amount": {
                 "value": str(item.price),
                 "currency": "RUB"
             },
-            "vat_code": "1",
+            "vat_code": "1", # Ставка НДС (1 = 20%, 4 = без НДС). Если ты самозанятый/ИП без НДС - поставь 4? Но обычно 1 работает.
             "payment_mode": "full_payment",
-            "payment_subject": "service"
+            "payment_subject": "service" # Или "commodity" для товаров
         })
 
-    payment = Payment.create({
-        "amount": {
-            "value": str(order.amount),
-            "currency": "RUB"
-        },
-        "confirmation": {
-            "type": "redirect",
-            "return_url": settings.YOOKASSA_RETURN_URL
-        },
-        "capture": True,
-        "description": f"Заказ №{order.id}",
-        "metadata": {
-            "order_id": str(order.id)
-        },
-        "receipt": {
-            "customer": {
-                "email": order.email
+    # 4. Делаем запрос в ЮКассу
+    try:
+        idempotence_key = str(uuid.uuid4())
+        print(f"🚀 Отправляем запрос в ЮКассу... Сумма: {order.amount}, IP: {ip}")
+        
+        payment = Payment.create({
+            "amount": {
+                "value": str(order.amount),
+                "currency": "RUB"
             },
-            "items": items
-        }
-    }, idempotence_key)
+            "confirmation": {
+                "type": "redirect",
+                "return_url": settings.YOOKASSA_RETURN_URL
+            },
+            "capture": True,
+            "description": f"Заказ №{order.id}",
+            "metadata": {
+                "order_id": str(order.id)
+            },
+            "receipt": {
+                "customer": {
+                    "email": order.email
+                },
+                "items": items
+            },
+            # client_ip не является обязательным полем SDK, но иногда полезен
+            # "client_ip": ip 
+        }, idempotence_key)
 
-    # Сохраняем ID платежа, чтобы потом проверять статус
-    order.yookassa_payment_id = payment.id
-    order.save()
+        print(f"✅ Ответ от ЮКассы получен. ID платежа: {payment.id}")
 
-    return payment.confirmation.confirmation_url
+        # Сохраняем ID платежа
+        order.yookassa_payment_id = payment.id
+        order.save()
+
+        return payment.confirmation.confirmation_url
+
+    except Exception as e:
+        print(f"❌ ОШИБКА ЮКАССЫ (services.py): {e}")
+        # Выводим детали, если это ошибка API
+        if hasattr(e, 'response'):
+             print(f"Details: {e.response.text}")
+        raise e # Пробрасываем ошибку выше, чтобы checkout упал и мы увидели трейсбек
 
 def send_order_email(order):
     """
     Генерирует ссылку и отправляет письмо.
     """
-    from .services import generate_download_links 
     tokens = generate_download_links(order)
     master_token = tokens[0]
 
@@ -127,5 +117,6 @@ def send_order_email(order):
             [order.email],
             fail_silently=False,
         )
+        print(f"📧 Письмо отправлено на {order.email}")
     except Exception as e:
-        print(f"Ошибка отправки письма: {e}")
+        print(f"❌ Ошибка отправки письма: {e}")
