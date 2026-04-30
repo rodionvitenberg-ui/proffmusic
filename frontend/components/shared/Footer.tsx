@@ -57,6 +57,14 @@ export function Footer() {
             <a href="mailto:shop@proffmusic.ru" className="flex items-center gap-2 hover:text-white transition">
               <Mail size={16} />shop@proffmusic.ru
             </a>
+            <h3 className="font-bold text-white mb-8"></h3>
+            <a className="flex items-center gap-2 hover:text-white transition">
+              ИП ЛИПАТОВ А.В. ИНН 773373839292 ОГРН 321774600117719
+            </a>
+            <h3 className="font-bold text-white mb-4"></h3>
+            <a className="flex items-center gap-2 hover:text-white transition">
+              +7(925)870-82-99
+            </a>
           </div>
 
         </div>

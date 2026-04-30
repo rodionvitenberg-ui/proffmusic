@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'users',
     'music',
     'orders',
+    'media_engine',
 ]
 
 MIDDLEWARE = [

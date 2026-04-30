@@ -31,6 +31,23 @@ class TrackAdmin(admin.ModelAdmin):
     # Удобный выбор тегов (горизонтальный фильтр)
     filter_horizontal = ('tags',)
 
+    fieldsets = (
+        ("Основная информация", {
+            "fields": ("title", "slug", "category", "tags", "is_new")
+        }),
+        ("Цена и описание", {
+            "fields": ("price", "description_short", "description_full", "cover_image")
+        }),
+        ("Аудио файлы", {
+            "fields": ("audio_file_full", "audio_file_preview", "duration")
+        }),
+        ("⚡️ Авто-генерация превью", {
+            "fields": ("auto_generate_preview", "preview_start_time", "preview_duration"),
+            "classes": ("collapse",), # Можно свернуть, если не нужно
+            "description": "Загрузите полный трек выше, поставьте галочку 'Сгенерировать' и нажмите Сохранить."
+        }),
+    )
+
     def play_audio(self, obj):
         if obj.audio_file_preview:
             return format_html(

@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, MessageCircle, MapPin, Clock, FileText, ArrowRight } from 'lucide-react';
+// Добавил 'Phone' в импорты
+import { Mail, MessageCircle, MapPin, Clock, FileText, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function ContactsPage() {
@@ -23,8 +24,8 @@ export default function ContactsPage() {
           </p>
         </div>
 
-        {/* СЕТКА КОНТАКТОВ */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        {/* СЕТКА КОНТАКТОВ (Email и Telegram) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             
             {/* Карточка: Email */}
             <div className="bg-[#181818] p-8 rounded-2xl border border-white/5 hover:border-green-500/30 transition-all group">
@@ -43,7 +44,7 @@ export default function ContactsPage() {
                 </a>
             </div>
 
-            {/* Карточка: Telegram / Мессенджеры */}
+            {/* Карточка: Telegram */}
             <div className="bg-[#181818] p-8 rounded-2xl border border-white/5 hover:border-blue-500/30 transition-all group">
                 <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center text-blue-400 mb-6 group-hover:scale-110 transition-transform">
                     <MessageCircle size={24} />
@@ -58,6 +59,47 @@ export default function ContactsPage() {
                 >
                     @proffmusic
                 </a>
+            </div>
+        </div>
+
+        {/* НОВАЯ СЕКЦИЯ: РЕКВИЗИТЫ И ТЕЛЕФОН */}
+        <div className="bg-[#181818] rounded-2xl border border-white/5 p-8 md:p-10">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
+                
+                {/* Левая часть: Юридическая инфа */}
+                <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-4">
+                        <FileText className="text-gray-500" size={20} />
+                        <h3 className="text-lg font-bold text-white uppercase tracking-wider">Реквизиты</h3>
+                    </div>
+                    
+                    <div className="space-y-1">
+                        <p className="text-xl font-bold text-white">ИП ЛИПАТОВ А.В.</p>
+                        <div className="flex flex-col sm:flex-row gap-y-1 gap-x-6 text-gray-400 text-sm font-mono">
+                            <span>ИНН: 773373839292</span>
+                            <span>ОГРН: 321774600117719</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Разделитель (виден только на десктопе) */}
+                <div className="hidden md:block w-px h-16 bg-white/10"></div>
+
+                {/* Правая часть: Телефон */}
+                <div className="md:text-right">
+                    <div className="flex items-center gap-3 mb-2 md:justify-end">
+                         {/* На мобилках иконка слева, на десктопе текст справа, но иконку можно оставить для стиля */}
+                         <div className="md:hidden"><Phone className="text-gray-500" size={18} /></div>
+                         <span className="text-sm text-gray-500 uppercase tracking-wider font-bold">Телефон</span>
+                    </div>
+                    <a 
+                        href="tel:+79258708299" 
+                        className="text-2xl md:text-3xl font-bold text-white hover:text-white/70 transition-colors whitespace-nowrap"
+                    >
+                        +7 (925) 870-82-99
+                    </a>
+                </div>
+
             </div>
         </div>
 
