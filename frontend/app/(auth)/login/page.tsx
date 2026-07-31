@@ -60,7 +60,7 @@ export default function LoginPage() {
       await login(email, password);
       router.push('/profile');
     } catch (err: any) {
-        const msg = err.response?.data?.detail || 'Неверный логин или пароль';
+        const msg = err.response?.data?.detail || 'Wrong email or password';
         setError(msg);
     } finally {
       setLoading(false);
@@ -90,7 +90,7 @@ export default function LoginPage() {
 
       {/* Слоган */}
       <div className="text-lg sm:text-xl md:text-2xl text-white font-light tracking-wide opacity-80 max-w-[280px] sm:max-w-md text-center break-words">
-        Профессиональная музыка для твоих проектов
+        Professional music for your projects
       </div>
       
       {/* Декоративная полоска */}
@@ -122,10 +122,10 @@ export default function LoginPage() {
                   <div className="flex flex-col gap-6 relative z-10">
                     <div className="flex flex-col items-center text-center">
                       <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                        С возвращением
+                        Welcome back
                       </h1>
                       <p className="text-gray-400 text-sm mt-2">
-                        Войдите, чтобы управлять покупками
+                        Sign in to manage your purchases
                       </p>
                     </div>
 
@@ -144,12 +144,12 @@ export default function LoginPage() {
                       
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
-                          <Label htmlFor="password" className="text-sm text-gray-300 font-medium">Пароль</Label>
+                          <Label htmlFor="password" className="text-sm text-gray-300 font-medium">Password</Label>
                           <Link
                             href="#"
                             className="text-xs text-purple-400 hover:text-purple-300 transition-colors"
                           >
-                            Забыли пароль?
+                            Forgot password?
                           </Link>
                         </div>
                         <Input
@@ -173,14 +173,14 @@ export default function LoginPage() {
                         disabled={loading}
                         className="w-full h-12 mt-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5"
                       >
-                        {loading ? <Loader2 className="animate-spin" /> : 'Войти'}
+                        {loading ? <Loader2 className="animate-spin" /> : 'Sign in'}
                       </Button>
                     </form>
 
                     <div className="text-center text-sm text-gray-400">
-                      Нет аккаунта?{" "}
+                      Don't have an account?{" "}
                       <Link href="/register" className="text-purple-400 hover:text-purple-300 underline underline-offset-4 transition-colors">
-                        Зарегистрироваться
+                        Sign up
                       </Link>
                     </div>
                   </div>
@@ -198,9 +198,9 @@ export default function LoginPage() {
                   <div className="absolute bottom-12 left-12 right-12 z-20">
                      <blockquote className="text-white border-l-2 border-purple-500 pl-4">
                         <p className="text-lg font-medium italic">
-                          "Музыка — это стенограмма эмоций."
+                          "Music is the shorthand of emotion."
                         </p>
-                        <footer className="text-sm text-gray-300 mt-2">— Лев Толстой</footer>
+                        <footer className="text-sm text-gray-300 mt-2">— Leo Tolstoy</footer>
                      </blockquote>
                   </div>
                 </div>
@@ -217,9 +217,9 @@ export default function LoginPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }} // Чуть увеличил задержку, так как introDuration=2.5
             >
-              Нажимая войти, вы соглашаетесь с{" "}
+              By clicking "Sign in", you agree to our{" "}
               <Link href="/privacy" className="text-purple-400 hover:underline">
-                Политикой конфиденциальности
+                Privacy Policy
               </Link>
               .
             </motion.div>

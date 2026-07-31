@@ -31,7 +31,7 @@ export function NewReleases() {
       <div className="max-w-7xl mx-auto">
         
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-4xl font-bold text-white">Новые релизы</h2>
+          <h2 className="text-4xl font-bold text-white">New Releases</h2>
           
           {/* Облачили в кнопку с использованием asChild для правильной вложенности Link */}
           <Button 
@@ -40,7 +40,7 @@ export function NewReleases() {
             className="text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
           >
             <Link href="/music?is_new=true" className="flex items-center gap-2">
-              Смотреть все 
+              View All 
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
@@ -52,7 +52,7 @@ export function NewReleases() {
           ))}
           
           {newReleases.length === 0 && !loading && (
-            <p className="text-gray-500 col-span-3">Пока нет новинок.</p>
+            <p className="text-gray-500 col-span-3">No new releases at the moment.</p>
           )}
         </div>
 

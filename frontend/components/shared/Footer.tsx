@@ -24,46 +24,38 @@ export function Footer() {
               />
             </Link>
             <p className="leading-relaxed">
-              Профессиональная авторская музыка для ваших видео, рекламы и YouTube. 
-              Без Content ID, с коммерческой лицензией.
+              Professional original music for your videos, advertisements and YouTube. 
+              Without Content ID, with a commercial license.
             </p>
           </div>
 
           {/* 2. Категории */}
           <div>
-            <h3 className="font-bold text-white mb-4">Музыка</h3>
+            <h3 className="font-bold text-white mb-4">Music</h3>
             <ul className="space-y-2">
-              <li><Link href="/music?category__slug=dlya-youtube" className="hover:text-white transition">Для YouTube</Link></li>
-              <li><Link href="/music?category__slug=reklama-i-promo" className="hover:text-white transition">Реклама и промо</Link></li>
-              <li><Link href="/music?category__slug=kino" className="hover:text-white transition">Кино и Трейлеры</Link></li>
-              <li><Link href="/music?category__slug=korporativ" className="hover:text-white transition">Корпоративная</Link></li>
-              <li><Link href="/collections" className="text-green-400 hover:text-green-300 transition">Сборники (Паки)</Link></li>
+              <li><Link href="/music?category__slug=dlya-youtube" className="hover:text-white transition">For YouTube</Link></li>
+              <li><Link href="/music?category__slug=reklama-i-promo" className="hover:text-white transition">Advertising and Promotions</Link></li>
+              <li><Link href="/music?category__slug=kino" className="hover:text-white transition">Cinema and Trailers</Link></li>
+              <li><Link href="/music?category__slug=korporativ" className="hover:text-white transition">Corporate</Link></li>
+              <li><Link href="/collections" className="text-green-400 hover:text-green-300 transition">Collections (Packs)</Link></li>
             </ul>
           </div>
 
           {/* 3. Компания */}
           <div>
-            <h3 className="font-bold text-white mb-4">Компания</h3>
+            <h3 className="font-bold text-white mb-4">Company</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-white transition">О нас</Link></li>
-              <li><Link href="/license" className="hover:text-white transition">Лицензия</Link></li>
-              <li><Link href="/contacts" className="hover:text-white transition">Контакты</Link></li>
+              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
+              <li><Link href="/license" className="hover:text-white transition">License</Link></li>
+              <li><Link href="/contacts" className="hover:text-white transition">Contacts</Link></li>
             </ul>
           </div>
 
-          {/* 4. Контакты и Соцсети */}
+          {/* 4. Контакты */}
           <div>
-            <h3 className="font-bold text-white mb-2">Поддержка</h3>
-            <a href="mailto:shop@proffmusic.ru" className="flex items-center gap-2 hover:text-white transition">
-              <Mail size={16} />shop@proffmusic.ru
-            </a>
-            <h3 className="font-bold text-white mb-8"></h3>
-            <a className="flex items-center gap-2 hover:text-white transition">
-              ИП ЛИПАТОВ А.В. ИНН 773373839292 ОГРН 321774600117719
-            </a>
-            <h3 className="font-bold text-white mb-4"></h3>
-            <a className="flex items-center gap-2 hover:text-white transition">
-              +7(925)870-82-99
+            <h3 className="font-bold text-white mb-2">Support</h3>
+            <a href="mailto:shop@proffmusic.shop" className="flex items-center gap-2 hover:text-white transition">
+              <Mail size={16} />shop@proffmusic.shop
             </a>
           </div>
 

@@ -33,13 +33,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://proffmusic.ru'), 
+  metadataBase: new URL('https://proffmusic.shop'), 
   title: {
-    default: 'ProffMusic | Профессиональная авторская музыка',
+    default: 'ProffMusic | Professional Original Music',
     template: '%s | ProffMusic',
   },
   
-  description: 'Маркетплейс авторской музыки для видео, рекламы и YouTube. Без Content ID.',
+  description: 'Marketplace for professional original music for videos, advertising and YouTube. No Content ID.',
 
   verification: {
     yandex: 'a6718f8f58a53afe',
@@ -47,8 +47,8 @@ export const metadata: Metadata = {
   
   openGraph: {
     title: 'ProffMusic',
-    description: 'Авторская музыка для твоих проектов',
-    url: 'https://proffmusic.ru',
+    description: 'Professional original music for videos, advertising and YouTube. No Content ID.',
+    url: 'https://proffmusic.shop',
     siteName: 'ProffMusic',
     locale: 'ru_RU',
     type: 'website',
@@ -105,7 +105,6 @@ export default function RootLayout({
         </Script>
         <noscript>
           <div>
-            {/* В React стили пишутся объектом, а не строкой */}
             <img 
               src="https://mc.yandex.ru/watch/106604978" 
               style={{ position: 'absolute', left: '-9999px' }} 

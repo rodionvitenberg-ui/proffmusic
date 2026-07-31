@@ -30,8 +30,8 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
   const handleBuyPack = () => {
     if (!added) {
       addToCart(collection, 'collection');
-      toast.success('Сборник добавлен', {
-        description: `Пак "${collection.title}" теперь в корзине`,
+      toast.success('Collection added', {
+        description: `Collection "${collection.title}" is now in your cart`,
         duration: 3000,
       });
     }
@@ -55,6 +55,7 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
               src={collection.cover_image || '/placeholder.jpg'} 
               alt={collection.title}
               fill 
+              sizes="(min-width: 640px) 320px, 256px"
               className="w-full h-full object-cover"
             />
           </div>
@@ -63,7 +64,7 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
           <div className="flex-1 text-center md:text-left space-y-6">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-medium mb-3">
-                <ListMusic size={14} /> Сборник / Альбом
+                <ListMusic size={14} /> Collection / Album
               </div>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{collection.title}</h1>
               <p className="text-gray-300 text-lg leading-relaxed max-w-2xl">
@@ -96,16 +97,16 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
                    )}
                  >
                     {added ? (
-                      <span className="flex items-center gap-2"><Check /> В корзине</span>
+                      <span className="flex items-center gap-2"><Check /> In Cart</span>
                     ) : (
-                      <span className="flex items-center gap-2"><ShoppingBag /> Купить пак</span>
+                      <span className="flex items-center gap-2"><ShoppingBag /> Buy Pack</span>
                     )}
                  </Button>
               </div>
             </div>
             
             <p className="text-sm text-gray-500">
-              Включает {collection.tracks?.length || 0} треков. Экономия при покупке сборником.
+              Includes {collection.tracks?.length || 0} tracks. Save when buying the collection.
             </p>
           </div>
         </div>
@@ -113,7 +114,7 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
 
       {/* TRACKLIST SECTION */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl font-bold text-white mb-8">Треки в этом сборнике</h2>
+        <h2 className="text-2xl font-bold text-white mb-8">Tracks in this collection</h2>
         
         {collection.tracks && collection.tracks.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -126,7 +127,7 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
             ))}
           </div>
         ) : (
-          <p className="text-gray-500">В этом сборнике пока нет треков.</p>
+          <p className="text-gray-500">There are no tracks in this collection yet.</p>
         )}
       </div>
     </div>

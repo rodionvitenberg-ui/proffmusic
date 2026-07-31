@@ -19,10 +19,10 @@ export function CollectionCard({ collection }: { collection: Collection }) {
     e.preventDefault(); // Предотвращаем переход по ссылке (если карточка будет ссылкой)
     if (added) {
       removeFromCart(collection.id, 'collection');
-      toast.info('Убрано', { description: 'Сборник удален из корзины' });
+      toast.info('Убрано', { description: 'Collection removed from cart' });
     } else {
       addToCart(collection, 'collection');
-      toast.success('Добавлено', { description: 'Сборник в корзине' });
+      toast.success('Добавлено', { description: 'Collection added to cart' });
     }
   };
 
@@ -45,6 +45,7 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           src={collection.cover_image || '/placeholder.jpg'} 
           alt={collection.title}
           fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
         />
         {/* Бейдж с количеством треков */}
@@ -66,7 +67,7 @@ export function CollectionCard({ collection }: { collection: Collection }) {
       {/* 3. Описание/Тип и Цена */}
       <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-auto">
         <span className="text-sm text-gray-400 truncate max-w-[60%]">
-          Сборник
+          Collection
         </span>
         <span className="text-lg font-bold text-white tabular-nums">
           {collection.price} ₽
@@ -82,7 +83,7 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           className="w-full h-10 border-white/20 hover:border-white font-bold uppercase tracking-wide text-xs text-white"
         >
           <Banknote size={14} className="mr-2" />
-          Купить
+          Buy Now
         </Button>
 
         {/* Кнопка Корзины */}
@@ -98,12 +99,12 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           {added ? (
             <>
               <Check size={16} className="mr-2" />
-              В корзине
+              In Cart
             </>
           ) : (
             <>
               <ShoppingBag size={16} className="mr-2" />
-              В корзину
+              Add to Cart
             </>
           )}
         </Button>

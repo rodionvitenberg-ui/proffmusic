@@ -40,12 +40,12 @@ export default function CartPage() {
             <div className="w-20 h-20 bg-[#181818] rounded-full flex items-center justify-center mb-6 border border-white/5 shadow-inner">
               <Music size={32} className="text-gray-400" />
             </div>
-            <h1 className="text-2xl font-bold text-white mb-2">Корзина пуста</h1>
+            <h1 className="text-2xl font-bold text-white mb-2">Your Cart is Empty</h1>
             <p className="text-gray-400 mb-8 max-w-md">
-              Похоже, вы еще не выбрали ни одного трека для своего следующего шедевра.
+              Seems you haven't selected any tracks for your next masterpiece.
             </p>
             <Link href="/music">
-              <Button size="lg" className="px-8">Перейти в каталог</Button>
+              <Button size="lg" className="px-8">Browse Music</Button>
             </Link>
           </div>
 
@@ -53,7 +53,7 @@ export default function CartPage() {
           
           // В. Состояние "Есть товары"
           <>
-            <h1 className="text-3xl font-bold text-white mb-8">Ваша корзина</h1>
+            <h1 className="text-3xl font-bold text-white mb-8">Your Cart</h1>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               
@@ -73,7 +73,7 @@ export default function CartPage() {
                     <div className="flex-1 min-w-0">
                       <h3 className="text-white font-medium truncate pr-2">{item.title}</h3>
                       <p className="text-sm text-gray-400">
-                        {item.type === 'collection' ? 'Сборник' : 'Трек'}
+                        {item.type === 'collection' ? 'Collection' : 'Track'}
                       </p>
                     </div>
 
@@ -82,10 +82,10 @@ export default function CartPage() {
                       <button 
                         onClick={() => removeFromCart(item.id, item.type)}
                         className="text-gray-500 hover:text-red-400 transition flex items-center gap-1 text-sm group"
-                        title="Удалить"
+                        title="Remove"
                       >
                         <Trash2 size={16} className="group-hover:scale-110 transition-transform" /> 
-                        <span className="hidden sm:inline">Удалить</span>
+                        <span className="hidden sm:inline">Remove</span>
                       </button>
                     </div>
                   </div>
@@ -95,27 +95,27 @@ export default function CartPage() {
               {/* Итого и кнопка */}
               <div className="md:col-span-1">
                 <div className="bg-[#181818] p-6 rounded-xl border border-white/5 sticky top-28 shadow-lg">
-                  <h2 className="text-xl font-bold text-white mb-4">Детали заказа</h2>
+                  <h2 className="text-xl font-bold text-white mb-4">Order Details</h2>
                   
                   <div className="flex justify-between items-center mb-6 pb-6 border-b border-white/10">
-                    <span className="text-gray-400">Товары:</span>
+                    <span className="text-gray-400">Items:</span>
                     <span className="text-white font-medium tabular-nums">{total.toFixed(0)} ₽</span>
                   </div>
 
                   <div className="flex justify-between items-center mb-8">
-                    <span className="text-lg font-bold text-white">К оплате:</span>
+                    <span className="text-lg font-bold text-white">Total to Pay:</span>
                     <span className="text-2xl font-bold text-green-400 tabular-nums">{total.toFixed(0)} ₽</span>
                   </div>
 
                   <Link href="/checkout" className="block w-full">
                     <Button size="lg" className="hover:bg-white hover:text-black w-full transition-colors font-bold">
-                      Оформить заказ
+                      Checkout
                       <ArrowRight size={18} className="ml-2" />
                     </Button>
                   </Link>
                   
                   <p className="text-[10px] text-center text-gray-500 mt-4 leading-tight">
-                    Нажимая кнопку, вы соглашаетесь с условиями <Link href="/license" className="underline hover:text-gray-300">лицензионного соглашения</Link>.
+                    By clicking the button, you agree to the terms of the <Link href="/license" className="underline hover:text-gray-300">license agreement</Link>.
                   </p>
                 </div>
               </div>

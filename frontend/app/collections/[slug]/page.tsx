@@ -36,7 +36,7 @@ export default function CollectionPage() {
         const res = await api.get<Collection>(`/api/collections/${slug}/`);
         setCollection(res.data);
       } catch (error) {
-        console.error('Ошибка загрузки сборника:', error);
+        console.error('Error loading collection:', error);
       } finally {
         setLoading(false);
       }
@@ -55,9 +55,9 @@ export default function CollectionPage() {
   if (!collection) {
     return (
       <div className="min-h-screen bg-[#0f0f0f] flex flex-col items-center justify-center text-white">
-        <h1 className="text-2xl font-bold mb-4">Сборник не найден</h1>
+        <h1 className="text-2xl font-bold mb-4">Collection not found</h1>
         <Link href="/collections">
-          <Button variant="outline">Все сборники</Button>
+          <Button variant="outline">All Collections</Button>
         </Link>
       </div>
     );
@@ -85,10 +85,10 @@ export default function CollectionPage() {
   const handleCartClick = () => {
     if (added) {
       removeFromCart(collection.id, 'collection');
-      toast.info('Убрано', { description: 'Сборник удален из корзины' });
+      toast.info('Removed', { description: 'Collection removed from cart' });
     } else {
       addToCart(collection, 'collection');
-      toast.success('Добавлено', { description: 'Сборник добавлен в корзину' });
+      toast.success('Added', { description: 'Collection added to cart' });
     }
   };
 
@@ -99,7 +99,7 @@ export default function CollectionPage() {
 
   const formattedPrice = new Intl.NumberFormat('ru-RU', {
     style: 'currency',
-    currency: 'RUB',
+    currency: 'USD',
     minimumFractionDigits: 0,
   }).format(Number(collection.price));
 
@@ -130,7 +130,7 @@ export default function CollectionPage() {
              <div className="absolute top-24 left-4 md:left-8">
                 <Link href="/collections">
                   <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10 gap-2 pl-2">
-                    <ArrowLeft size={18} /> Все сборники
+                    <ArrowLeft size={18} /> All Collections
                   </Button>
                 </Link>
              </div>
@@ -141,7 +141,7 @@ export default function CollectionPage() {
               <div className="space-y-4 max-w-3xl">
                 <div className="flex items-center gap-3">
                     <span className="flex items-center gap-1.5 bg-white/10 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/10 uppercase tracking-wider">
-                        <ListMusic size={12} /> Сборник
+                        <ListMusic size={12} /> Collection
                     </span>
                 </div>
                 
@@ -157,7 +157,7 @@ export default function CollectionPage() {
 
                 <div className="flex items-center gap-6 text-sm text-gray-400 pt-2">
                    <div className="flex items-center gap-2">
-                      <Music4 size={16} /> {collection.tracks?.length || 0} треков
+                      <Music4 size={16} /> {collection.tracks?.length || 0} tracks
                    </div>
                    <div className="flex items-center gap-2">
                       <ShieldCheck size={16} className="text-green-500"/> Royalty Free
@@ -187,7 +187,7 @@ export default function CollectionPage() {
                         className="h-14 px-8 text-base font-bold uppercase tracking-wide bg-purple-600 hover:bg-purple-700 text-white shadow-lg shadow-purple-900/20"
                         onClick={handleBuyNow}
                       >
-                        Купить сборник
+                        Buy Collection
                       </Button>
 
                       {/* Cart */}
@@ -213,7 +213,7 @@ export default function CollectionPage() {
       {/* === СПИСОК ТРЕКОВ === */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
          <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-            Содержание сборника
+            Collection Contents
          </h2>
 
          <div className="bg-[#181818] border border-white/5 rounded-xl overflow-hidden">
@@ -255,7 +255,7 @@ export default function CollectionPage() {
                 </div>
             ) : (
                 <div className="p-8 text-center text-gray-500">
-                    В этом сборнике пока нет треков.
+                    There are no tracks in this collection yet.
                 </div>
             )}
          </div>

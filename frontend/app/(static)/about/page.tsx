@@ -17,9 +17,8 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
             ProffMusic
           </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Бутик авторской музыки для профессионального видеопродакшна. 
-            Мы создаем звук, который дышит, чувствует и усиливает ваши истории.
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed"> 
+            We create sound that breathes, feels and amplifies your stories.
           </p>
         </div>
 
@@ -31,9 +30,9 @@ export default function AboutPage() {
                 <Mic2 className="text-purple-400 mb-4" size={32} />
                 <h3 className="text-xl font-bold text-white mb-3">Никакого AI. Только люди.</h3>
                 <p className="text-gray-400 leading-relaxed">
-                    Мы принципиально не используем нейросети для генерации музыки. 
-                    Каждый трек в нашей библиотеке написан живым композитором, сыгран на реальных инструментах 
-                    и сведен профессиональным звукорежиссером. Мы верим, что эмоции может передать только человек.
+                    We principlely do not use neural networks for music generation. 
+                    Every track in our library is written by a live composer, played on real instruments 
+                    and mixed by a professional sound engineer. We believe that emotions can only be conveyed by a human.
                 </p>
             </div>
 
@@ -42,35 +41,35 @@ export default function AboutPage() {
                 <ShieldCheck className="text-green-400 mb-4" size={32} />
                 <h3 className="text-xl font-bold text-white mb-3">100% Безопасно.</h3>
                 <p className="text-gray-400 leading-relaxed">
-                    Никаких страйков и Content ID. Мы обладаем исключительными правами на всю музыку в каталоге. 
-                    Покупая лицензию, вы получаете официальный документ, который защищает ваш проект на YouTube, 
-                    в кино и на ТВ.
+                    No strikes or Content ID. We own the exclusive rights to all music in our catalog. 
+                    When you purchase a license, you receive an official document that protects your project on YouTube, 
+                    in film and on TV.
                 </p>
             </div>
         </div>
 
         {/* Текстовый блок: История */}
         <div className="prose prose-invert prose-lg max-w-none mb-20">
-            <h2 className="text-3xl font-bold text-white mb-6">Наша философия</h2>
+            <h2 className="text-3xl font-bold text-white mb-6">Our Philosophy</h2>
             <p className="text-gray-300">
-                В эпоху фаст-фуд контента мы выбрали другой путь. Мы создаем музыку не для алгоритмов, а для режиссеров, 
-                которые ценят детали. Мы знаем, как сложно найти трек, который не звучит как "стоковая заглушка".
+                In the era of fast-food content, we have chosen a different path. We create music not for algorithms, but for directors, 
+                who value details. We know how difficult it is to find a track that doesn't sound like a "stock placeholder".
             </p>
             <p className="text-gray-300">
-                ProffMusic начинался как закрытое сообщество композиторов, работающих для киноиндустрии. 
-                Сегодня мы открыли свои архивы для всех креаторов. Здесь вы не найдете миллионов однотипных треков. 
-                Вместо этого мы предлагаем тщательно отобранную коллекцию, где каждое произведение имеет свой характер.
+                ProffMusic started as a closed community of composers working for the film industry. 
+                Today we have opened our archives to all creators. Here you will not find millions of identical tracks. 
+                Instead, we offer a carefully curated collection where each piece has its own character.
             </p>
         </div>
 
         {/* Блок: Кому это нужно? */}
         <div className="border-t border-white/10 pt-16 mb-16">
-            <h2 className="text-2xl font-bold text-white mb-8 text-center">Идеально подходит для</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Ideally suited for</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Кино и Трейлеров</div>
-                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">YouTube Блогов</div>
-                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Рекламных роликов</div>
-                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Игровой индустрии</div>
+                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Cinema and Trailers</div>
+                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">YouTube Blogs</div>
+                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Advertising Videos</div>
+                <div className="p-4 bg-white/5 rounded-lg text-white font-medium">Gaming Industry</div>
             </div>
         </div>
 
@@ -78,14 +77,14 @@ export default function AboutPage() {
         <div className="bg-gradient-to-r from-purple-900/40 to-blue-900/40 rounded-2xl p-10 text-center border border-white/10 relative overflow-hidden">
             <div className="relative z-10">
                 <Heart className="mx-auto text-white mb-4" size={40} />
-                <h2 className="text-3xl font-bold text-white mb-4">Найдите свой звук</h2>
+                <h2 className="text-3xl font-bold text-white mb-4">Find Your Sound</h2>
                 <p className="text-gray-300 mb-8 max-w-lg mx-auto">
-                    Послушайте нашу коллекцию и убедитесь в качестве сами. Демо-версии доступны бесплатно.
+                    Listen our collection and verify the quality yourself. Demo versions are available for free.
                 </p>
                 <Link href="/music">
                     <Button size="lg" className="bg-white text-black hover:bg-gray-200 font-bold px-8">
                         <Music className="mr-2" size={18} />
-                        Перейти в каталог
+                        Go to Library
                     </Button>
                 </Link>
             </div>

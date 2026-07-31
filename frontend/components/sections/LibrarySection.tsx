@@ -39,6 +39,7 @@ export function LibrarySection() {
       }
     } catch (err) {
       console.error('Ошибка загрузки фонотеки:', err);
+      setHasMore(false); // Останавливаем бесконечную пагинацию при ошибке
     } finally {
       setLoading(false);
     }
@@ -59,7 +60,7 @@ export function LibrarySection() {
   return (
     <section id="library" className="py-20 px-4 sm:px-6 lg:px-8 bg-background/70">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-8">Вся фонотека</h2>
+        <h2 className="text-4xl font-bold text-white mb-8">All Tracks</h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {libraryTracks.map((track) => (
@@ -72,12 +73,12 @@ export function LibrarySection() {
           {loading && hasMore && (
             <div className="flex flex-col items-center text-gray-400 gap-2">
                <Loader2 className="animate-spin" size={32} />
-               <span className="text-sm">Загрузка музыки...</span>
+               <span className="text-sm">Loading music...</span>
             </div>
           )}
           
           {!hasMore && libraryTracks.length > 0 && (
-            <p className="text-gray-500 animate-in fade-in">Вы посмотрели все треки.</p>
+            <p className="text-gray-500 animate-in fade-in">You have viewed all tracks.</p>
           )}
         </div>
       </div>

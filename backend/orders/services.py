@@ -1,15 +1,7 @@
 import uuid
-import json
 from django.conf import settings
 from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from yookassa import Configuration, Payment
-from .models import Order, DownloadToken, OrderItem
-
-# Настраиваем ЮКассу только если есть ключи (чтобы не падало при старте)
-if settings.YOOKASSA_SHOP_ID and settings.YOOKASSA_SECRET_KEY:
-    Configuration.account_id = settings.YOOKASSA_SHOP_ID
-    Configuration.secret_key = settings.YOOKASSA_SECRET_KEY
+from .models import Order, DownloadToken
 
 def check_access(user, email, product):
     """
@@ -33,88 +25,52 @@ def check_access(user, email, product):
 
 def generate_download_links(order):
     """
-    Создает ОДНУ мастер-ссылку на весь заказ.
+    Создаёт ОДНУ мастер-ссылку на весь заказ.
     """
     token, created = DownloadToken.objects.get_or_create(order=order)
     return [token]
 
 def create_payment(order, ip):
     """
-    Создает платеж. 
-    ЕСЛИ DEBUG=True и нет ключей ЮКассы -> возвращает ссылку на локальный эмулятор.
+    MOCK-оплата: сразу подтверждает заказ, генерирует ссылки и отправляет письмо.
     """
+    print(f"💰 MOCK PAYMENT: Processing order #{str(order.id)[:8]}, amount={order.amount}")
     
-    # --- MOCK MODE (ЭМУЛЯТОР) ---
-    if not settings.YOOKASSA_SHOP_ID or not settings.YOOKASSA_SECRET_KEY:
-        print("⚠️ KEYS MISSING - MOCK PAYMENT MODE ACTIVATED")
-        frontend_url = "http://localhost:3000" 
-        return f"{frontend_url}/mock-payment?order_id={order.id}&amount={order.amount}"
-
-    # --- REAL MODE (БОЕВОЙ) ---
-    idempotence_key = str(uuid.uuid4())
+    # 1. Помечаем заказ как оплаченный
+    order.status = 'paid'
+    order.save(update_fields=['status'])
     
-    items = []
-    for item in order.items.all():
-        name = item.track.title if item.track else item.collection.title
-        items.append({
-            "description": name[:128],
-            "quantity": "1.00",
-            "amount": {
-                "value": str(item.price),
-                "currency": "RUB"
-            },
-            "vat_code": "1",
-            "payment_mode": "full_payment",
-            "payment_subject": "service"
-        })
+    # 2. Генерируем токен для скачивания
+    token = generate_download_links(order)[0]
+    download_url = f"{settings.SITE_URL}/api/orders/download/{token.token}/"
+    
+    # 3. Отправляем письмо с ссылкой
+    send_order_email(order, download_url)
+    
+    # 4. Возвращаем URL успешной оплаты
+    success_url = f"/success?order_id={order.id}"
+    return success_url
 
-    payment = Payment.create({
-        "amount": {
-            "value": str(order.amount),
-            "currency": "RUB"
-        },
-        "confirmation": {
-            "type": "redirect",
-            "return_url": settings.YOOKASSA_RETURN_URL
-        },
-        "capture": True,
-        "description": f"Заказ №{order.id}",
-        "metadata": {
-            "order_id": str(order.id)
-        },
-        "receipt": {
-            "customer": {
-                "email": order.email
-            },
-            "items": items
-        }
-    }, idempotence_key)
 
-    # Сохраняем ID платежа, чтобы потом проверять статус
-    order.yookassa_payment_id = payment.id
-    order.save()
-
-    return payment.confirmation.confirmation_url
-
-def send_order_email(order):
+def send_order_email(order, download_url=None):
     """
     Генерирует ссылку и отправляет письмо.
     """
-    from .services import generate_download_links 
-    tokens = generate_download_links(order)
-    master_token = tokens[0]
+    if download_url is None:
+        from .services import generate_download_links
+        tokens = generate_download_links(order)
+        master_token = tokens[0]
+        download_url = f"{settings.SITE_URL}/api/orders/download/{master_token.token}/"
 
-    download_url = f"{settings.SITE_URL}/api/orders/download/{master_token.token}/"
-
-    subject = f"Ваш заказ №{str(order.id)[:8]} готов!"
+    subject = f"Your order #{str(order.id)[:8]} is ready!"
     message = f"""
-    Спасибо за покупку!
-    
-    Ваша ссылка для скачивания файлов:
-    {download_url}
-    
-    Ссылка действительна 48 часов.
-    """
+Thank you for your purchase!
+
+Your download link:
+{download_url}
+
+The link is valid for 48 hours.
+"""
     
     try:
         send_mail(
@@ -124,5 +80,6 @@ def send_order_email(order):
             [order.email],
             fail_silently=False,
         )
+        print(f"✅ Email sent to {order.email}")
     except Exception as e:
-        print(f"Ошибка отправки письма: {e}")
+        print(f"❌ Error sending email: {e}")

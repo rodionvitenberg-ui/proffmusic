@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/profile/', '/checkout/', '/admin/'], // Закрываем личные кабинеты
     },
-    sitemap: 'https://proffmusic.ru/sitemap.xml',
+    sitemap: 'https://proffmusic.shop/sitemap.xml',
   };
 }

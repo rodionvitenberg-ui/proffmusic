@@ -37,19 +37,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const track = await getTrack(slug);
 
   if (!track) {
-    return { title: 'Трек не найден | ProffMusic' };
+    return { title: 'Track not found | ProffMusic' };
   }
 
   // Фикс: проверяем, есть ли картинка. Если нет — передаем пустой массив или дефолтную картинку.
   const images = track.cover_image ? [track.cover_image] : [];
 
   return {
-    title: `${track.title} | Скачать музыку | ProffMusic`,
-    description: track.description_short || `Купить лицензионный трек ${track.title}.`,
+    title: `${track.title} | Download Music | ProffMusic`,
+    description: track.description_short || `Buy licensed track ${track.title}.`,
     openGraph: {
       title: track.title,
       description: track.description_short,
-      images: images, // Теперь тут массив строк, без undefined
+      images: images,
     },
   };
 }
@@ -75,7 +75,7 @@ export default async function TrackPage({ params }: Props) {
       '@type': 'Offer',
       price: track.price,
       priceCurrency: 'RUB',
-      url: `https://proffmusic.ru/tracks/${track.slug}`,
+      url: `https://proffmusic.shop/tracks/${track.slug}`,
     },
   };
 
@@ -91,7 +91,7 @@ export default async function TrackPage({ params }: Props) {
 
         {relatedTracks.length > 0 && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-white/5">
-            <h2 className="text-2xl font-bold text-white mb-8">Похожие треки</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">Related Tracks</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedTracks.map((related) => (
                 <TrackCard key={related.id} track={related} playlist={relatedTracks} />

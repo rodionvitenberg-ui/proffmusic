@@ -12,13 +12,11 @@ export default function CheckoutPage() {
   const { items } = useCartStore();
   
   const [email, setEmail] = useState('');
-  const [name, setName] = useState(''); // Опционально по ТЗ
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   // Если корзина пуста, редиректим на главную
   useEffect(() => {
-    // Небольшая задержка для гидратации
     const timer = setTimeout(() => {
         if (items.length === 0) router.push('/');
     }, 500);
@@ -33,8 +31,6 @@ export default function CheckoutPage() {
     setIsLoading(true);
 
     try {
-      // 1. Формируем данные для бэкенда
-      // Наш бэкенд ждет items: [{type: 'track', id: 1}, ...]
       const payload = {
         email,
         items: items.map(item => ({
@@ -43,19 +39,18 @@ export default function CheckoutPage() {
         }))
       };
 
-      // 2. Отправляем запрос
       const res = await api.post('/api/orders/checkout/', payload);
       
-      // 3. Получаем payment_url и переходим
       if (res.data.payment_url) {
+        // Редиректим на страницу успеха (корзина очистится там)
         window.location.href = res.data.payment_url;
       } else {
-        setError('Ошибка: Сервер не вернул ссылку на оплату');
+        setError('Error: Server did not return a success link');
       }
 
     } catch (err: any) {
       console.error(err);
-      setError(err.response?.data?.error || 'Произошла ошибка при создании заказа');
+      setError(err.response?.data?.error || 'An error occurred while creating the order');
     } finally {
       setIsLoading(false);
     }
@@ -68,15 +63,15 @@ export default function CheckoutPage() {
       <div className="max-w-md w-full bg-[#181818] p-8 rounded-xl border border-white/5 shadow-2xl">
         
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-white">Оформление заказа</h1>
+          <h1 className="text-2xl font-bold text-white">Checkout</h1>
           <p className="text-gray-400 text-sm mt-2">
-            Сумма к оплате: <span className="text-green-400 font-bold">{total.toFixed(2)} ₽</span>
+            Total to Pay: <span className="text-green-400 font-bold">{total.toFixed(2)} ₽</span>
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           
-          {/* Email (Обязательно) */}
+          {/* Email (Required) */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
               Email <span className="text-red-500">*</span>
@@ -91,26 +86,11 @@ export default function CheckoutPage() {
               className="w-full bg-[#0f0f0f] border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-white/20 focus:border-white outline-none transition"
             />
             <p className="text-xs text-gray-500 mt-1">
-              Сюда придет ссылка на скачивание файлов.
+              The download link will be sent to this email.
             </p>
           </div>
 
-          {/* Имя (Опционально) */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-              Имя (необязательно)
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Как к вам обращаться?"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full bg-[#0f0f0f] border border-gray-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-white/20 focus:border-white outline-none transition"
-            />
-          </div>
-
-          {/* Ошибка */}
+          {/* Error */}
           {error && (
             <div className="p-3 bg-red-500/10 border border-red-500/20 rounded text-red-400 text-sm text-center">
               {error}
@@ -121,22 +101,22 @@ export default function CheckoutPage() {
           <Button 
             type="submit" 
             size="lg" 
-            className="w-full py-4 text-base hover:bg-white hover:text-black relative overflow-hidden"
+            className="w-full py-4 text-base bg-green-500 hover:bg-green-400 text-white transition-all"
             disabled={isLoading}
           >
             {isLoading ? (
               <span className="flex items-center gap-2">
-                <Loader2 className="animate-spin" size={20} /> Обработка...
+                <Loader2 className="animate-spin" size={20} /> Processing...
               </span>
             ) : (
               <span className="flex items-center gap-2">
-                <Lock size={18} /> Оплатить {total.toFixed(2)} ₽
+                <Lock size={18} /> Complete Purchase • {total.toFixed(2)} ₽
               </span>
             )}
           </Button>
 
-          <p className="text-xs text-center text-gray-500 flex items-center justify-center gap-1">
-            <Lock size={12} /> Безопасная оплата через ЮKassa
+          <p className="text-xs text-center text-gray-500">
+            Mock payment. No real money will be charged.
           </p>
         </form>
       </div>

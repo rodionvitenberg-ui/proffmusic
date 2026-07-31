@@ -83,7 +83,7 @@ export function TrackWaveform({
       {/* Лоадер */}
       {!isReady && (
         <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-500">
-          Загрузка спектра...
+          Loading spectrum...
         </div>
       )}
     </div>

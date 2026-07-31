@@ -197,7 +197,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
             (!hasActiveFilters) && "opacity-0 invisible pointer-events-none"
           )}
         >
-          Сбросить
+          Clear All
         </Button>
       </div>
 
@@ -209,7 +209,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
       >
         <AccordionItem value="category" className="border-b-white/5">
           <AccordionTrigger className="text-sm font-semibold text-gray-400 hover:text-white hover:no-underline py-2 uppercase tracking-wider">
-            Жанры
+            Style / Genre
           </AccordionTrigger>
           <AccordionContent className="bg-transparent border-none p-0 pb-4">
             <RadioGroup 
@@ -254,19 +254,19 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
 
         <TagGroupAccordion 
           value="mood" 
-          title="Настроение" 
+          title="Mood" 
           items={groupedTags.mood} 
           colorClass="bg-purple-600" 
         />
         <TagGroupAccordion 
           value="instrument" 
-          title="Инструменты" 
+          title="Instruments" 
           items={groupedTags.instrument} 
           colorClass="bg-blue-600" 
         />
         <TagGroupAccordion 
           value="usage" 
-          title="Назначение" 
+          title="Usage" 
           items={groupedTags.usage} 
           colorClass="bg-green-600" 
         />
@@ -296,7 +296,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
             
             {/* ШАПКА (Добавлен паддинг) */}
             <div className="flex justify-between items-center p-6 pb-2 shrink-0">
-              <h2 className="text-xl font-bold text-white"></h2> 
+              <h2 className="text-xl font-bold text-white">Filters</h2>
               <button 
                 onClick={() => setMobileOpen?.(false)} 
                 className="ml-auto p-2 bg-white/10 rounded-full text-white hover:bg-white/20 transition"
@@ -316,7 +316,7 @@ export function FilterSidebar({ mobileOpen, setMobileOpen }: FilterSidebarProps)
                  className="w-full h-12 text-base font-bold bg-white text-black hover:bg-gray-200"
                  onClick={() => setMobileOpen?.(false)}
                >
-                 {isPending ? "Загрузка..." : "Показать результаты"}
+                 {isPending ? "Loading..." : "Show Results"}
                </Button>
             </div>
 

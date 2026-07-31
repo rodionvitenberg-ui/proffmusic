@@ -3,7 +3,7 @@ import api from '@/lib/api';
 import { Track, Collection, Category } from '@/lib/store';
 
 // Базовый URL
-const BASE_URL = 'https://proffmusic.ru';
+const BASE_URL = 'https://proffmusic.shop';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
@@ -18,21 +18,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const categories: Category[] = categoriesRes.data;
 
     const trackUrls = tracks.map((track) => ({
-      url: `${BASE_URL}/api/tracks/${track.slug}`,
+      url: `${BASE_URL}/tracks/${track.slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     }));
 
     const collectionUrls = collections.map((col) => ({
-      url: `${BASE_URL}/api/collections/${col.slug}`,
+      url: `${BASE_URL}/collections/${col.slug}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     }));
 
     const categoryUrls = categories.map((cat) => ({
-      url: `${BASE_URL}/api/music?category__slug=${cat.slug}`,
+      url: `${BASE_URL}/music?category__slug=${cat.slug}`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.7,

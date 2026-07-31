@@ -22,7 +22,7 @@ export function Hero() {
           
           {/* Первая строка: Обычный белый текст */}
           <span className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-2">
-            Профессиональная
+            Professional
           </span>
           
           {/* Вторая строка: Только Градиент (без SplitText) */}
@@ -33,7 +33,7 @@ export function Hero() {
                 showBorder={false}
                 className="inline-block"
              >
-                Авторская Музыка
+                Original Music
              </GradientText>
           </div>
 
@@ -42,10 +42,10 @@ export function Hero() {
         {/* ОПИСАНИЕ (Простой текст) */}
         <div className="flex flex-col items-center gap-2 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-gray-300 font-medium">
           <p>
-            Для видео, рекламы, YouTube и корпоративных проектов.
+            For videos, advertisements, YouTube and corporate projects.
           </p>
           <p className="text-gray-400">
-            Живые инструменты, коммерческая лицензия, никаких проблем с Content ID.
+            Live instruments, commercial license, no Content ID issues.
           </p>
         </div>
         
@@ -57,7 +57,7 @@ export function Hero() {
             className="w-full sm:w-auto h-12 text-base px-8 bg-white hover:bg-border hover:text-white text-black cursor-pointer transition flex items-center justify-center gap-2"
           >
             <Music className="mr-2" size={20} />
-            Слушать треки
+            Listen to Tracks
           </Button>
           <Link href="/about" className="w-full sm:w-auto">
             <Button 
@@ -65,7 +65,7 @@ export function Hero() {
               size="lg" 
               className="w-full h-12 text-base px-8 border-white/20 hover:border-white cursor-pointer text-white hover:bg-white/10 transition"
             >
-              О нас
+              About Us
             </Button>
           </Link>
         </div>

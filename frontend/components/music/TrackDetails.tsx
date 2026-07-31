@@ -59,6 +59,7 @@ export function TrackDetails({ track }: { track: Track }) {
               src={track.cover_image || '/placeholder.jpg'} 
               alt={track.title}
               fill 
+              sizes="(min-width: 768px) 400px, 100vw"
               className="w-full h-full object-cover"
             />
             {/* Оверлей на обложке */}
@@ -83,7 +84,7 @@ export function TrackDetails({ track }: { track: Track }) {
                  </span>
                  {track.is_new && (
                    <span className="px-3 py-1 rounded-full bg-purple-500/20 text-xs font-medium text-purple-400 border border-purple-500/20">
-                      Новинка
+                      New
                    </span>
                  )}
               </div>
@@ -140,9 +141,9 @@ export function TrackDetails({ track }: { track: Track }) {
                  disabled={added}
                >
                  {added ? (
-                    <span className="flex items-center gap-2"><Check /> Добавлено</span>
+                    <span className="flex items-center gap-2"><Check /> Added to Cart</span>
                  ) : (
-                    <span className="flex items-center gap-2"><ShoppingBag /> Купить трек</span>
+                    <span className="flex items-center gap-2"><ShoppingBag /> Buy Track</span>
                  )}
                </Button>
             </div>
@@ -153,7 +154,7 @@ export function TrackDetails({ track }: { track: Track }) {
                  <Check size={14} className="text-green-500" /> WAV (44.1kHz, 16bit) + MP3
                </div>
                <div className="flex items-center gap-2">
-                 <Check size={14} className="text-green-500" /> Коммерческое использование
+                 <Check size={14} className="text-green-500" /> Commercial Use
                </div>
                <div className="flex items-center gap-2">
                  <Check size={14} className="text-green-500" /> YouTube Safe (No Content ID)

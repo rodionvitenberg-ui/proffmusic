@@ -77,10 +77,10 @@ export function Player() {
     if (!currentTrack) return;
     if (added) {
       removeFromCart(currentTrack.id, 'track');
-      toast.info('Убрано', { description: 'Трек удален из корзины' });
+      toast.info('Removed', { description: 'Track removed from cart' });
     } else {
       addToCart(currentTrack, 'track');
-      toast.success('Добавлено', { description: 'Трек добавлен в корзину' });
+      toast.success('Added', { description: 'Track added to cart' });
     }
   };
 
@@ -118,11 +118,11 @@ export function Player() {
             "fixed bottom-4 right-4 z-40 h-14 w-14 rounded-full bg-[#181818] border border-white/20 shadow-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 group overflow-hidden",
             isCollapsed ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0 pointer-events-none"
         )}
-        title="Развернуть плеер"
+        title="Expand player"
       >
         {/* Анимированный фон (эквалайзер) если играет */}
         {isPlaying && (
-            <div className="absolute inset-0 bg-purple-600/20 animate-pulse" />
+            <div className="absolute inset-0 bg-green-500/10 animate-pulse" />
         )}
         
         {/* Обложка (полупрозрачная) */}
@@ -131,12 +131,13 @@ export function Player() {
                 src={currentTrack.cover_image} 
                 alt="" 
                 fill 
+                sizes="80px"
                 className="opacity-40 object-cover" 
              />
         )}
         
         {/* Иконка */}
-        <ChevronUp size={24} className="text-white relative z-10 group-hover:text-purple-400 transition-colors" />
+        <ChevronUp size={24} className="text-white relative z-10 group-hover:text-green-400 transition-colors" />
       </button>
 
 
@@ -153,13 +154,13 @@ export function Player() {
           <div className="flex items-center gap-3 w-1/3 min-w-[140px]">
             <div className="h-12 w-12 bg-gray-800 rounded overflow-hidden shrink-0 relative group">
               {currentTrack.cover_image ? (
-                <Image src={currentTrack.cover_image} alt="" fill className="object-cover" />
+                <Image src={currentTrack.cover_image} alt="" fill sizes="48px" className="object-cover" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gray-700"><Music size={20} /></div>
               )}
             </div>
             <div className="min-w-0">
-              <Link href={`/tracks/${currentTrack.slug}`} className="hover:text-purple-400 transition-colors block truncate">
+              <Link href={`/tracks/${currentTrack.slug}`} className="text-white hover:text-green-400 transition-colors block truncate">
                   <h4 className="text-white font-bold text-sm truncate">{currentTrack.title}</h4>
               </Link>
               <p className="text-gray-400 text-xs truncate">{currentTrack.category?.name}</p>
@@ -192,7 +193,7 @@ export function Player() {
                   className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                 />
                 <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
-                    <div className="h-full bg-white group-hover:bg-purple-500 transition-colors" style={{ width: `${(progress / (duration || 1)) * 100}%` }} />
+                    <div className="h-full bg-white group-hover:bg-green-400 transition-colors" style={{ width: `${(progress / (duration || 1)) * 100}%` }} />
                 </div>
               </div>
               <span className="w-9 tabular-nums">{formatTime(duration)}</span>
@@ -213,7 +214,7 @@ export function Player() {
                 )}
             >
                 {added ? <Check size={14} /> : <ShoppingBag size={14} />}
-                <span className="hidden xl:inline">{added ? 'В корзине' : 'Купить'}</span>
+                <span className="hidden xl:inline">{added ? 'In Cart' : 'Buy'}</span>
             </button>
 
             {/* Громкость */}
@@ -234,7 +235,7 @@ export function Player() {
             <button 
                 onClick={() => setIsCollapsed(true)}
                 className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors"
-                title="Свернуть плеер"
+                title="Expand player"
             >
                 <ChevronDown size={22} />
             </button>

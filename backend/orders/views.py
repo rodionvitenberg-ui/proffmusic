@@ -1,8 +1,6 @@
 import os
 import zipfile
 import io
-import json
-from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, Http404, HttpResponseForbidden, FileResponse
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes
@@ -14,20 +12,18 @@ from music.models import Track, Collection
 from .services import create_payment, send_order_email
 
 @api_view(['POST'])
-# Разрешаем создавать заказ кому угодно (даже анонимам), но если юзер есть - он привяжется
 @permission_classes([AllowAny]) 
 def checkout(request):
     """
-    Создание заказа и получение ссылки на оплату.
+    Создание заказа и получение ссылки на страницу успеха (mock-оплата).
     """
     try:
-        # Получаем IP (важно для ЮКассы)
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         ip = x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
         
         data = request.data
         email = data.get('email')
-        items_data = data.get('items', []) # [{type: 'track', id: 1}, ...]
+        items_data = data.get('items', [])
         
         if not items_data:
             return Response({"error": "Корзина пуста"}, status=400)
@@ -35,8 +31,6 @@ def checkout(request):
         if not email and not request.user.is_authenticated:
              return Response({"error": "Email обязателен для неавторизованных пользователей"}, status=400)
 
-        # 1. Создаем заказ
-        # Если email не пришел, но юзер авторизован - берем email юзера
         final_email = email if email else (request.user.email if request.user.is_authenticated else '')
 
         order = Order.objects.create(
@@ -48,12 +42,10 @@ def checkout(request):
 
         total_amount = 0
 
-        # 2. Создаем позиции заказа
         for item in items_data:
             item_type = item.get('type')
             item_id = item.get('id')
             
-            # Используем filter().first() вместо get_object_or_404, чтобы не крашить весь заказ из-за одного битого ID
             if item_type == 'track':
                 product = Track.objects.filter(id=item_id).first()
                 if product:
@@ -73,76 +65,17 @@ def checkout(request):
         order.amount = total_amount
         order.save()
 
-        # 3. Генерируем ссылку на оплату
-        payment_url = create_payment(order, ip)
+        # Mock-оплата: сразу подтверждает заказ
+        success_url = create_payment(order, ip)
         
         return Response({
             "order_id": order.id,
-            "payment_url": payment_url
+            "payment_url": success_url
         })
 
     except Exception as e:
         print(f"Checkout Error: {e}")
         return Response({"error": "Ошибка при создании заказа"}, status=500)
-
-
-# --- ВАЖНО: УБРАЛИ @api_view и @permission_classes ---
-@csrf_exempt
-def yookassa_webhook(request):
-    """
-    Принимает уведомления от ЮКассы.
-    Работает на чистом Django (HttpResponse), чтобы избежать проблем с DRF-парсерами.
-    """
-    # Проверяем метод вручную
-    if request.method != 'POST':
-        return HttpResponse('Method Not Allowed', status=405)
-
-    try:
-        # Читаем сырое тело запроса
-        body_unicode = request.body.decode('utf-8')
-        event_json = json.loads(body_unicode)
-    except json.JSONDecodeError:
-        return HttpResponse('Invalid JSON', status=400)
-    
-    # Логирование события (будет видно в docker logs)
-    print(f"🔔 WEBHOOK: {event_json.get('event')}")
-
-    try:
-        if event_json.get('event') == 'payment.succeeded':
-            payment_object = event_json['object']
-            # ЮКасса передает metadata внутри object
-            metadata = payment_object.get('metadata', {})
-            order_id = metadata.get('order_id')
-            yookassa_id = payment_object.get('id')
-            
-            if order_id:
-                try:
-                    order = Order.objects.get(id=order_id)
-                    # Проверка идемпотентности (чтобы не обрабатывать дважды)
-                    if order.status != 'paid':
-                        order.status = 'paid'
-                        order.yookassa_payment_id = yookassa_id
-                        order.save()
-                        print(f"✅ ЗАКАЗ {order_id} ОПЛАЧЕН. Отправляем письмо...")
-                        
-                        try:
-                            send_order_email(order)
-                        except Exception as mail_error:
-                            print(f"❌ Ошибка отправки письма: {mail_error}")
-                            
-                    else:
-                        print(f"ℹ️ Заказ {order_id} уже был оплачен ранее.")
-                        
-                except Order.DoesNotExist:
-                    print(f"❌ Заказ {order_id} не найден в базе.")
-            else:
-                print("⚠️ В уведомлении нет order_id metadata")
-                    
-        return HttpResponse('OK', status=200)
-        
-    except Exception as e:
-        print(f"❌ Webhook Global Error: {e}")
-        return HttpResponse('Internal Server Error', status=500)
 
 
 def download_file_by_token(request, token):

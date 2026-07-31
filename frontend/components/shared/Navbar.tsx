@@ -13,10 +13,10 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { LayeredButton } from '@/components/ui/layered-button';
 
 const NAV_LINKS = [
-  { href: '/collections', label: 'Сборники' },
-  { href: '/license', label: 'Лицензия' },
-  { href: '/contacts', label: 'Контакты' },
-  { href: '/about', label: 'О нас' },
+  { href: '/collections', label: 'Collections' },
+  { href: '/license', label: 'License' },
+  { href: '/contacts', label: 'Contacts' },
+  { href: '/about', label: 'About Us' },
 ];
 
 export function Navbar() {
@@ -55,7 +55,7 @@ export function Navbar() {
         const res = await api.get('/api/categories/');
         setCategories(res.data);
       } catch (e) {
-        console.error('Не удалось загрузить категории меню', e);
+        console.error('Can not load menu categories', e);
       }
     };
     fetchCategories();
@@ -107,7 +107,7 @@ export function Navbar() {
                     )}
                   >
                     <span className="flex items-center gap-2">
-                      Музыка <ChevronDown size={16} />
+                      Music <ChevronDown size={16} />
                     </span>
                   </LayeredButton>
                 </Link>
@@ -126,7 +126,7 @@ export function Navbar() {
                     ))}
                     <div className="border-t border-white/10 mt-2 pt-2">
                        <Link href="/music" className="block px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white font-medium border-l-2 border-transparent hover:border-white">
-                          Смотреть всё →
+                          View All →
                        </Link>
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export function Navbar() {
                       "h-10 px-6 text-sm cursor-pointer border-2 border-white/20 hover:border-white text-gray-200"
                     )}
                   >
-                     Войти
+                     Sign In
                   </LayeredButton>
                 </Link>
               )
@@ -209,7 +209,7 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none relative z-[1000]"
-              aria-label="Открыть меню"
+              aria-label="Open menu"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -230,7 +230,7 @@ export function Navbar() {
                 pathname.startsWith('/music') ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"
               )}
             >
-              Музыка
+              Music
             </Link>
 
             {NAV_LINKS.map((link) => (
@@ -254,7 +254,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block px-3 py-3 rounded-md text-lg font-medium text-gray-300 hover:bg-white/5 hover:text-white"
                 >
-                  Профиль
+                  Profile
                 </Link>
               ) : (
                 <Link
@@ -262,7 +262,7 @@ export function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block w-full text-center px-4 py-3 rounded-md bg-white text-black font-bold hover:bg-gray-200 transition"
                 >
-                  Войти
+                  Sign In
                 </Link>
               )}
             </div>

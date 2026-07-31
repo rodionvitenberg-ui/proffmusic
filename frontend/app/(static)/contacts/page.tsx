@@ -16,11 +16,11 @@ export default function ContactsPage() {
         {/* ЗАГОЛОВОК */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
-            Свяжитесь с нами
+            Contact Us
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            У вас возникли вопросы по лицензии, оплате или скачиванию? 
-            Наша команда поддержки всегда на связи и готова помочь.
+            Do you have any questions about licensing, payment or downloading? 
+            Our support team is always available and ready to help.
           </p>
         </div>
 
@@ -32,15 +32,15 @@ export default function ContactsPage() {
                 <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center text-green-400 mb-6 group-hover:scale-110 transition-transform">
                     <Mail size={24} />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Служба поддержки</h3>
+                <h3 className="text-xl font-bold text-white mb-2">Support Service</h3>
                 <p className="text-gray-400 mb-6 text-sm">
-                    Для решения технических вопросов и проблем с заказами. Отвечаем в течение 24 часов.
+                    For resolving technical questions and issues with orders. We respond within 24 hours.
                 </p>
                 <a 
-                    href="mailto:shop@proffmusic.ru" 
+                    href="mailto:shop@proffmusic.shop" 
                     className="text-2xl font-bold text-white hover:text-green-400 transition-colors break-all"
                 >
-                    shop@proffmusic.ru
+                    shop@proffmusic.shop
                 </a>
             </div>
 
@@ -51,7 +51,7 @@ export default function ContactsPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">Telegram</h3>
                 <p className="text-gray-400 mb-6 text-sm">
-                    Быстрая связь с менеджером для обсуждения индивидуальных условий или партнерства.
+                    Fast communication with a manager for discussing individual conditions or partnership.
                 </p>
                 <a 
                     href="#" 
@@ -70,14 +70,14 @@ export default function ContactsPage() {
                 <div className="flex-1">
                     <div className="flex items-center gap-3 mb-4">
                         <FileText className="text-gray-500" size={20} />
-                        <h3 className="text-lg font-bold text-white uppercase tracking-wider">Реквизиты</h3>
+                        <h3 className="text-lg font-bold text-white uppercase tracking-wider">Requisites</h3>
                     </div>
                     
                     <div className="space-y-1">
-                        <p className="text-xl font-bold text-white">ИП ЛИПАТОВ А.В.</p>
+                        <p className="text-xl font-bold text-white">John Doe.</p>
                         <div className="flex flex-col sm:flex-row gap-y-1 gap-x-6 text-gray-400 text-sm font-mono">
-                            <span>ИНН: 773373839292</span>
-                            <span>ОГРН: 321774600117719</span>
+                            <span>773373839292</span>
+                            <span>321774600117719</span>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ export default function ContactsPage() {
                     <div className="flex items-center gap-3 mb-2 md:justify-end">
                          {/* На мобилках иконка слева, на десктопе текст справа, но иконку можно оставить для стиля */}
                          <div className="md:hidden"><Phone className="text-gray-500" size={18} /></div>
-                         <span className="text-sm text-gray-500 uppercase tracking-wider font-bold">Телефон</span>
+                         <span className="text-sm text-gray-500 uppercase tracking-wider font-bold">Phone</span>
                     </div>
                     <a 
                         href="tel:+79258708299" 

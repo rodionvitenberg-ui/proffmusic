@@ -150,7 +150,9 @@ REST_FRAMEWORK = {
 
 AUTH_USER_MODEL = 'users.User'
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS — разрешаем только наш домен (прод)
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000').split(',')
+CORS_ALLOW_ALL_ORIGINS = False
 
 
 JAZZMIN_SETTINGS = {
@@ -159,47 +161,40 @@ JAZZMIN_SETTINGS = {
     "site_brand": "ProffMusic Control",
     "welcome_sign": "Добро пожаловать в панель управления ProffMusic",
     "copyright": "ProffMusic Ltd",
-    "search_model": ["music.Track", "music.Collection"], # Поиск по трекам сразу из хедера
+    "search_model": ["music.Track", "music.Collection"],
     
-    # Меню
     "topmenu_links": [
         {"name": "Главная",  "url": "admin:index", "permissions": ["auth.view_user"]},
         {"name": "Сайт", "url": "/"},
     ],
-    "show_ui_builder": True, # Позволяет настраивать цвета прямо в браузере (потом выключишь)
+    "show_ui_builder": True,
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "theme": "default", # Темная тема админки (под стать сайту)
+    "theme": "default",
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.beget.com')
-EMAIL_PORT = int(os.getenv('EMAIL_PORT', 465))
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'True') == 'True'
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
-YOOKASSA_SHOP_ID = os.getenv('YOOKASSA_SHOP_ID')
-YOOKASSA_SECRET_KEY = os.getenv('YOOKASSA_SECRET_KEY')
-YOOKASSA_RETURN_URL = os.getenv('YOOKASSA_RETURN_URL', 'http://localhost:3000/success')
-
-SITE_URL = os.getenv('SITE_URL', 'http://127.0.0.1:8000')
+SITE_URL = os.getenv('SITE_URL', 'http://localhost:3000')
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1), # Пусть живет долго, чтобы не мучить рефрешами в MVP
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
 DJOSER = {
     'LOGIN_FIELD': 'email',
-    'USER_CREATE_PASSWORD_RETYPE': True, # Если на фронте есть поле повтора пароля
+    'USER_CREATE_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
-        # ВОТ ЭТА СТРОЧКА РЕШАЕТ ПРОБЛЕМУ:
-        'user_create': 'users.serializers.UserCreateSerializer', 
-        
+        'user_create': 'users.serializers.UserCreateSerializer',
         'current_user': 'users.serializers.UserSerializer',
     },
     'HIDE_USERS': False,
@@ -207,10 +202,9 @@ DJOSER = {
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Разрешаем CSRF (формы) с вашего домена
-CSRF_TRUSTED_ORIGINS = ['https://proffmusic.ru', 'https://www.proffmusic.ru']
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://localhost:3000').split(',')
 
 SECURE_SSL_REDIRECT = False
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False

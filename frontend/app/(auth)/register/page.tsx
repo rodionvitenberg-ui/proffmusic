@@ -66,9 +66,9 @@ export default function RegisterPage() {
       router.push('/profile');
     } catch (err: any) {
         const data = err.response?.data;
-        let msg = 'Ошибка регистрации';
+        let msg = 'Registration error';
         if (data?.email) msg = `Email: ${data.email[0]}`;
-        else if (data?.password) msg = `Пароль: ${data.password[0]}`;
+        else if (data?.password) msg = `Password: ${data.password[0]}`;
         else if (data?.detail) msg = data.detail;
         
         setError(msg);
@@ -99,7 +99,7 @@ export default function RegisterPage() {
 
       {/* Слоган */}
       <div className="text-lg sm:text-xl md:text-2xl text-white font-light tracking-wide opacity-80 max-w-[280px] sm:max-w-md text-center break-words">
-        Присоединяйся к сообществу профессионалов
+        Join the community of professionals
       </div>
       
       {/* Декоративная полоска */}
@@ -131,10 +131,10 @@ export default function RegisterPage() {
                   <div className="flex flex-col gap-6 relative z-10">
                     <div className="flex flex-col items-center text-center">
                       <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                        Регистрация
+                        Registration
                       </h1>
                       <p className="text-gray-400 text-sm mt-1">
-                        Получите доступ к истории покупок
+                        Get access to your purchase history
                       </p>
                     </div>
 
@@ -193,9 +193,9 @@ export default function RegisterPage() {
                     </form>
 
                     <div className="text-center text-sm text-gray-400">
-                      Уже есть аккаунт?{" "}
+                      Already have an account?{" "}
                       <Link href="/login" className="text-purple-400 hover:text-purple-300 underline underline-offset-4 transition-colors">
-                        Войти
+                        Sign in
                       </Link>
                     </div>
                   </div>
@@ -226,9 +226,9 @@ export default function RegisterPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 2.0, ease: "easeOut" }} // Задержка подстроена под introDuration=2.5
             >
-              Создавая аккаунт, вы соглашаетесь с{" "}
+              By creating an account, you agree to our{" "}
               <Link href="/privacy" className="text-purple-400 hover:underline">
-                Политикой конфиденциальности
+                Privacy Policy
               </Link>
               .
             </motion.div>

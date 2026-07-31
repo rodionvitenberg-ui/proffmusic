@@ -126,7 +126,7 @@ function MusicContent() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
       
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold text-white">Каталог музыки</h1>
+        <h1 className="text-3xl font-bold text-white">Library of Music</h1>
         
         <Button 
           variant="outline" 
@@ -134,7 +134,7 @@ function MusicContent() {
           className="lg:hidden flex items-center gap-2 border-2 border-white text-white font-bold uppercase tracking-wide hover:bg-white hover:text-black transition-colors"
           onClick={() => setMobileFiltersOpen(true)}
         >
-          <Filter size={18} strokeWidth={3} /> Фильтры
+          <Filter size={18} strokeWidth={3} /> Filters
         </Button>
       </div>
 
@@ -154,13 +154,13 @@ function MusicContent() {
 
           {tracks.length === 0 && !loading && (
             <div className="text-center py-20 bg-background rounded-lg animate-in fade-in">
-              <p className="text-gray-400 text-lg">По выбранным фильтрам ничего не найдено.</p>
+              <p className="text-gray-400 text-lg">No tracks found for the selected filters.</p>
               <Button 
                 variant="outline" 
                 className="mt-4 border border-white/80 text-white"
                 onClick={() => window.location.href = '/music'}
               >
-                Очистить фильтры
+                Clear Filters
               </Button>
             </div>
           )}
@@ -171,7 +171,7 @@ function MusicContent() {
                {loading && (
                  <div className="flex flex-col items-center gap-2 text-gray-400">
                     <Loader2 className="animate-spin text-green-400" size={32} />
-                    {tracks.length > 0 && <span className="text-sm">Загрузка...</span>}
+                    {tracks.length > 0 && <span className="text-sm">Loading...</span>}
                  </div>
                )}
             </div>

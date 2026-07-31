@@ -46,7 +46,7 @@ export default function ProfilePage() {
         try {
             await updateAvatar(file);
         } catch (error) {
-            alert('Ошибка загрузки фото');
+            alert('Error uploading photo');
         }
     }
   };
@@ -89,13 +89,13 @@ export default function ProfilePage() {
                 <p className="text-gray-400 text-sm mb-6">{user.email}</p>
                 
                 <Button variant="outline" onClick={() => { logout(); router.push('/'); }} className="w-full gap-2 border-white/10 hover:bg-white/5 hover:text-white">
-                    <LogOut size={16} /> Выйти
+                    <LogOut size={16} /> Logout
                 </Button>
             </div>
 
             {/* ПРАВАЯ КОЛОНКА: История заказов */}
             <div className="md:col-span-2 space-y-6">
-                <h2 className="text-2xl font-bold text-white mb-4">История покупок</h2>
+                <h2 className="text-2xl font-bold text-white mb-4">Order History</h2>
                 
                 {loadingOrders ? (
                     <div className="flex justify-center py-12">
@@ -123,14 +123,14 @@ export default function ProfilePage() {
                                 </div>
                                 <div className="text-right">
                                     <div className="text-lg font-bold text-white">{order.amount} ₽</div>
-                                    <div className="text-xs text-green-400 font-medium uppercase tracking-wider mt-1">Оплачено</div>
+                                    <div className="text-xs text-green-400 font-medium uppercase tracking-wider mt-1">Paid</div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : (
                     <div className="text-center py-12 bg-[#181818] rounded-lg border border-white/5">
-                        <p className="text-gray-400">Вы еще ничего не купили.</p>
+                        <p className="text-gray-400">You haven't purchased anything yet.</p>
                     </div>
                 )}
             </div>

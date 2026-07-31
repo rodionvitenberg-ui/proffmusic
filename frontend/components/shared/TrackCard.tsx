@@ -66,6 +66,7 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
               src={track.cover_image || '/placeholder.jpg'} 
               alt={track.title}
               fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
             />
             <div className={cn(
@@ -116,7 +117,7 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
               className="w-full h-10 border-white/20 hover:border-white font-bold uppercase tracking-wide text-xs text-white"
             >
               <Banknote size={14} className="mr-2" />
-              Купить
+              Buy
             </Button>
 
             {/* Кнопка Корзины */}
@@ -132,12 +133,12 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
               {added ? (
                 <>
                   <Check size={16} className="mr-2" />
-                  В корзине
+                  In Cart
                 </>
               ) : (
                 <>
                   <ShoppingBag size={16} className="mr-2" />
-                  В корзину
+                  Add to cart
                 </>
               )}
             </Button>
@@ -180,7 +181,7 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
             </div>
             
             <div className="pt-2 text-center text-xs text-gray-600">
-              Нажмите, чтобы вернуться
+              Click to return
             </div>
           </div>
         </CardFlipBack>

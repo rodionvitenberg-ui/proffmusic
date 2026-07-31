@@ -20,20 +20,20 @@ export default function SuccessPage() {
         <CheckCircle size={40} className="text-green-500" />
       </div>
       
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Спасибо за покупку!</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">Thank you for your purchase!</h1>
       
       <p className="text-lg text-gray-300 max-w-md mx-auto mb-8">
-        Ваш заказ успешно оформлен. Ссылка для скачивания отправлена на указанную вами почту.
+        Your order has been successfully placed. The download link has been sent to the email address you provided.
       </p>
 
       <div className="p-4 bg-[#181818] rounded-lg border border-white/10 max-w-sm mx-auto mb-8">
         <p className="text-sm text-gray-400">
-          Не пришло письмо? Проверьте папку "Спам" или напишите нам в поддержку.
+          Didn't receive the email? Check your "Spam" folder or contact our support team.
         </p>
       </div>
 
       <Link href="/">
-        <Button size="lg" variant="outline">Вернуться в магазин</Button>
+        <Button size="lg" variant="outline">Return to Store</Button>
       </Link>
     </div>
   );

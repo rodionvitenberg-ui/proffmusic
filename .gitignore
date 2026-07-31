@@ -1,19 +1,54 @@
-# System
+# --- IDE / ОС ---
 .DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
 
-# Frontend (Node)
+# --- Логи и временные файлы ---
+*.log
+*.tmp
+coverage/
+.coverage
+
+# --- Frontend (Next.js / Node) ---
 node_modules/
 .next/
+out/
 dist/
 build/
-.env.local
-.env
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+.dockerignore
 
-# Backend (Python/Django)
+# --- Backend (Python / Django) ---
 __pycache__/
 *.py[cod]
 venv/
 .env
+.env.*
+!.env.example
 db.sqlite3
-media/
 staticfiles/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+
+# --- Тяжёлые / генерируемые медиа ---
+# Защищённые аудиофайлы (клиенты получают после оплаты) — НЕ храним в репозитории
+protected_media/
+
+# Публичные обложки и превью (генерируются load_music) — кроме логотипа
+backend/media/*
+!backend/media/logo2.png
+
+# --- Cline / скиллы ---
+.cline/
+.skills/
+
+# --- Случайные файлы ---
+front

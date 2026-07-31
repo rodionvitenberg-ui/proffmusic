@@ -18,7 +18,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'proffmusic.ru',
+        hostname: 'proffmusic.shop',
+        pathname: '/media/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.proffmusic.shop',
         pathname: '/media/**',
       },
       {
