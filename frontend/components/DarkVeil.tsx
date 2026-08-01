@@ -61,16 +61,22 @@ vec4 cppn_fn(vec2 coordinate,float in0,float in1,float in2){
 void mainImage(out vec4 fragColor,in vec2 fragCoord){
     vec2 uv=fragCoord/uResolution.xy*2.-1.;
     uv.y*=-1.;
-    uv+=uWarp*vec2(sin(uv.y*6.283+uTime*0.5),cos(uv.x*6.283+uTime*0.5))*0.05;
+    if (uWarp > 0.0001) {
+        uv+=uWarp*vec2(sin(uv.y*6.283+uTime*0.5),cos(uv.x*6.283+uTime*0.5))*0.05;
+    }
     fragColor=cppn_fn(uv,0.1*sin(0.3*uTime),0.1*sin(0.69*uTime),0.1*sin(0.44*uTime));
 }
 
 void main(){
     vec4 col;mainImage(col,gl_FragCoord.xy);
-    col.rgb=hueShiftRGB(col.rgb,uHueShift);
-    float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
-    col.rgb*=1.-(scanline_val*scanline_val)*uScan;
-    col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
+    if (uHueShift != 0.0) { col.rgb=hueShiftRGB(col.rgb,uHueShift); }
+    if (uScan > 0.0001) {
+        float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
+        col.rgb*=1.-(scanline_val*scanline_val)*uScan;
+    }
+    if (uNoise > 0.0001) {
+        col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
+    }
     gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
 }
 `;
@@ -92,15 +98,47 @@ export default function DarkVeil({
   speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
-  resolutionScale = 1
+  resolutionScale = 0.5
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = ref.current as HTMLCanvasElement;
-    const parent = canvas.parentElement as HTMLElement;
 
+  // Ref с актуальными пропсами, чтобы RAF-цикл не пересоздавал WebGL-контекст при ре-рендерах
+  const propsRef = useRef({
+    hueShift,
+    noiseIntensity,
+    scanlineIntensity,
+    speed,
+    scanlineFrequency,
+    warpAmount,
+    resolutionScale
+  });
+
+  useEffect(() => {
+    propsRef.current = {
+      hueShift,
+      noiseIntensity,
+      scanlineIntensity,
+      speed,
+      scanlineFrequency,
+      warpAmount,
+      resolutionScale
+    };
+  });
+
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const parent = canvas.parentElement;
+    if (!parent) return;
+
+    // Уважаем настройку «уменьшить движение»: показываем один красивый статичный кадр
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Ограничиваем dpr и рендерим в пониженном разрешении:
+    // фон абстрактный, поэтому потеря резкости незаметна, а нагрузка на GPU сильно меньше
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
+      dpr: Math.min(window.devicePixelRatio, 1.5),
+      powerPreference: 'high-performance',
       canvas
     });
 
@@ -124,35 +162,69 @@ export default function DarkVeil({
     const mesh = new Mesh(gl, { geometry, program });
 
     const resize = () => {
-      const w = parent.clientWidth,
-        h = parent.clientHeight;
-      renderer.setSize(w * resolutionScale, h * resolutionScale);
+      const p = propsRef.current;
+      const w = parent.clientWidth;
+      const h = parent.clientHeight;
+      if (w === 0 || h === 0) return;
+      renderer.setSize(w * p.resolutionScale, h * p.resolutionScale);
       program.uniforms.uResolution.value.set(w, h);
     };
 
     window.addEventListener('resize', resize);
     resize();
 
+    // Обновляем uniform-ы, только если реально изменились
+    const syncUniforms = (p = propsRef.current) => {
+      const u = program.uniforms;
+      if (u.uHueShift.value !== p.hueShift) u.uHueShift.value = p.hueShift;
+      if (u.uNoise.value !== p.noiseIntensity) u.uNoise.value = p.noiseIntensity;
+      if (u.uScan.value !== p.scanlineIntensity) u.uScan.value = p.scanlineIntensity;
+      if (u.uScanFreq.value !== p.scanlineFrequency) u.uScanFreq.value = p.scanlineFrequency;
+      if (u.uWarp.value !== p.warpAmount) u.uWarp.value = p.warpAmount;
+    };
+
     const start = performance.now();
     let frame = 0;
+    let running = !reducedMotion;
+
+    const renderFrame = () => {
+      const p = propsRef.current;
+      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * p.speed;
+      syncUniforms(p);
+      renderer.render({ scene: mesh });
+    };
 
     const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
-      renderer.render({ scene: mesh });
+      renderFrame();
       frame = requestAnimationFrame(loop);
     };
 
-    loop();
+    if (running) {
+      loop();
+    } else {
+      renderFrame(); // статичный кадр для prefers-reduced-motion
+    }
+
+    // Пауза, когда вкладка скрыта — не тратим GPU впустую
+    const onVisibility = () => {
+      if (document.hidden) {
+        if (running) {
+          cancelAnimationFrame(frame);
+          running = false;
+        }
+      } else if (!reducedMotion && !running) {
+        running = true;
+        frame = requestAnimationFrame(loop);
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
       cancelAnimationFrame(frame);
+      document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('resize', resize);
     };
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
+  }, []);
+
   return <canvas ref={ref} className="w-full h-full block" />;
 }

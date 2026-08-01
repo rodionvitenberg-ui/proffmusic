@@ -67,12 +67,15 @@ export function Footer() {
             <p>{tc('allRights', { year: currentYear })}</p>
           </div>
 
-          <div
-            className="text-xs font-mono text-gray-700 uppercase tracking-widest hover:text-gray-500 transition-colors cursor-default select-none"
+          <a
+            href="https://bussisart.space"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-mono text-gray-700 uppercase tracking-widest hover:text-gray-500 transition-colors cursor-pointer select-none"
             title={t('developedBy')}
           >
-            ikSoft
-          </div>
+            busisart.space
+          </a>
         </div>
 
       </div>
