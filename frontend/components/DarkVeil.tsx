@@ -98,7 +98,7 @@ export default function DarkVeil({
   speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
-  resolutionScale = 0.5
+  resolutionScale = 1
 }: Props) {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -166,8 +166,11 @@ export default function DarkVeil({
       const w = parent.clientWidth;
       const h = parent.clientHeight;
       if (w === 0 || h === 0) return;
+      // setSize умножает на dpr внутри ogl. uResolution должен совпадать
+      // с фактическим размером канваса (до dpr), иначе UV-координаты шейдера
+      // съезжают и фон выглядит «обрезанным»/чёрным.
       renderer.setSize(w * p.resolutionScale, h * p.resolutionScale);
-      program.uniforms.uResolution.value.set(w, h);
+      program.uniforms.uResolution.value.set(w * p.resolutionScale, h * p.resolutionScale);
     };
 
     window.addEventListener('resize', resize);
