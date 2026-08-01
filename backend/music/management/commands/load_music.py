@@ -13,46 +13,46 @@ from music.models import Category, Tag, Track, Collection
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent  # backend/
 MUSIC_SOURCE = BASE_DIR / 'ДЛЯ САЙТА'
 
-# --- Категории и цены ---
+# --- Категории и цены (RU + EN) ---
 CATEGORY_CONFIG = {
-    'Youtube': {'name': 'Для YouTube', 'price': 990, 'order': 0},
-    'Кино': {'name': 'Кино и Трейлеры', 'price': 1490, 'order': 1},
-    'Корпоратив': {'name': 'Корпоратив и Мероприятия', 'price': 1490, 'order': 2},
-    'Медитация': {'name': 'Медитация и Релакс', 'price': 790, 'order': 3},
-    'Реклама и промо': {'name': 'Реклама и Промо', 'price': 990, 'order': 4},
+    'Youtube': {'name_ru': 'Для YouTube', 'name_en': 'For YouTube', 'price': 990, 'order': 0},
+    'Кино': {'name_ru': 'Кино и Трейлеры', 'name_en': 'Cinema & Trailers', 'price': 1490, 'order': 1},
+    'Корпоратив': {'name_ru': 'Корпоратив и Мероприятия', 'name_en': 'Corporate & Events', 'price': 1490, 'order': 2},
+    'Медитация': {'name_ru': 'Медитация и Релакс', 'name_en': 'Meditation & Relax', 'price': 790, 'order': 3},
+    'Реклама и промо': {'name_ru': 'Реклама и Промо', 'name_en': 'Advertising & Promo', 'price': 990, 'order': 4},
 }
 
-# --- Словари для автоподбора тегов ---
+# --- Словари для автоподбора тегов (RU + EN) ---
 MOOD_RULES = [
-    (['фанфар', 'выход', 'звезда'], ['торжественный', 'вдохновляющий']),
-    (['задорн'], ['зажигательный', 'энергичный']),
-    (['атмосферн'], ['атмосферный', 'загадочный', 'мечтательный']),
-    (['величествен'], ['величественный', 'эпический', 'вдохновляющий']),
-    (['напорист'], ['энергичный', 'динамичный', 'мощный']),
-    (['скрипк'], ['эмоциональный', 'драматический', 'струнный']),
-    (['медитац', 'релакс', 'сон', 'туман', 'путь', 'весны', 'звёзд'], ['спокойный', 'расслабляющий', 'светлый']),
-    (['афро'], ['зажигательный', 'летний', 'ритмичный']),
-    (['бизнес', 'подвиж', 'пульс'], ['деловой', 'динамичный', 'технологичный']),
+    (['фанфар', 'выход', 'звезда'], [('торжественный', 'solemn'), ('вдохновляющий', 'inspiring')]),
+    (['задорн'], [('зажигательный', 'fiery'), ('энергичный', 'energetic')]),
+    (['атмосферн'], [('атмосферный', 'atmospheric'), ('загадочный', 'mysterious'), ('мечтательный', 'dreamy')]),
+    (['величествен'], [('величественный', 'majestic'), ('эпический', 'epic'), ('вдохновляющий', 'inspiring')]),
+    (['напорист'], [('энергичный', 'energetic'), ('динамичный', 'dynamic'), ('мощный', 'powerful')]),
+    (['скрипк'], [('эмоциональный', 'emotional'), ('драматический', 'dramatic'), ('струнный', 'strings')]),
+    (['медитац', 'релакс', 'сон', 'туман', 'путь', 'весны', 'звёзд'], [('спокойный', 'calm'), ('расслабляющий', 'relaxing'), ('светлый', 'bright')]),
+    (['афро'], [('зажигательный', 'fiery'), ('летний', 'summer'), ('ритмичный', 'rhythmic')]),
+    (['бизнес', 'подвиж', 'пульс'], [('деловой', 'business'), ('динамичный', 'dynamic'), ('технологичный', 'tech')]),
 ]
 
 INSTRUMENT_RULES = [
-    (['скрипк'], ['скрипка', 'струнные']),
-    (['орган'], ['орган', 'клавишные']),
-    (['оркестр'], ['оркестр', 'струнные']),
-    (['рок'], ['рок-гитара', 'ударные']),
-    (['афро'], ['афро-перкуссия', 'перкуссия']),
-    (['фанфар'], ['медные духовые', 'труба']),
+    (['скрипк'], [('скрипка', 'violin'), ('струнные', 'strings')]),
+    (['орган'], [('орган', 'organ'), ('клавишные', 'keys')]),
+    (['оркестр'], [('оркестр', 'orchestra'), ('струнные', 'strings')]),
+    (['рок'], [('рок-гитара', 'rock-guitar'), ('ударные', 'drums')]),
+    (['афро'], [('афро-перкуссия', 'afro-percussion'), ('перкуссия', 'percussion')]),
+    (['фанфар'], [('медные духовые', 'brass'), ('труба', 'trumpet')]),
 ]
 
 USAGE_RULES = {
-    'Youtube': ['youtube-видео', 'влог', 'обзор'],
-    'Кино': ['кино', 'трейлер', 'документальный', 'заставка'],
-    'Корпоратив': ['презентация', 'корпоративное видео', 'конференция', 'событие'],
-    'Медитация': ['медитация', 'йога', 'релакс', 'сон', 'фон'],
-    'Реклама и промо': ['реклама', 'промо-ролик', 'соцсети', 'презентация'],
+    'Youtube': [('youtube-видео', 'youtube-video'), ('влог', 'vlog'), ('обзор', 'review')],
+    'Кино': [('кино', 'cinema'), ('трейлер', 'trailer'), ('документальный', 'documentary'), ('заставка', 'intro')],
+    'Корпоратив': [('презентация', 'presentation'), ('корпоративное видео', 'corporate-video'), ('конференция', 'conference'), ('событие', 'event')],
+    'Медитация': [('медитация', 'meditation'), ('йога', 'yoga'), ('релакс', 'relax'), ('сон', 'sleep'), ('фон', 'background')],
+    'Реклама и промо': [('реклама', 'advertising'), ('промо-ролик', 'promo-video'), ('соцсети', 'social-media'), ('презентация', 'presentation')],
 }
 
-USAGE_ALWAYS = ['без content id', 'роялти-фри']
+USAGE_ALWAYS = [('без content id', 'no-content-id'), ('роялти-фри', 'royalty-free')]
 
 
 def generate_cover(title: str, category_name: str) -> ContentFile:
@@ -144,7 +144,7 @@ def generate_cover(title: str, category_name: str) -> ContentFile:
 
 
 def pick_tags(title: str, category_key: str) -> list:
-    """Автоподбор тегов по названию и категории."""
+    """Автоподбор тегов (список кортежей (ru, en)) по названию и категории."""
     result = []
     title_lower = title.lower()
 
@@ -186,44 +186,45 @@ class Command(BaseCommand):
         categories = {}
         for key, config in CATEGORY_CONFIG.items():
             cat, created = Category.objects.update_or_create(
-                slug=slugify(config['name']),
-                defaults={'name': config['name'], 'order': config['order']}
+                slug=slugify(config['name_ru']),
+                defaults={'name_ru': config['name_ru'], 'name_en': config['name_en'], 'order': config['order']}
             )
             categories[key] = cat
-            self.stdout.write(f"{'✓ Создана' if created else '• Обновлена'}: {config['name']}")
+            self.stdout.write(f"{'✓ Создана' if created else '• Обновлена'}: {config['name_ru']} / {config['name_en']}")
 
         # --- 2. Теги ---
         self.stdout.write('\n--- 2. Теги ---')
-        tag_cache = {}
+        tag_cache = {}  # (ru, en) -> Tag
         all_tags = set()
         for _, config in CATEGORY_CONFIG.items():
-            for name in [config['name']] + USAGE_RULES.get(config['name'], []):
-                all_tags.add(name)
+            for pair in USAGE_RULES.get(config['name_ru'], []):
+                all_tags.add(pair)
 
-        mood_names = []
-        instrument_names = []
+        mood_pairs = []
+        instrument_pairs = []
         for keywords, moods in MOOD_RULES:
-            mood_names.extend(moods)
+            mood_pairs.extend(moods)
         for keywords, instruments in INSTRUMENT_RULES:
-            instrument_names.extend(instruments)
+            instrument_pairs.extend(instruments)
 
         tags_to_create = []
-        for name in all_tags:
-            tags_to_create.append((name, 'usage'))
-        for name in mood_names:
-            tags_to_create.append((name, 'mood'))
-        for name in instrument_names:
-            tags_to_create.append((name, 'instrument'))
-        tags_to_create.append(('без content id', 'usage'))
-        tags_to_create.append(('роялти-фри', 'usage'))
+        for pair in all_tags:
+            tags_to_create.append((pair, 'usage'))
+        for pair in mood_pairs:
+            tags_to_create.append((pair, 'mood'))
+        for pair in instrument_pairs:
+            tags_to_create.append((pair, 'instrument'))
+        for pair in USAGE_ALWAYS:
+            tags_to_create.append((pair, 'usage'))
 
-        for name, tag_type in tags_to_create:
+        for pair, tag_type in tags_to_create:
+            ru_name, en_name = pair
             tag, _ = Tag.objects.get_or_create(
-                slug=slugify(name),
-                defaults={'name': name, 'tag_type': tag_type}
+                slug=slugify(ru_name),
+                defaults={'name_ru': ru_name, 'name_en': en_name, 'tag_type': tag_type}
             )
-            tag_cache[name] = tag
-            self.stdout.write(f'  ✓ Тег: {name} ({tag_type})')
+            tag_cache[pair] = tag
+            self.stdout.write(f'  ✓ Тег: {ru_name} ({tag_type})')
 
         self.stdout.write(f'  Всего тегов: {Tag.objects.count()}')
 
@@ -241,7 +242,7 @@ class Command(BaseCommand):
             category = categories[folder_name]
             wav_files = sorted([f for f in folder.iterdir() if f.suffix.lower() == '.wav'])
 
-            self.stdout.write(f'\n  [{config["name"]}] — {len(wav_files)} треков')
+            self.stdout.write(f'\n  [{config["name_ru"]}] — {len(wav_files)} треков')
 
             for wav_path in wav_files:
                 raw_name = wav_path.stem
@@ -270,18 +271,20 @@ class Command(BaseCommand):
                 slug = slugify(f'{title}-{uuid.uuid4().hex[:6]}')
 
                 # Проверка на дубликат по названию в этой категории
-                if Track.objects.filter(title=title, category=category).exists():
+                if Track.objects.filter(title_ru=title, category=category).exists():
                     self.stdout.write(f'  • Пропуск (дубликат): {title}')
                     continue
 
                 # --- Теги ---
                 picked_tag_names = pick_tags(title, folder_name)
-                tags = [tag_cache[name] for name in picked_tag_names if name in tag_cache]
+                tags = [tag_cache[pair] for pair in picked_tag_names if pair in tag_cache]
 
                 # --- Описания ---
-                category_label = config['name']
-                mood_hint = ', '.join(t.name for t in tags if t.tag_type == 'mood') or 'уникальная'
-                instrument_hint = ', '.join(t.name for t in tags if t.tag_type == 'instrument') or 'инструментальная'
+                category_label = config['name_ru']
+                mood_hint_ru = ', '.join(t.name_ru for t in tags if t.tag_type == 'mood') or 'уникальная'
+                instrument_hint_ru = ', '.join(t.name_ru for t in tags if t.tag_type == 'instrument') or 'инструментальная'
+                mood_hint_en = ', '.join(t.name_en for t in tags if t.tag_type == 'mood') or 'unique'
+                instrument_hint_en = ', '.join(t.name_en for t in tags if t.tag_type == 'instrument') or 'instrumental'
 
                 descriptions = {
                     'Атмосферный': 'Погружающая атмосферная композиция с глубоким звуковым пространством. Идеально для фонового сопровождения видео, обзоров и творческих проектов.',
@@ -303,30 +306,44 @@ class Command(BaseCommand):
                     'Фон пульс': 'Технологичный трек с пульсирующим битом. Современный звук для технологических и IT-проектов.',
                 }
 
-                description_short = None
+                description_short_ru = None
                 for key, text in descriptions.items():
                     if key.lower() in title.lower():
-                        description_short = text
+                        description_short_ru = text
                         break
-                if not description_short:
-                    description_short = f'Готовая музыкальная композиция «{title}» для категории «{category_label}». Создаст нужное настроение в вашем проекте.'
+                if not description_short_ru:
+                    description_short_ru = f'Готовая музыкальная композиция «{title}» для категории «{category_label}». Создаст нужное настроение в вашем проекте.'
+                description_short_en = (
+                    f'A ready-made music composition “{title}” for the “{config["name_en"]}” category. '
+                    f'It will create the right mood for your project.'
+                )
 
-                description_full = (
-                    f'Композиция «{title}» — {mood_hint} музыка с ярким характером. '
-                    f'Инструментальный состав: {instrument_hint}. '
-                    f'Композиция подойдёт для: {", ".join(t.name for t in tags if t.tag_type == "usage")}. '
+                description_full_ru = (
+                    f'Композиция «{title}» — {mood_hint_ru} музыка с ярким характером. '
+                    f'Инструментальный состав: {instrument_hint_ru}. '
+                    f'Композиция подойдёт для: {", ".join(t.name_ru for t in tags if t.tag_type == "usage")}. '
                     f'Создана профессиональными музыкантами для коммерческого использования. '
                     f'Полная лицензия без Content ID — используйте в своих проектах, монетизируйте и не беспокойтесь о блокировках.'
+                )
+                description_full_en = (
+                    f'The composition “{title}” — {mood_hint_en} music with a bright character. '
+                    f'Instrumentation: {instrument_hint_en}. '
+                    f'The composition is suitable for: {", ".join(t.name_en for t in tags if t.tag_type == "usage")}. '
+                    f'Created by professional musicians for commercial use. '
+                    f'Full license without Content ID — use in your projects, monetize and do not worry about blocks.'
                 )
 
                 # --- Создание трека ---
                 track = Track(
-                    title=title,
+                    title_ru=title,
+                    title_en=title,
                     slug=slug,
                     category=category,
                     price=config['price'],
-                    description_short=description_short,
-                    description_full=description_full,
+                    description_short_ru=description_short_ru,
+                    description_short_en=description_short_en,
+                    description_full_ru=description_full_ru,
+                    description_full_en=description_full_en,
                     is_new=len(all_tracks) < 10,
                     auto_generate_preview=True,
                     preview_start_time=20,
@@ -352,17 +369,17 @@ class Command(BaseCommand):
         # --- 4. Коллекции ---
         self.stdout.write('\n--- 4. Коллекции ---')
         collection_config = [
-            ('Youtube', 'Для YouTube', 'Лучшие треки для YouTube-каналов, влогов и обзоров. Без Content ID, можно монетизировать.'),
-            ('Кино', 'Для кино', 'Эмоциональные кинематографичные композиции для фильмов, трейлеров и короткометражек.'),
-            ('Корпоратив', 'Корпоративная музыка', 'Торжественные и деловые композиции для корпоративов, презентаций и официальных событий.'),
-            ('Медитация', 'Медитации и релакс', 'Спокойная медитативная музыка для релакса, йоги, сна и духовных практик.'),
-            ('Реклама и промо', 'Реклама и промо', 'Энергичные и деловые треки для рекламных роликов, промо и соцсетей.'),
+            ('Youtube', 'Для YouTube', 'For YouTube', 'Лучшие треки для YouTube-каналов, влогов и обзоров. Без Content ID, можно монетизировать.', 'Best tracks for YouTube channels, vlogs and reviews. No Content ID, monetizable.'),
+            ('Кино', 'Для кино', 'For Cinema', 'Эмоциональные кинематографичные композиции для фильмов, трейлеров и короткометражек.', 'Emotional cinematic compositions for films, trailers and short films.'),
+            ('Корпоратив', 'Корпоративная музыка', 'Corporate Music', 'Торжественные и деловые композиции для корпоративов, презентаций и официальных событий.', 'Solemn and business compositions for corporate events, presentations and official occasions.'),
+            ('Медитация', 'Медитации и релакс', 'Meditation & Relax', 'Спокойная медитативная музыка для релакса, йоги, сна и духовных практик.', 'Calm meditative music for relaxation, yoga, sleep and spiritual practices.'),
+            ('Реклама и промо', 'Реклама и промо', 'Advertising & Promo', 'Энергичные и деловые треки для рекламных роликов, промо и соцсетей.', 'Energetic and business tracks for advertising videos, promos and social media.'),
         ]
 
-        for folder_key, title, desc in collection_config:
+        for folder_key, title_ru, title_en, desc_ru, desc_en in collection_config:
             category = categories.get(folder_key)
             if not category:
-                self.stdout.write(f'  ⚠️ Категория {folder_key} не найдена, пропуск: {title}')
+                self.stdout.write(f'  ⚠️ Категория {folder_key} не найдена, пропуск: {title_ru}')
                 continue
             tracks = Track.objects.filter(category=category)
             if not tracks.exists():
@@ -370,18 +387,20 @@ class Command(BaseCommand):
 
             total_price = sum(t.price for t in tracks)
             col, created = Collection.objects.update_or_create(
-                title=title,
+                slug=slugify(f'{title_ru}-{uuid.uuid4().hex[:4]}'),
                 defaults={
-                    'slug': slugify(f'{title}-{uuid.uuid4().hex[:4]}'),
-                    'description': desc,
+                    'title_ru': title_ru,
+                    'title_en': title_en,
+                    'description_ru': desc_ru,
+                    'description_en': desc_en,
                     'price': total_price,
                     'is_new': True,
                 }
             )
             col.tracks.set(tracks)
             # Обложка коллекции
-            col.cover_image = generate_cover(title, 'Сборник')
+            col.cover_image = generate_cover(title_ru, 'Сборник')
             col.save()
-            self.stdout.write(f"{'✓ Создан' if created else '• Обновлён'}: {title} — {tracks.count()} треков, {total_price} ₽")
+            self.stdout.write(f"{'✓ Создан' if created else '• Обновлён'}: {title_ru} — {tracks.count()} треков, {total_price} ₽")
 
         self.stdout.write(self.style.SUCCESS('\n✅ ГОТОВО! Музыка успешно загружена!'))

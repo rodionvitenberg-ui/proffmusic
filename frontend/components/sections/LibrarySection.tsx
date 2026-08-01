@@ -6,8 +6,10 @@ import { Loader2 } from 'lucide-react';
 import api from '@/lib/api';
 import { Track } from '@/lib/store';
 import { TrackCard } from '@/components/shared/TrackCard';
+import { useTranslations } from 'next-intl';
 
 export function LibrarySection() {
+  const t = useTranslations('library');
   const [libraryTracks, setLibraryTracks] = useState<Track[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -23,7 +25,7 @@ export function LibrarySection() {
     try {
       const res = await api.get(`/api/tracks/?page=${pageNum}&ordering=-created_at`);
       const newTracks = res.data.results || res.data;
-      
+
       if (pageNum === 1) {
         setLibraryTracks(newTracks);
       } else {
@@ -39,7 +41,7 @@ export function LibrarySection() {
       }
     } catch (err) {
       console.error('Ошибка загрузки фонотеки:', err);
-      setHasMore(false); // Останавливаем бесконечную пагинацию при ошибке
+      setHasMore(false);
     } finally {
       setLoading(false);
     }
@@ -60,25 +62,24 @@ export function LibrarySection() {
   return (
     <section id="library" className="py-20 px-4 sm:px-6 lg:px-8 bg-background/70">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-8">All Tracks</h2>
-        
+        <h2 className="text-4xl font-bold text-white mb-8">{t('allTracks')}</h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {libraryTracks.map((track) => (
             <TrackCard key={track.id} track={track} playlist={libraryTracks} />
           ))}
         </div>
 
-        {/* Элемент-триггер для Observer'а */}
         <div ref={ref} className="mt-12 flex justify-center w-full py-8 min-h-[100px]">
           {loading && hasMore && (
             <div className="flex flex-col items-center text-gray-400 gap-2">
-               <Loader2 className="animate-spin" size={32} />
-               <span className="text-sm">Loading music...</span>
+              <Loader2 className="animate-spin" size={32} />
+              <span className="text-sm">{t('loading')}</span>
             </div>
           )}
-          
+
           {!hasMore && libraryTracks.length > 0 && (
-            <p className="text-gray-500 animate-in fade-in">You have viewed all tracks.</p>
+            <p className="text-gray-500 animate-in fade-in">{t('viewedAll')}</p>
           )}
         </div>
       </div>

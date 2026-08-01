@@ -1,59 +1,59 @@
 'use client';
 
-import Link from 'next/link';
-import { Mail, Instagram, Youtube, Send } from 'lucide-react'; // Убрали Music из импорта
+import { Mail } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 
 export function Footer() {
+  const t = useTranslations('footer');
+  const tc = useTranslations('common');
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="relative z-10 bg-secondary border-t border-white/10 pt-16 pb-32 text-sm text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
+
           {/* 1. Лого и Описание */}
           <div className="space-y-2">
             <Link href="/" className="inline-block group">
-              {/* ЛОГОТИП */}
-              {/* h-12 = размер логотипа. Меняйте это число (h-10, h-14, h-16), чтобы регулировать размер */}
-              <img 
-                src="/logo.png" 
-                alt="ProffMusic Logo" 
-                className="h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity -ml-[9px]" 
+              <img
+                src="/logo.png"
+                alt="ProffMusic Logo"
+                className="h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity -ml-[9px]"
               />
             </Link>
             <p className="leading-relaxed">
-              Professional original music for your videos, advertisements and YouTube. 
-              Without Content ID, with a commercial license.
+              {t('description')}
             </p>
           </div>
 
           {/* 2. Категории */}
           <div>
-            <h3 className="font-bold text-white mb-4">Music</h3>
+            <h3 className="font-bold text-white mb-4">{t('music')}</h3>
             <ul className="space-y-2">
-              <li><Link href="/music?category__slug=dlya-youtube" className="hover:text-white transition">For YouTube</Link></li>
-              <li><Link href="/music?category__slug=reklama-i-promo" className="hover:text-white transition">Advertising and Promotions</Link></li>
-              <li><Link href="/music?category__slug=kino" className="hover:text-white transition">Cinema and Trailers</Link></li>
-              <li><Link href="/music?category__slug=korporativ" className="hover:text-white transition">Corporate</Link></li>
-              <li><Link href="/collections" className="text-green-400 hover:text-green-300 transition">Collections (Packs)</Link></li>
+              <li><Link href="/music?category__slug=dlya-youtube" className="hover:text-white transition">{t('forYouTube')}</Link></li>
+              <li><Link href="/music?category__slug=reklama-i-promo" className="hover:text-white transition">{t('advertising')}</Link></li>
+              <li><Link href="/music?category__slug=kino" className="hover:text-white transition">{t('cinema')}</Link></li>
+              <li><Link href="/music?category__slug=korporativ" className="hover:text-white transition">{t('corporate')}</Link></li>
+              <li><Link href="/collections" className="text-green-400 hover:text-green-300 transition">{t('collections')}</Link></li>
             </ul>
           </div>
 
           {/* 3. Компания */}
           <div>
-            <h3 className="font-bold text-white mb-4">Company</h3>
+            <h3 className="font-bold text-white mb-4">{t('company')}</h3>
             <ul className="space-y-2">
-              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-              <li><Link href="/license" className="hover:text-white transition">License</Link></li>
-              <li><Link href="/contacts" className="hover:text-white transition">Contacts</Link></li>
+              <li><Link href="/about" className="hover:text-white transition">{t('aboutUs')}</Link></li>
+              <li><Link href="/license" className="hover:text-white transition">{t('license')}</Link></li>
+              <li><Link href="/contacts" className="hover:text-white transition">{t('contacts')}</Link></li>
             </ul>
           </div>
 
           {/* 4. Контакты */}
           <div>
-            <h3 className="font-bold text-white mb-2">Support</h3>
+            <h3 className="font-bold text-white mb-2">{t('support')}</h3>
             <a href="mailto:shop@proffmusic.shop" className="flex items-center gap-2 hover:text-white transition">
               <Mail size={16} />shop@proffmusic.shop
             </a>
@@ -61,24 +61,18 @@ export function Footer() {
 
         </div>
 
-        {/* НИЖНЯЯ ПОЛОСА (Изменено) */}
+        {/* НИЖНЯЯ ПОЛОСА */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          
-          {/* ЛЕВАЯ СТОРОНА: Копирайт + Ссылки */}
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
-            <p>© {currentYear} ProffMusic.</p>
-            <div className="flex gap-4 text-xs font-medium text-gray-500">
-            </div>
+            <p>{tc('allRights', { year: currentYear })}</p>
           </div>
 
-          {/* ПРАВАЯ СТОРОНА: Инициалы RV */}
-          <div 
+          <div
             className="text-xs font-mono text-gray-700 uppercase tracking-widest hover:text-gray-500 transition-colors cursor-default select-none"
-            title="Developed by Rodion Vitenberg"
+            title={t('developedBy')}
           >
-             ikSoft
+            ikSoft
           </div>
-
         </div>
 
       </div>

@@ -4,6 +4,7 @@ import { Track, Collection, Category } from '@/lib/store';
 
 // Базовый URL
 const BASE_URL = 'https://proffmusic.shop';
+const LOCALES = ['ru', 'en'];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
@@ -17,48 +18,82 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const collections: Collection[] = collectionsRes.data.results || collectionsRes.data;
     const categories: Category[] = categoriesRes.data;
 
-    const trackUrls = tracks.map((track) => ({
-      url: `${BASE_URL}/tracks/${track.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    }));
+    const trackUrls = tracks.flatMap((track) =>
+      LOCALES.map((locale) => ({
+        url: `${BASE_URL}/${locale}/tracks/${track.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+        alternates: {
+          languages: {
+            ru: `${BASE_URL}/ru/tracks/${track.slug}`,
+            en: `${BASE_URL}/en/tracks/${track.slug}`,
+          },
+        },
+      }))
+    );
 
-    const collectionUrls = collections.map((col) => ({
-      url: `${BASE_URL}/collections/${col.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    }));
+    const collectionUrls = collections.flatMap((col) =>
+      LOCALES.map((locale) => ({
+        url: `${BASE_URL}/${locale}/collections/${col.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.9,
+        alternates: {
+          languages: {
+            ru: `${BASE_URL}/ru/collections/${col.slug}`,
+            en: `${BASE_URL}/en/collections/${col.slug}`,
+          },
+        },
+      }))
+    );
 
-    const categoryUrls = categories.map((cat) => ({
-      url: `${BASE_URL}/music?category__slug=${cat.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.7,
-    }));
+    const categoryUrls = categories.flatMap((cat) =>
+      LOCALES.map((locale) => ({
+        url: `${BASE_URL}/${locale}/music?category__slug=${cat.slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 0.7,
+        alternates: {
+          languages: {
+            ru: `${BASE_URL}/ru/music?category__slug=${cat.slug}`,
+            en: `${BASE_URL}/en/music?category__slug=${cat.slug}`,
+          },
+        },
+      }))
+    );
 
-    const routes = [
-      '',
-      '/music',
-      '/about',
-      '/login',
-      '/register',
-    ].map((route) => ({
-      url: `${BASE_URL}${route}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 1.0,
-    }));
+    const staticRoutes = ['', '/music', '/about', '/collections', '/license', '/contacts', '/login', '/register'];
+
+    const routes = staticRoutes.flatMap((route) =>
+      LOCALES.map((locale) => ({
+        url: `${BASE_URL}/${locale}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: route === '' ? 1.0 : 0.8,
+        alternates: {
+          languages: {
+            ru: `${BASE_URL}/ru${route}`,
+            en: `${BASE_URL}/en${route}`,
+          },
+        },
+      }))
+    );
 
     return [...routes, ...collectionUrls, ...trackUrls, ...categoryUrls];
-    
+
   } catch (error) {
     console.error('Sitemap generation error:', error);
     return [
       {
-        url: BASE_URL,
+        url: `${BASE_URL}/ru`,
         lastModified: new Date(),
+        alternates: {
+          languages: {
+            ru: `${BASE_URL}/ru`,
+            en: `${BASE_URL}/en`,
+          },
+        },
       },
     ];
   }

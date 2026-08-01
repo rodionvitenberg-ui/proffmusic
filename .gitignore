@@ -37,14 +37,14 @@ staticfiles/
 .mypy_cache/
 .ruff_cache/
 htmlcov/
+ДЛЯ САЙТА/
+media/
 
 # --- Тяжёлые / генерируемые медиа ---
+backend/ДЛЯ САЙТА
+ДЛЯ САЙТА
 # Защищённые аудиофайлы (клиенты получают после оплаты) — НЕ храним в репозитории
-protected_media/
 
-# Публичные обложки и превью (генерируются load_music) — кроме логотипа
-backend/media/*
-!backend/media/logo2.png
 
 # --- Cline / скиллы ---
 .cline/

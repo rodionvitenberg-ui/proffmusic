@@ -1,5 +1,6 @@
 from rest_framework import viewsets, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from django.utils.translation import gettext as _
 from .models import Track, Category, Tag, Collection
 from .serializers import TrackSerializer, CategorySerializer, TagSerializer, CollectionSerializer
 from .filters import TrackFilter
@@ -34,7 +35,7 @@ class TrackViewSet(viewsets.ReadOnlyModelViewSet):
     
     filterset_class = TrackFilter 
     
-    search_fields = ['title', 'description_full']
+    search_fields = ['title_ru', 'title_en', 'description_full_ru', 'description_full_en']
     ordering_fields = ['price', 'created_at']
     lookup_field = 'slug'
     
@@ -47,7 +48,7 @@ class CollectionViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     
     filterset_fields = ['is_new']
-    search_fields = ['title', 'description']
+    search_fields = ['title_ru', 'title_en', 'description_ru', 'description_en']
     ordering_fields = ['price', 'created_at']
     lookup_field = 'slug'
 
@@ -61,7 +62,7 @@ def download_collection_zip(request, slug):
     tracks = collection.tracks.all()
 
     if not tracks.exists():
-        raise Http404("В этом сборнике нет треков.")
+        raise Http404(_("В этом сборнике нет треков."))
 
     zip_buffer = io.BytesIO()
 

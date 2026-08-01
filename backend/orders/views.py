@@ -3,6 +3,7 @@ import zipfile
 import io
 from django.http import HttpResponse, Http404, HttpResponseForbidden, FileResponse
 from django.shortcuts import get_object_or_404
+from django.utils.translation import gettext as _
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -26,10 +27,10 @@ def checkout(request):
         items_data = data.get('items', [])
         
         if not items_data:
-            return Response({"error": "Корзина пуста"}, status=400)
+            return Response({"error": _("Корзина пуста")}, status=400)
         
         if not email and not request.user.is_authenticated:
-             return Response({"error": "Email обязателен для неавторизованных пользователей"}, status=400)
+             return Response({"error": _("Email обязателен для неавторизованных пользователей")}, status=400)
 
         final_email = email if email else (request.user.email if request.user.is_authenticated else '')
 
@@ -60,7 +61,7 @@ def checkout(request):
 
         if total_amount == 0:
              order.delete()
-             return Response({"error": "Не удалось добавить товары в заказ"}, status=400)
+             return Response({"error": _("Не удалось добавить товары в заказ")}, status=400)
 
         order.amount = total_amount
         order.save()
@@ -75,7 +76,7 @@ def checkout(request):
 
     except Exception as e:
         print(f"Checkout Error: {e}")
-        return Response({"error": "Ошибка при создании заказа"}, status=500)
+        return Response({"error": _("Ошибка при создании заказа")}, status=500)
 
 
 def download_file_by_token(request, token):
@@ -86,7 +87,7 @@ def download_file_by_token(request, token):
     
     # Проверка валидности (срок действия + лимит)
     if not download_link.is_valid:
-        return HttpResponseForbidden("Срок действия ссылки истек или лимит скачиваний исчерпан.")
+        return HttpResponseForbidden(_("Срок действия ссылки истек или лимит скачиваний исчерпан."))
 
     order = download_link.order
     items = order.items.all()
@@ -97,11 +98,11 @@ def download_file_by_token(request, token):
         
         # Проверка на наличие файла
         if not track.audio_file_full:
-            raise Http404("Файл трека не загружен на сервер.")
+            raise Http404(_("Файл трека не загружен на сервер."))
             
         file_path = track.audio_file_full.path
         if not os.path.exists(file_path):
-             raise Http404("Файл физически отсутствует на диске.")
+             raise Http404(_("Файл физически отсутствует на диске."))
 
         # Увеличиваем счетчик
         download_link.usage_count += 1
@@ -146,10 +147,10 @@ def download_file_by_token(request, token):
                                 has_files = True
     except Exception as e:
         print(f"Zip Error: {e}")
-        return HttpResponse("Ошибка при создании архива", status=500)
+        return HttpResponse(_("Ошибка при создании архива"), status=500)
 
     if not has_files:
-        raise Http404("Файлы для скачивания не найдены (возможно, они не загружены в админку).")
+        raise Http404(_("Файлы для скачивания не найдены (возможно, они не загружены в админку)."))
 
     zip_buffer.seek(0)
 
