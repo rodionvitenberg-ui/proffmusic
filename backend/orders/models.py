@@ -16,9 +16,15 @@ class Order(models.Model):
     # Если юзер авторизован - привязываем, если нет - полагаемся на email
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
     email = models.EmailField("Email для доставки", help_text="Сюда придет ссылка")
-    
-    # Данные от ЮКассы
-    yookassa_payment_id = models.CharField("ID платежа ЮКассы", max_length=100, blank=True)
+
+    PROVIDER_CHOICES = (
+        ('mock', 'Mock'),
+        ('lemonsqueezy', 'Lemon Squeezy'),
+        ('btcpay', 'BTCPay'),
+    )
+    provider = models.CharField(max_length=20, choices=PROVIDER_CHOICES, default='mock')
+    provider_payment_id = models.CharField(max_length=100, blank=True, default='')
+    currency = models.CharField(max_length=3, default='USD')
     status = models.CharField("Статус", max_length=20, choices=STATUS_CHOICES, default='pending')
     
     amount = models.DecimalField("Сумма", max_digits=10, decimal_places=2, default=0)

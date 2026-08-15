@@ -94,7 +94,7 @@ class Track(models.Model):
         help_text="Файл, который получит клиент после оплаты"
     )
 
-    price = models.DecimalField("Цена (RUB)", max_digits=10, decimal_places=2)
+    price = models.DecimalField("Price (USD)", max_digits=10, decimal_places=2)
     is_new = models.BooleanField("Выводить в новинках", default=True, help_text="Галочка для блока Новинки")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -209,7 +209,7 @@ class Collection(models.Model):
     cover_image = models.ImageField("Обложка", upload_to='collections/%Y/%m/')
     description_ru = models.TextField("Описание (RU)", blank=True, default='')
     description_en = models.TextField("Описание (EN)", blank=True, default='')
-    price = models.DecimalField("Цена (RUB)", max_digits=10, decimal_places=2)
+    price = models.DecimalField("Price (USD)", max_digits=10, decimal_places=2)
 
     # Связь с треками (Many-to-Many)
     tracks = models.ManyToManyField(Track, related_name='collections', verbose_name="Треки в сборнике")

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import timedelta
@@ -100,6 +101,15 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
+
+# Tests don't need Postgres; the app user has no CREATEDB.
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
 
 
 # Password validation
@@ -195,6 +205,21 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:3000')
+
+PAYMENTS_BACKEND = os.getenv(
+    'PAYMENTS_BACKEND',
+    'mock' if DEBUG else 'live',
+)
+
+LEMONSQUEEZY_API_KEY = os.getenv('LEMONSQUEEZY_API_KEY', '')
+LEMONSQUEEZY_STORE_ID = os.getenv('LEMONSQUEEZY_STORE_ID', '')
+LEMONSQUEEZY_VARIANT_ID = os.getenv('LEMONSQUEEZY_VARIANT_ID', '')
+LEMONSQUEEZY_WEBHOOK_SECRET = os.getenv('LEMONSQUEEZY_WEBHOOK_SECRET', '')
+
+BTCPAY_URL = os.getenv('BTCPAY_URL', '').rstrip('/')
+BTCPAY_API_KEY = os.getenv('BTCPAY_API_KEY', '')
+BTCPAY_STORE_ID = os.getenv('BTCPAY_STORE_ID', '')
+BTCPAY_WEBHOOK_SECRET = os.getenv('BTCPAY_WEBHOOK_SECRET', '')
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
