@@ -8,15 +8,20 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
+from django.conf import settings as django_settings
+
 from .models import DownloadToken, Order, OrderItem
 from music.models import Track, Collection
 from .services import create_payment, send_order_email
+
+ALLOWED_PROVIDERS = {'lemonsqueezy', 'btcpay'}
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny]) 
 def checkout(request):
     """
-    Создание заказа и получение ссылки на страницу успеха (mock-оплата).
+    Создание заказа. Mock backend fulfills immediately; live waits for a webhook.
     """
     try:
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -25,6 +30,7 @@ def checkout(request):
         data = request.data
         email = data.get('email')
         items_data = data.get('items', [])
+        provider = data.get('provider', 'lemonsqueezy')
         
         if not items_data:
             return Response({"error": _("Корзина пуста")}, status=400)
@@ -32,13 +38,18 @@ def checkout(request):
         if not email and not request.user.is_authenticated:
              return Response({"error": _("Email обязателен для неавторизованных пользователей")}, status=400)
 
+        if provider not in ALLOWED_PROVIDERS:
+            return Response({"error": _("Unknown payment method")}, status=400)
+
         final_email = email if email else (request.user.email if request.user.is_authenticated else '')
 
         order = Order.objects.create(
             email=final_email,
             user=request.user if request.user.is_authenticated else None,
             amount=0,
-            status='pending'
+            status='pending',
+            currency='USD',
+            provider='mock' if django_settings.PAYMENTS_BACKEND == 'mock' else provider,
         )
 
         total_amount = 0
@@ -66,13 +77,14 @@ def checkout(request):
         order.amount = total_amount
         order.save()
 
-        # Mock-оплата: сразу подтверждает заказ
-        success_url = create_payment(order, ip)
-        
-        return Response({
-            "order_id": order.id,
-            "payment_url": success_url
-        })
+        if django_settings.PAYMENTS_BACKEND == 'mock':
+            success_url = create_payment(order, ip)
+            return Response({
+                "order_id": order.id,
+                "payment_url": success_url
+            })
+
+        return Response({"error": _("Unable to start payment. Try again.")}, status=503)
 
     except Exception as e:
         print(f"Checkout Error: {e}")

@@ -30,26 +30,22 @@ def generate_download_links(order):
     token, created = DownloadToken.objects.get_or_create(order=order)
     return [token]
 
-def create_payment(order, ip):
-    """
-    MOCK-оплата: сразу подтверждает заказ, генерирует ссылки и отправляет письмо.
-    """
-    print(f"💰 MOCK PAYMENT: Processing order #{str(order.id)[:8]}, amount={order.amount}")
-    
-    # 1. Помечаем заказ как оплаченный
+
+def fulfill(order):
+    token, _ = DownloadToken.objects.get_or_create(order=order)
+    if order.status == 'paid':
+        return token
     order.status = 'paid'
     order.save(update_fields=['status'])
-    
-    # 2. Генерируем токен для скачивания
-    token = generate_download_links(order)[0]
     download_url = f"{settings.SITE_URL}/api/orders/download/{token.token}/"
-    
-    # 3. Отправляем письмо с ссылкой
     send_order_email(order, download_url)
-    
-    # 4. Возвращаем URL успешной оплаты
-    success_url = f"/success?order_id={order.id}"
-    return success_url
+    return token
+
+
+def create_payment(order, ip, locale='en'):
+    """Mock only. Live backends use create_lemonsqueezy_checkout / create_btcpay_invoice."""
+    fulfill(order)
+    return f"/{locale}/success?order_id={order.id}"
 
 
 def send_order_email(order, download_url=None):
