@@ -1,13 +1,13 @@
 'use client';
 import Image from 'next/image';
-import { Play, Pause, ShoppingBag, Check, Banknote, Tag as TagIcon } from 'lucide-react';
+import { Play, Pause, ShoppingBag, Check } from 'lucide-react';
 import { Track, useCartStore, usePlayerStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/ui/toast';
-import { CardFlip, CardFlipFront, CardFlipBack } from '@/components/ui/card-flip';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 interface TrackCardProps {
   track: Track;
@@ -53,127 +53,65 @@ export function TrackCard({ track, playlist }: TrackCardProps) {
   };
 
   return (
-    <div className="h-[380px]">
-      <CardFlip>
-        {/* --- ЛИЦЕВАЯ СТОРОНА --- */}
-        <CardFlipFront>
+    <article className="flex h-full flex-col">
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+        <Image
+          src={track.cover_image || '/placeholder.jpg'}
+          alt={track.title}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover outline outline-1 -outline-offset-1 outline-white/10"
+        />
+        <button
+          type="button"
+          onClick={handlePlayClick}
+          data-active={isActive}
+          aria-label={isActive ? 'Pause' : 'Play'}
+          className={cn(
+            'absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-150 hover:opacity-100',
+            isActive && 'opacity-100'
+          )}
+        >
+          <span className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground active:scale-[0.96]">
+            {isActive ? <Pause size={24} /> : <Play size={24} className="translate-x-[2px]" />}
+          </span>
+        </button>
+      </div>
 
-          <div className="relative aspect-square rounded-lg overflow-hidden bg-gray-800 shadow-inner group">
-            <Image
-              src={track.cover_image || '/placeholder.jpg'}
-              alt={track.title}
-              fill
-              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
-            />
-            <div className={cn(
-              "absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 backdrop-blur-[2px]",
-              isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-            )}>
-              <button
-                onClick={handlePlayClick}
-                className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-xl"
-              >
-                {isActive ? <Pause fill="black" size={24} /> : <Play fill="black" className="ml-1" size={24} />}
-              </button>
-            </div>
-          </div>
+      <Link href={`/tracks/${track.slug}`} className="mt-2 block w-fit max-w-full">
+        <h3 className={cn(
+          'truncate text-lg font-medium text-foreground',
+          isCurrent && 'text-primary'
+        )}>
+          {track.title}
+        </h3>
+      </Link>
 
-          <div className="mt-1">
-            <Link
-              href={`/tracks/${track.slug}`}
-              onClick={(e) => e.stopPropagation()}
-              className="block w-fit max-w-full"
-            >
-              <h3 className={cn(
-                "font-bold text-lg text-white truncate transition-colors hover:text-border",
-                isCurrent && "text-green-400"
-              )}>
-                {track.title}
-              </h3>
-            </Link>
-          </div>
+      <div className="flex items-center justify-between border-b border-border pb-3">
+        <span className="max-w-[60%] truncate text-sm text-muted-foreground">
+          {track.category?.name || 'ProffMusic'}
+        </span>
+        <span className="tabular-nums text-foreground">{formatPrice(track.price)}</span>
+      </div>
 
-          <div className="flex items-center justify-between border-b border-white/5 pb-3">
-            <span className="text-sm text-gray-400 truncate max-w-[60%]">
-              {track.category?.name || 'ProffMusic'}
-            </span>
-            <span className="text-lg font-bold text-white tabular-nums">
-              {track.price} ₽
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 mt-auto">
-            <Button
-              variant="outline"
-              onClick={handleBuyNow}
-              className="w-full h-10 border-white/20 hover:border-white font-bold uppercase tracking-wide text-xs text-white"
-            >
-              <Banknote size={14} className="mr-2" />
-              {t('buy')}
-            </Button>
-
-            <Button
-              onClick={handleCartToggle}
-              className={cn(
-                "w-full h-10 font-bold uppercase tracking-wide text-xs transition-all",
-                added
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-white hover:bg-border hover:text-white text-black"
-              )}
-            >
-              {added ? (
-                <>
-                  <Check size={16} className="mr-2" />
-                  {t('inCart')}
-                </>
-              ) : (
-                <>
-                  <ShoppingBag size={16} className="mr-2" />
-                  {t('addToCart')}
-                </>
-              )}
-            </Button>
-          </div>
-        </CardFlipFront>
-
-        {/* --- ОБРАТНАЯ СТОРОНА --- */}
-        <CardFlipBack>
-          <div className="flex flex-col h-full space-y-4">
-
-            <div className="border-b border-white/10 pb-2">
-              <h4 className="font-bold text-white text-lg">{track.title}</h4>
-              <p className="text-xs text-gray-500">{track.category?.name}</p>
-            </div>
-
-            {track.tags && track.tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {track.tags.map((tag) => (
-                  <Link
-                    key={tag.id}
-                    href={`/music?tags__slug=${tag.slug}`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="px-2 py-1 rounded bg-white/5 border border-white/10 text-[10px] text-gray-300 hover:bg-white/10 hover:border-white/30 transition-colors flex items-center gap-1"
-                  >
-                    <TagIcon size={10} />
-                    {tag.name}
-                  </Link>
-                ))}
-              </div>
-            )}
-
-            <div className="flex-1 overflow-y-auto custom-scrollbar pr-1">
-              <p className="text-sm text-gray-400 leading-relaxed">
-                {track.description_full || track.description_short || t('noDescription')}
-              </p>
-            </div>
-
-            <div className="pt-2 text-center text-xs text-gray-600">
-              {t('clickToReturn')}
-            </div>
-          </div>
-        </CardFlipBack>
-      </CardFlip>
-    </div>
+      <div className="mt-auto grid grid-cols-2 gap-3 pt-3">
+        <Button variant="outline" onClick={handleBuyNow} className="w-full">
+          {t('buy')}
+        </Button>
+        <Button variant={added ? 'outline' : 'default'} onClick={handleCartToggle} className="w-full">
+          {added ? (
+            <>
+              <Check size={16} />
+              {t('inCart')}
+            </>
+          ) : (
+            <>
+              <ShoppingBag size={16} />
+              {t('addToCart')}
+            </>
+          )}
+        </Button>
+      </div>
+    </article>
   );
 }

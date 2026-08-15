@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { LogOut, Camera, Package, Calendar } from 'lucide-react';
 import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 interface OrderHistoryItem {
   id: string;
@@ -122,7 +123,7 @@ export default function ProfilePage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-bold text-white">{order.amount} ₽</div>
+                      <div className="text-lg font-bold text-foreground tabular-nums">{formatPrice(order.amount)}</div>
                       <div className="text-xs text-green-400 font-medium uppercase tracking-wider mt-1">{t('paid')}</div>
                     </div>
                   </div>

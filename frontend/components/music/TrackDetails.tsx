@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 const WaveformBars = ({ playing }: { playing: boolean }) => (
   <div className="flex items-end gap-1 h-12 w-full max-w-md opacity-80">
@@ -13,7 +14,7 @@ const WaveformBars = ({ playing }: { playing: boolean }) => (
       <div
         key={i}
         className={cn(
-          "w-1.5 bg-green-500 rounded-t transition-all duration-300",
+          "w-1.5 rounded-t bg-primary transition-[height] duration-300",
           playing ? "animate-pulse" : "h-2"
         )}
         style={{
@@ -99,13 +100,13 @@ export function TrackDetails({ track }: { track: Track }) {
             <div className="flex items-center gap-4 py-4 border-y border-white/10">
               <button
                 onClick={handlePlay}
-                className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 text-black flex items-center justify-center transition shadow-glow shrink-0"
+                className="flex size-14 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground active:scale-[0.96]"
               >
                 {isActive ? <Pause size={24} fill="black" /> : <Play size={24} fill="black" className="ml-1" />}
               </button>
 
               <div className="flex-1 flex flex-col justify-center h-14">
-                {isActive ? <p className="text-green-400 text-xs font-mono mb-1">{t('nowPlaying')}</p> : <p className="text-gray-500 text-xs font-mono mb-1">{t('preview')}</p>}
+                {isActive ? <p className="mb-1 font-mono text-xs text-primary">{t('nowPlaying')}</p> : <p className="mb-1 font-mono text-xs text-muted-foreground">{t('preview')}</p>}
                 <WaveformBars playing={isActive} />
               </div>
 
@@ -122,7 +123,7 @@ export function TrackDetails({ track }: { track: Track }) {
             <div className="bg-[#181818] rounded-xl p-6 border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <p className="text-sm text-gray-400 mb-1">{t('royaltyFree')}</p>
-                <p className="text-3xl font-bold text-white">{track.price} ₽</p>
+                <p className="text-3xl font-bold text-foreground tabular-nums">{formatPrice(track.price)}</p>
               </div>
 
               <Button

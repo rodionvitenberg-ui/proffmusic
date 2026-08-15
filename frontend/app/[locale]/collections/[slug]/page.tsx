@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/Button';
 import { toast } from '@/components/ui/toast';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 export default function CollectionPage() {
   const params = useParams();
@@ -93,11 +94,7 @@ export default function CollectionPage() {
     router.push('/cart');
   };
 
-  const formattedPrice = new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: 'RUB',
-    minimumFractionDigits: 0,
-  }).format(Number(collection.price));
+  const formattedPrice = formatPrice(collection.price);
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] pb-20">

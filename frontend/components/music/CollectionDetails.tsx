@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { TrackCard } from '@/components/shared/TrackCard';
 import { toast } from '@/components/ui/toast';
 import Image from 'next/image';
+import { formatPrice } from '@/lib/price';
 
 export function CollectionDetails({ collection }: { collection: Collection }) {
   const { addToCart, isInCart } = useCartStore();
@@ -85,16 +86,13 @@ export function CollectionDetails({ collection }: { collection: Collection }) {
 
               {/* Цена и Купить */}
               <div className="flex items-center gap-6">
-                 <div className="text-3xl font-bold text-white">{collection.price} ₽</div>
+                 <div className="text-3xl font-bold text-foreground tabular-nums">{formatPrice(collection.price)}</div>
                  <Button 
                    size="lg"
-                   variant={added ? 'secondary' : 'default'}
+                   variant={added ? 'outline' : 'default'}
                    onClick={handleBuyPack}
                    disabled={added}
-                   className={cn(
-                     "min-w-[180px] h-14 text-lg",
-                     !added && "bg-white text-black hover:bg-gray-200"
-                   )}
+                   className="h-14 min-w-[180px] text-lg"
                  >
                     {added ? (
                       <span className="flex items-center gap-2"><Check /> In Cart</span>

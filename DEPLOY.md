@@ -202,6 +202,23 @@ sudo tail -f /var/www/.pm2/logs/proffmusic-frontend-error.log
 
 ---
 
+## Payments (v2)
+
+Lemon Squeezy
+- One hidden product, one variant. Paste VARIANT_ID and STORE_ID into `.env`.
+- Webhook URL: `https://proffmusic.shop/api/orders/webhooks/lemonsqueezy/`
+- Events: `order_created`
+- Signing secret → `LEMONSQUEEZY_WEBHOOK_SECRET`
+- Set `PAYMENTS_BACKEND=live`
+
+BTCPay
+- Create a store, API key with `btcpay.store.cancreateinvoice`.
+- Webhook URL: `https://proffmusic.shop/api/orders/webhooks/btcpay/`
+- Event: `InvoiceSettled`
+- Secret → `BTCPAY_WEBHOOK_SECRET`
+
+---
+
 ## Обновление проекта в будущем
 
 ```bash

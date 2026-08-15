@@ -77,7 +77,7 @@ export default async function TrackPage({ params }: Props) {
     offers: {
       '@type': 'Offer',
       price: track.price,
-      priceCurrency: 'RUB',
+      priceCurrency: 'USD',
       url: `${siteUrl}/${locale}/tracks/${track.slug}`,
     },
   };

@@ -8,6 +8,7 @@ import { toast } from '@/components/ui/toast';
 import Image from 'next/image';
 import { Link, useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 export function CollectionCard({ collection }: { collection: Collection }) {
   const router = useRouter();
@@ -53,7 +54,7 @@ export function CollectionCard({ collection }: { collection: Collection }) {
 
       <div className="mt-3">
         <Link href={`/collections/${collection.slug}`}>
-          <h3 className="font-bold text-lg text-white truncate hover:text-green-400 transition-colors">
+          <h3 className="truncate text-lg font-medium text-foreground">
             {collection.title}
           </h3>
         </Link>
@@ -64,7 +65,7 @@ export function CollectionCard({ collection }: { collection: Collection }) {
           {t('collection')}
         </span>
         <span className="text-lg font-bold text-white tabular-nums">
-          {collection.price} ₽
+          {formatPrice(collection.price)}
         </span>
       </div>
 
@@ -80,12 +81,8 @@ export function CollectionCard({ collection }: { collection: Collection }) {
 
         <Button
           onClick={handleCartToggle}
-          className={cn(
-            "w-full h-10 font-bold uppercase tracking-wide text-xs transition-all",
-            added
-              ? "bg-green-600 hover:bg-green-700 text-white"
-              : "bg-white hover:bg-border hover:text-white text-black"
-          )}
+          variant={added ? 'outline' : 'default'}
+          className="w-full"
         >
           {added ? (
             <>

@@ -111,13 +111,13 @@ export function Player() {
       <button
         onClick={() => setIsCollapsed(false)}
         className={cn(
-          "fixed bottom-4 right-4 z-40 h-14 w-14 rounded-full bg-[#181818] border border-white/20 shadow-2xl flex items-center justify-center transition-all duration-500 hover:scale-110 group overflow-hidden",
+          "fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-border bg-card shadow-[var(--shadow-border)] transition-transform duration-300 group",
           isCollapsed ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0 pointer-events-none"
         )}
         title={t('expandPlayer')}
       >
         {isPlaying && (
-          <div className="absolute inset-0 bg-green-500/10 animate-pulse" />
+          <div className="absolute inset-0 bg-primary/15" />
         )}
 
         {currentTrack.cover_image && (
@@ -130,12 +130,12 @@ export function Player() {
           />
         )}
 
-        <ChevronUp size={24} className="text-white relative z-10 group-hover:text-green-400 transition-colors" />
+        <ChevronUp size={24} className="relative z-10 text-foreground" />
       </button>
 
       <div
         className={cn(
-          "fixed bottom-0 left-0 right-0 bg-[#121212]/95 backdrop-blur-md border-t border-white/10 z-50 px-4 py-3 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] transition-transform duration-500 ease-in-out",
+          "fixed right-0 bottom-0 left-0 z-50 border-t border-border bg-background/95 px-4 py-3 backdrop-blur-md transition-transform duration-300 ease-out",
           isCollapsed ? "translate-y-full" : "translate-y-0"
         )}
       >
@@ -150,7 +150,7 @@ export function Player() {
               )}
             </div>
             <div className="min-w-0">
-              <Link href={`/tracks/${currentTrack.slug}`} className="text-white hover:text-green-400 transition-colors block truncate">
+              <Link href={`/tracks/${currentTrack.slug}`} className="block truncate text-foreground hover:underline">
                 <h4 className="text-white font-bold text-sm truncate">{currentTrack.title}</h4>
               </Link>
               <p className="text-gray-400 text-xs truncate">{currentTrack.category?.name}</p>
@@ -182,7 +182,7 @@ export function Player() {
                   className="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer"
                 />
                 <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
-                  <div className="h-full bg-white group-hover:bg-green-400 transition-colors" style={{ width: `${(progress / (duration || 1)) * 100}%` }} />
+                  <div className="h-full bg-primary" style={{ width: `${(progress / (duration || 1)) * 100}%` }} />
                 </div>
               </div>
               <span className="w-9 tabular-nums">{formatTime(duration)}</span>
@@ -196,8 +196,8 @@ export function Player() {
               className={cn(
                 "flex items-center gap-2 text-xs font-bold transition-all px-3 py-1.5 rounded-full border",
                 added
-                  ? "bg-green-600 border-green-600 text-white hover:bg-green-700"
-                  : "bg-transparent border-white/20 text-white hover:bg-white hover:text-black hover:border-white"
+                  ? "border-border text-foreground"
+                  : "border-transparent bg-primary text-primary-foreground"
               )}
             >
               {added ? <Check size={14} /> : <ShoppingBag size={14} />}

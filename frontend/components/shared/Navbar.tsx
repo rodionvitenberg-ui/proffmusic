@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, Menu, X, ChevronDown } from 'lucide-react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { useCartStore, Category } from '@/lib/store';
 import { useAuthStore } from '@/lib/auth';
 import { cn } from '@/lib/utils';
@@ -11,11 +11,9 @@ import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { LayeredButton } from '@/components/ui/layered-button';
 
 export function Navbar() {
   const t = useTranslations('navbar');
-  const tc = useTranslations('common');
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -54,6 +52,7 @@ export function Navbar() {
   }, []);
 
   const NAV_LINKS = [
+    { href: '/music', key: 'music' },
     { href: '/collections', key: 'collections' },
     { href: '/license', key: 'license' },
     { href: '/contacts', key: 'contacts' },
@@ -62,165 +61,135 @@ export function Navbar() {
   const locale = pathname.split('/')[1] || 'ru';
   const pathnameWithoutLocale = pathname.replace(/^\/(ru|en)/, '') || '/';
 
+  const linkClass = (active: boolean) =>
+    cn(
+      'px-3 py-2 text-sm transition-colors duration-150',
+      active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+    );
+
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-[100] bg-secondary/90 backdrop-blur-md border-b border-white/10 transform-gpu will-change-transform transition-transform duration-300 ease-in-out",
-        (!isVisible && !isOpen) ? "-translate-y-full" : "translate-y-0"
+        'fixed top-0 right-0 left-0 z-[100] border-b border-border bg-background/90 backdrop-blur-md transition-transform duration-300 ease-in-out',
+        !isVisible && !isOpen ? '-translate-y-full' : 'translate-y-0'
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-
-          <Link href="/" className="flex items-center h-full py-2 group shrink-0">
-            <img src="/logo2.png" alt="ProffMusic Logo" className="h-10 w-auto max-w-[150px] object-contain md:hidden transition-opacity hover:opacity-90" />
-            <img src="/logo.png" alt="ProffMusic Logo" className="hidden md:block h-12 w-auto object-contain transition-opacity hover:opacity-90" />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          <Link href="/" className="flex h-full shrink-0 items-center py-2">
+            <img src="/logo2.png" alt="ProffMusic" className="h-10 w-auto max-w-[150px] object-contain md:hidden" />
+            <img src="/logo.png" alt="ProffMusic" className="hidden h-12 w-auto object-contain md:block" />
           </Link>
 
-          <div className="hidden md:flex items-center gap-3 h-full">
-
-            {!mounted ? (
-              <div className="h-10 w-28 rounded-md border-2 border-white/10 bg-transparent animate-pulse" />
-            ) : (
-              <div className="relative group h-full flex items-center">
-                <Link href="/music">
-                  <LayeredButton as="span" variant="outline"
-                    className={cn(
-                      "border-2 border-white/20 hover:border-white text-base h-10 px-5 cursor-pointer transition-colors",
-                      pathnameWithoutLocale.startsWith('/music') ? "bg-white text-black border-white" : "text-gray-200"
-                    )}
-                  >
-                    <span className="flex items-center gap-2">{t('music')} <ChevronDown size={16} /></span>
-                  </LayeredButton>
+          <div className="hidden h-full items-center gap-1 md:flex">
+            {NAV_LINKS.map((link) => (
+              <div key={link.href} className="relative group flex h-full items-center">
+                <Link
+                  href={link.href}
+                  className={linkClass(
+                    link.href === '/music'
+                      ? pathnameWithoutLocale.startsWith('/music')
+                      : pathnameWithoutLocale === link.href
+                  )}
+                >
+                  {t(link.key)}
                 </Link>
-
-                <div className="absolute top-full left-0 w-64 bg-[#181818] border border-white/10 rounded-md shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 pt-2">
-                  <div className="py-2 flex flex-col">
+                {link.href === '/music' && categories.length > 0 && (
+                  <div className="invisible absolute top-full left-0 w-56 rounded-md bg-card py-2 opacity-0 shadow-[var(--shadow-border)] transition-[opacity,transform] duration-150 group-hover:visible group-hover:opacity-100">
                     {categories.map((cat) => (
-                      <Link key={cat.slug} href={`/music?category__slug=${cat.slug}`}
-                        className="block px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white transition-colors border-l-2 border-transparent hover:border-white"
+                      <Link
+                        key={cat.slug}
+                        href={`/music?category__slug=${cat.slug}`}
+                        className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                       >
                         {cat.name}
                       </Link>
                     ))}
-                    <div className="border-t border-white/10 mt-2 pt-2">
-                      <Link href="/music" className="block px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white font-medium border-l-2 border-transparent hover:border-white">
-                        {tc('viewAll')}
-                      </Link>
-                    </div>
                   </div>
-                </div>
+                )}
               </div>
-            )}
-
-            {!mounted ? (
-              NAV_LINKS.map((link) => (
-                <div key={link.href} className="h-10 w-24 rounded-md border-2 border-white/10 bg-transparent animate-pulse" />
-              ))
-            ) : (
-              NAV_LINKS.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  <LayeredButton as="span" variant="outline"
-                    className={cn(
-                      "border-2 border-white/20 hover:border-white text-base h-10 px-5 cursor-pointer transition-colors",
-                      pathnameWithoutLocale === link.href ? "bg-white text-black border-white" : "text-gray-200"
-                    )}
-                  >
-                    {t(link.key)}
-                  </LayeredButton>
-                </Link>
-              ))
-            )}
+            ))}
           </div>
 
-          <div className="flex items-center gap-4 shrink-0">
-
-            {/* ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА */}
-            <div className="hidden md:flex items-center gap-1 border border-white/10 rounded-full px-2 py-1">
-              <Link href="/" locale="ru" className={cn("px-2 py-1 text-xs font-bold rounded-full transition-colors", locale === 'ru' ? "bg-white text-black" : "text-gray-300 hover:text-white")}>
+          <div className="flex shrink-0 items-center gap-4">
+            <div className="hidden items-center gap-1 md:flex">
+              <Link href="/" locale="ru" className={cn('px-2 py-1 text-xs', locale === 'ru' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground')}>
                 RU
               </Link>
-              <Link href="/" locale="en" className={cn("px-2 py-1 text-xs font-bold rounded-full transition-colors", locale === 'en' ? "bg-white text-black" : "text-gray-300 hover:text-white")}>
+              <Link href="/" locale="en" className={cn('px-2 py-1 text-xs', locale === 'en' ? 'text-foreground' : 'text-muted-foreground hover:text-foreground')}>
                 EN
               </Link>
             </div>
 
-            <Link href="/cart" className="relative p-2 hover:bg-white/10 rounded-full transition group">
-              <ShoppingBag className="text-gray-300 group-hover:text-white" size={24} />
+            <Link href="/cart" className="relative rounded-full p-2 hover:bg-muted">
+              <ShoppingBag className="text-foreground" size={22} />
               {mounted && itemsCount > 0 && (
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-[10px] font-bold text-black bg-white rounded-full animate-in fade-in zoom-in duration-300">
+                <span className="absolute top-0 right-0 inline-flex size-5 items-center justify-center rounded-full bg-primary text-[10px] font-medium text-primary-foreground">
                   {itemsCount}
                 </span>
               )}
             </Link>
 
-            {!mounted ? (
-              <div className="hidden md:block h-10 w-20 rounded-md border-2 border-white/10 bg-transparent animate-pulse" />
-            ) : (
+            {mounted && (
               isAuthenticated ? (
-                <Link href="/profile" className="hidden md:block w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 hover:border-white transition shrink-0 animate-in fade-in duration-300">
-                  <Avatar variant="none" className="w-full h-full">
+                <Link href="/profile" className="hidden size-9 overflow-hidden rounded-full outline outline-1 -outline-offset-1 outline-white/10 md:block">
+                  <Avatar variant="none" className="h-full w-full">
                     {user?.avatar ? (
                       <AvatarImage src={user.avatar} alt={user.email || t('profile')} />
                     ) : (
-                      <AvatarFallback className="bg-gray-700 text-white font-medium">
+                      <AvatarFallback className="bg-muted text-foreground">
                         {user?.email?.[0]?.toUpperCase() || 'U'}
                       </AvatarFallback>
                     )}
                   </Avatar>
                 </Link>
               ) : (
-                <Link href="/login" className="hidden md:block">
-                  <LayeredButton as="span" variant="outline" size="sm"
-                    className={cn("h-10 px-6 text-sm cursor-pointer border-2 border-white/20 hover:border-white text-gray-200")}
-                  >
-                    {t('signIn')}
-                  </LayeredButton>
+                <Link href="/login" className={cn('hidden md:block', linkClass(false))}>
+                  {t('signIn')}
                 </Link>
               )
             )}
 
-            <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none relative z-[1000]" aria-label={t('openMenu')}>
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground md:hidden"
+              aria-label={t('openMenu')}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
       </div>
 
       {isOpen && (
-        <div className="md:hidden bg-[#0f0f0f] border-b border-white/10 animate-in slide-in-from-top-5 max-h-[80vh] overflow-y-auto">
-          <div className="px-4 pt-4 pb-6 space-y-1">
-
-            <Link href="/music" onClick={() => setIsOpen(false)}
-              className={cn("block px-3 py-3 rounded-md text-lg font-medium",
-                pathnameWithoutLocale.startsWith('/music') ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"
-              )}
-            >
-              {t('music')}
-            </Link>
-
+        <div className="max-h-[80vh] overflow-y-auto border-b border-border bg-background md:hidden">
+          <div className="space-y-1 px-4 pt-4 pb-6">
             {NAV_LINKS.map((link) => (
-              <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)}
-                className={cn("block px-3 py-3 rounded-md text-lg font-medium",
-                  pathnameWithoutLocale === link.href ? "bg-white/10 text-white" : "text-gray-300 hover:bg-white/5 hover:text-white"
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={cn(
+                  'block rounded-md px-3 py-3 text-lg',
+                  pathnameWithoutLocale === link.href || (link.href === '/music' && pathnameWithoutLocale.startsWith('/music'))
+                    ? 'text-foreground'
+                    : 'text-muted-foreground'
                 )}
               >
                 {t(link.key)}
               </Link>
             ))}
-
-            <div className="pt-4 mt-4 border-t border-white/10">
+            <div className="mt-4 border-t border-border pt-4">
               {isAuthenticated ? (
-                <Link href="/profile" onClick={() => setIsOpen(false)} className="block px-3 py-3 rounded-md text-lg font-medium text-gray-300 hover:bg-white/5 hover:text-white">
+                <Link href="/profile" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-lg text-muted-foreground">
                   {t('profile')}
                 </Link>
               ) : (
-                <Link href="/login" onClick={() => setIsOpen(false)} className="block w-full text-center px-4 py-3 rounded-md bg-white text-black font-bold hover:bg-gray-200 transition">
+                <Link href="/login" onClick={() => setIsOpen(false)} className="block px-3 py-3 text-lg text-foreground">
                   {t('signIn')}
                 </Link>
               )}
             </div>
-
           </div>
         </div>
       )}

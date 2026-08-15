@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/Button';
 import { Music } from 'lucide-react';
-import GradientText from '@/components/GradientText';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 
@@ -13,54 +12,29 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center justify-center space-y-6 px-4 text-center md:space-y-8">
+        <h1 className="font-[family-name:var(--font-custom)] text-4xl tracking-tight text-foreground sm:text-5xl md:text-7xl">
+          <span className="block">{t('line1')}</span>
+          <span className="block">{t('line2')}</span>
+        </h1>
 
-      <div className="relative z-10 w-full px-4 max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-6 md:space-y-8">
-
-        <div className="flex flex-col items-center justify-center">
-
-          <span className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight mb-2">
-            {t('professional')}
-          </span>
-
-          <div className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight py-2">
-            <GradientText
-              colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
-              animationSpeed={8}
-              showBorder={false}
-              className="inline-block"
-            >
-              {t('originalMusic')}
-            </GradientText>
-          </div>
-
-        </div>
-
-        <div className="flex flex-col items-center gap-2 max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-gray-300 font-medium">
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-2 text-base font-medium text-muted-foreground sm:text-lg md:text-xl">
           <p>{t('subtitle1')}</p>
-          <p className="text-gray-400">{t('subtitle2')}</p>
+          <p>{t('subtitle2')}</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
-          <Button
-            size="lg"
-            onClick={scrollToLibrary}
-            className="w-full sm:w-auto h-12 text-base px-8 bg-white hover:bg-border hover:text-white text-black cursor-pointer transition flex items-center justify-center gap-2"
-          >
-            <Music className="mr-2" size={20} />
+        <div className="flex flex-col items-center justify-center gap-4 pt-6 sm:flex-row">
+          <Button size="lg" onClick={scrollToLibrary} className="h-12 w-full px-8 text-base sm:w-auto">
+            <Music size={20} />
             {t('listenToTracks')}
           </Button>
           <Link href="/about" className="w-full sm:w-auto">
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-full h-12 text-base px-8 border-white/20 hover:border-white cursor-pointer text-white hover:bg-white/10 transition"
-            >
+            <Button variant="outline" size="lg" className="h-12 w-full px-8 text-base">
               {t('aboutUs')}
             </Button>
           </Link>
         </div>
-
       </div>
     </section>
   );

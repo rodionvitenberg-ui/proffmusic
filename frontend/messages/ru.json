@@ -10,7 +10,7 @@
     "addToCart": "В корзину",
     "remove": "Удалить",
     "loading": "Загрузка...",
-    "viewAll": "Смотреть все →",
+    "viewAll": "Смотреть все",
     "allRights": "© {year} ProffMusic.",
     "proffmusic": "ProffMusic"
   },
@@ -23,7 +23,7 @@
     "signIn": "Войти",
     "profile": "Профиль",
     "openMenu": "Открыть меню",
-    "viewAll": "Смотреть все →"
+    "viewAll": "Смотреть все"
   },
   "footer": {
     "description": "Профессиональная оригинальная музыка для ваших видео, рекламы и YouTube. Без Content ID, с коммерческой лицензией.",
@@ -41,12 +41,12 @@
     "developedBy": "Разработано Rodion Vitenberg"
   },
   "hero": {
-    "professional": "Professional",
-    "originalMusic": "Original Music",
+    "line1": "Профессиональная",
+    "line2": "оригинальная музыка",
     "subtitle1": "Для видео, рекламы, YouTube и корпоративных проектов.",
-    "subtitle2": "Живые инструменты, коммерческая лицензия, без проблем с Content ID.",
+    "subtitle2": "Живые инструменты, коммерческая лицензия, без Content ID.",
     "listenToTracks": "Слушать треки",
-    "aboutUs": "О нас"
+    "aboutUs": "О студии"
   },
   "library": {
     "allTracks": "Все треки",
@@ -193,22 +193,25 @@
     "licenseAgreement": "Нажимая кнопку, вы соглашаетесь с условиями лицензионного соглашения."
   },
   "checkout": {
-    "title": "Оформление заказа",
-    "totalToPay": "Итого к оплате:",
-    "email": "Email",
-    "emailPlaceholder": "your@email.com",
-    "emailHint": "Ссылка для скачивания будет отправлена на этот email.",
-    "processing": "Обработка...",
-    "completePurchase": "Оплатить",
-    "mockPayment": "Мock-оплата. Реальные деньги списываться не будут.",
-    "errorServer": "Ошибка: сервер не вернул ссылку на успешную оплату",
-    "errorCreating": "Произошла ошибка при создании заказа"
+    "title": "Оплата",
+    "totalToPay": "Итого",
+    "email": "Почта",
+    "emailPlaceholder": "name@studio.com",
+    "emailHint": "Сюда придёт ссылка на скачивание.",
+    "emailError": "Укажите почту — на неё придёт ссылка на скачивание.",
+    "payWithCard": "Оплатить картой",
+    "payWithBitcoin": "Оплатить биткоином",
+    "pay": "Оплатить {price}",
+    "redirectCard": "Дальше откроется Lemon Squeezy.",
+    "redirectBitcoin": "Дальше откроется BTCPay.",
+    "processing": "Открываем оплату…",
+    "errorCreating": "Не удалось начать оплату. Попробуйте ещё раз."
   },
   "success": {
-    "title": "Спасибо за покупку!",
-    "description": "Ваш заказ успешно оформлен. Ссылка для скачивания отправлена на указанный email.",
-    "spamNote": "Не получили письмо? Проверьте папку «Спам» или свяжитесь со службой поддержки.",
-    "backToMusic": "Вернуться в магазин"
+    "title": "Оплата прошла",
+    "description": "Ссылка на скачивание уже идёт на почту.",
+    "spamNote": "Письма нет? Проверьте спам или напишите в поддержку.",
+    "backToMusic": "Открыть библиотеку"
   },
   "auth": {
     "welcomeBack": "С возвращением",

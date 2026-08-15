@@ -90,7 +90,8 @@ export default async function LocaleLayout({
       <body
         className={cn(
           "min-h-screen bg-background text-foreground antialiased",
-          inter.className
+          inter.className,
+          myCustomFont.variable
         )}
       >
         <NextIntlClientProvider>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { CheckCircle } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { useCartStore } from '@/lib/store';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
@@ -16,25 +16,25 @@ export default function SuccessPage() {
   }, [clearCart]);
 
   return (
-    <div className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center">
-      <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-6 animate-in zoom-in duration-500">
-        <CheckCircle size={40} className="text-green-500" />
+    <div className="flex min-h-[70vh] flex-col items-center justify-center px-4 text-center">
+      <div className="mb-6 flex size-16 items-center justify-center rounded-full border border-border">
+        <Check size={28} className="text-foreground" />
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">{t('title')}</h1>
+      <h1 className="mb-4 font-[family-name:var(--font-custom)] text-3xl text-foreground md:text-4xl">
+        {t('title')}
+      </h1>
 
-      <p className="text-lg text-gray-300 max-w-md mx-auto mb-8">
+      <p className="mx-auto mb-8 max-w-md text-lg text-muted-foreground">
         {t('description')}
       </p>
 
-      <div className="p-4 bg-[#181818] rounded-lg border border-white/10 max-w-sm mx-auto mb-8">
-        <p className="text-sm text-gray-400">
-          {t('spamNote')}
-        </p>
+      <div className="mb-8 max-w-sm rounded-lg bg-card p-4 shadow-[var(--shadow-border)]">
+        <p className="text-sm text-muted-foreground">{t('spamNote')}</p>
       </div>
 
-      <Link href="/">
-        <Button size="lg" variant="outline">{t('backToMusic')}</Button>
+      <Link href="/music">
+        <Button size="lg">{t('backToMusic')}</Button>
       </Link>
     </div>
   );

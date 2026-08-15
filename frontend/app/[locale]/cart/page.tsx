@@ -6,6 +6,7 @@ import { useCartStore } from '@/lib/store';
 import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
+import { formatPrice } from '@/lib/price';
 
 export default function CartPage() {
   const { items, removeFromCart } = useCartStore();
@@ -67,7 +68,7 @@ export default function CartPage() {
                     </div>
 
                     <div className="text-right flex flex-col items-end gap-2 shrink-0">
-                      <div className="text-white font-bold tabular-nums">{item.price} ₽</div>
+                      <div className="text-foreground font-bold tabular-nums">{formatPrice(item.price)}</div>
                       <button
                         onClick={() => removeFromCart(item.id, item.type)}
                         className="text-gray-500 hover:text-red-400 transition flex items-center gap-1 text-sm group"
@@ -87,12 +88,12 @@ export default function CartPage() {
 
                   <div className="flex justify-between items-center mb-6 pb-6 border-b border-white/10">
                     <span className="text-gray-400">{t('items')}</span>
-                    <span className="text-white font-medium tabular-nums">{total.toFixed(0)} ₽</span>
+                    <span className="text-foreground font-medium tabular-nums">{formatPrice(total)}</span>
                   </div>
 
                   <div className="flex justify-between items-center mb-8">
                     <span className="text-lg font-bold text-white">{t('totalToPay')}</span>
-                    <span className="text-2xl font-bold text-green-400 tabular-nums">{total.toFixed(0)} ₽</span>
+                    <span className="text-2xl font-bold text-foreground tabular-nums">{formatPrice(total)}</span>
                   </div>
 
                   <Link href="/checkout" className="block w-full">

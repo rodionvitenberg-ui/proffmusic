@@ -10,7 +10,7 @@
     "addToCart": "Add to cart",
     "remove": "Remove",
     "loading": "Loading...",
-    "viewAll": "View All →",
+    "viewAll": "View all",
     "allRights": "© {year} ProffMusic.",
     "proffmusic": "ProffMusic"
   },
@@ -23,7 +23,7 @@
     "signIn": "Sign In",
     "profile": "Profile",
     "openMenu": "Open menu",
-    "viewAll": "View All →"
+    "viewAll": "View all"
   },
   "footer": {
     "description": "Professional original music for your videos, advertisements and YouTube. Without Content ID, with a commercial license.",
@@ -41,12 +41,12 @@
     "developedBy": "Developed by Rodion Vitenberg"
   },
   "hero": {
-    "professional": "Professional",
-    "originalMusic": "Original Music",
+    "line1": "Professional",
+    "line2": "original music",
     "subtitle1": "For videos, advertisements, YouTube and corporate projects.",
     "subtitle2": "Live instruments, commercial license, no Content ID issues.",
-    "listenToTracks": "Listen to Tracks",
-    "aboutUs": "About Us"
+    "listenToTracks": "Listen to tracks",
+    "aboutUs": "About the studio"
   },
   "library": {
     "allTracks": "All Tracks",
@@ -194,21 +194,24 @@
   },
   "checkout": {
     "title": "Checkout",
-    "totalToPay": "Total to Pay:",
+    "totalToPay": "Total",
     "email": "Email",
-    "emailPlaceholder": "your@email.com",
-    "emailHint": "The download link will be sent to this email.",
-    "processing": "Processing...",
-    "completePurchase": "Complete Purchase",
-    "mockPayment": "Mock payment. No real money will be charged.",
-    "errorServer": "Error: Server did not return a success link",
-    "errorCreating": "An error occurred while creating the order"
+    "emailPlaceholder": "name@studio.com",
+    "emailHint": "The download link will be sent here.",
+    "emailError": "Enter an email so we can send the download link.",
+    "payWithCard": "Pay with card",
+    "payWithBitcoin": "Pay with Bitcoin",
+    "pay": "Pay {price}",
+    "redirectCard": "You will continue on Lemon Squeezy.",
+    "redirectBitcoin": "You will continue on BTCPay.",
+    "processing": "Starting payment…",
+    "errorCreating": "Unable to start payment. Try again."
   },
   "success": {
-    "title": "Thank you for your purchase!",
-    "description": "Your order has been successfully placed. The download link has been sent to the email address you provided.",
-    "spamNote": "Didn't receive the email? Check your Spam folder or contact our support team.",
-    "backToMusic": "Return to Store"
+    "title": "Payment received",
+    "description": "The download link is on its way to your email.",
+    "spamNote": "Nothing yet? Check spam, or write to support.",
+    "backToMusic": "Open the library"
   },
   "auth": {
     "welcomeBack": "Welcome back",
