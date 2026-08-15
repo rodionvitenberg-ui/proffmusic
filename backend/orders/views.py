@@ -1,9 +1,14 @@
 import os
 import zipfile
 import io
+import hashlib
+import hmac
+
+import requests
 from django.http import HttpResponse, Http404, HttpResponseForbidden, FileResponse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -12,7 +17,7 @@ from django.conf import settings as django_settings
 
 from .models import DownloadToken, Order, OrderItem
 from music.models import Track, Collection
-from .services import create_payment, send_order_email
+from .services import create_payment, create_lemonsqueezy_checkout, fulfill, send_order_email
 
 ALLOWED_PROVIDERS = {'lemonsqueezy', 'btcpay'}
 
@@ -83,6 +88,14 @@ def checkout(request):
                 "order_id": order.id,
                 "payment_url": success_url
             })
+
+        locale = data.get('locale', 'en')
+        if provider == 'lemonsqueezy':
+            try:
+                payment_url = create_lemonsqueezy_checkout(order, locale)
+            except (requests.RequestException, KeyError, ValueError, TypeError):
+                return Response({"error": _("Unable to start payment. Try again.")}, status=502)
+            return Response({"order_id": order.id, "payment_url": payment_url})
 
         return Response({"error": _("Unable to start payment. Try again.")}, status=503)
 
@@ -175,3 +188,34 @@ def download_file_by_token(request, token):
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
     
     return response
+
+
+def _valid_ls_sig(body: bytes, header: str) -> bool:
+    secret = django_settings.LEMONSQUEEZY_WEBHOOK_SECRET
+    if not secret or not header:
+        return False
+    expected = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, header)
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def lemonsqueezy_webhook(request):
+    body = request.body
+    if not _valid_ls_sig(body, request.headers.get('X-Signature', '')):
+        return Response({'error': 'Invalid signature'}, status=400)
+    payload = request.data
+    if payload.get('meta', {}).get('event_name') != 'order_created':
+        return Response({'ok': True})
+    attrs = payload.get('data', {}).get('attributes', {})
+    if attrs.get('status') != 'paid':
+        return Response({'ok': True})
+    order_id = payload.get('meta', {}).get('custom_data', {}).get('order_id')
+    order = Order.objects.filter(id=order_id).first()
+    if not order:
+        return Response({'error': 'Order not found'}, status=404)
+    order.provider_payment_id = str(payload.get('data', {}).get('id', ''))
+    order.save(update_fields=['provider_payment_id'])
+    fulfill(order)
+    return Response({'ok': True})

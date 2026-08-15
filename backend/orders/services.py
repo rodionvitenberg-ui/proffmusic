@@ -1,4 +1,5 @@
 import uuid
+import requests
 from django.conf import settings
 from django.core.mail import send_mail
 from .models import Order, DownloadToken
@@ -46,6 +47,57 @@ def create_payment(order, ip, locale='en'):
     """Mock only. Live backends use create_lemonsqueezy_checkout / create_btcpay_invoice."""
     fulfill(order)
     return f"/{locale}/success?order_id={order.id}"
+
+
+def create_lemonsqueezy_checkout(order, locale='en'):
+    cents = int(order.amount * 100)
+    payload = {
+        'data': {
+            'type': 'checkouts',
+            'attributes': {
+                'custom_price': cents,
+                'product_options': {
+                    'name': f"ProffMusic · order {str(order.id)[:8]}",
+                    'redirect_url': f"{settings.SITE_URL}/{locale}/success?order_id={order.id}",
+                    'receipt_button_text': 'Download',
+                    'enabled_variants': [int(settings.LEMONSQUEEZY_VARIANT_ID)],
+                },
+                'checkout_options': {
+                    'locale': locale if locale in ('en', 'ru') else 'en',
+                    'background_color': '#1C1913',
+                    'button_color': '#D4A84B',
+                    'button_text_color': '#241C0F',
+                },
+                'checkout_data': {
+                    'email': order.email,
+                    'custom': {'order_id': str(order.id)},
+                },
+            },
+            'relationships': {
+                'store': {
+                    'data': {'type': 'stores', 'id': str(settings.LEMONSQUEEZY_STORE_ID)},
+                },
+                'variant': {
+                    'data': {'type': 'variants', 'id': str(settings.LEMONSQUEEZY_VARIANT_ID)},
+                },
+            },
+        }
+    }
+    res = requests.post(
+        'https://api.lemonsqueezy.com/v1/checkouts',
+        json=payload,
+        headers={
+            'Accept': 'application/vnd.api+json',
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': f'Bearer {settings.LEMONSQUEEZY_API_KEY}',
+        },
+        timeout=20,
+    )
+    res.raise_for_status()
+    url = res.json()['data']['attributes']['url']
+    order.provider = 'lemonsqueezy'
+    order.save(update_fields=['provider'])
+    return url
 
 
 def send_order_email(order, download_url=None):

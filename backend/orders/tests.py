@@ -1,4 +1,8 @@
+import hashlib
+import hmac
+import json
 from decimal import Decimal
+from unittest.mock import patch
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
@@ -54,17 +58,29 @@ class CheckoutTests(APITestCase):
     def setUp(self):
         self.track = make_track()
 
-    @override_settings(PAYMENTS_BACKEND='live')
-    def test_live_checkout_stays_pending(self):
+    @override_settings(
+        PAYMENTS_BACKEND='live',
+        LEMONSQUEEZY_API_KEY='k',
+        LEMONSQUEEZY_STORE_ID='1',
+        LEMONSQUEEZY_VARIANT_ID='1',
+    )
+    @patch('orders.services.requests.post')
+    def test_live_checkout_stays_pending(self, mock_post):
+        mock_post.return_value.raise_for_status = lambda: None
+        mock_post.return_value.json.return_value = {
+            'data': {'attributes': {'url': 'https://ls.example/c'}},
+        }
         res = self.client.post('/api/orders/checkout/', {
             'email': 'a@b.com',
             'provider': 'lemonsqueezy',
             'items': [{'type': 'track', 'id': self.track.id}],
         }, format='json')
-        self.assertEqual(res.status_code, 503)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.data['payment_url'], 'https://ls.example/c')
         order = Order.objects.get()
         self.assertEqual(order.status, 'pending')
         self.assertEqual(order.currency, 'USD')
+        self.assertEqual(order.provider, 'lemonsqueezy')
 
     @override_settings(PAYMENTS_BACKEND='mock')
     def test_mock_checkout_still_pays(self):
@@ -82,3 +98,56 @@ class CheckoutTests(APITestCase):
             'email': 'a@b.com', 'items': [],
         }, format='json')
         self.assertEqual(res.status_code, 400)
+
+
+def _ls_sig(body: bytes, secret: str) -> str:
+    return hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+
+
+@override_settings(
+    PAYMENTS_BACKEND='live',
+    LEMONSQUEEZY_WEBHOOK_SECRET='s3cret',
+    EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend',
+)
+class LemonSqueezyWebhookTests(APITestCase):
+    def setUp(self):
+        self.order = Order.objects.create(
+            email='a@b.com', amount='29.00', provider='lemonsqueezy',
+        )
+
+    def _post(self, payload, secret='s3cret'):
+        body = json.dumps(payload).encode()
+        return self.client.post(
+            '/api/orders/webhooks/lemonsqueezy/',
+            data=body,
+            content_type='application/json',
+            HTTP_X_SIGNATURE=_ls_sig(body, secret),
+        )
+
+    def test_bad_signature_leaves_pending(self):
+        payload = {
+            'meta': {
+                'event_name': 'order_created',
+                'custom_data': {'order_id': str(self.order.id)},
+            },
+            'data': {'id': 'ls_1', 'attributes': {'status': 'paid'}},
+        }
+        res = self._post(payload, secret='wrong')
+        self.assertEqual(res.status_code, 400)
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 'pending')
+
+    def test_paid_event_fulfills_once(self):
+        payload = {
+            'meta': {
+                'event_name': 'order_created',
+                'custom_data': {'order_id': str(self.order.id)},
+            },
+            'data': {'id': 'ls_1', 'attributes': {'status': 'paid'}},
+        }
+        self.assertEqual(self._post(payload).status_code, 200)
+        self.assertEqual(self._post(payload).status_code, 200)
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 'paid')
+        self.assertEqual(self.order.provider_payment_id, 'ls_1')
+        self.assertEqual(self.order.download_tokens.count(), 1)
