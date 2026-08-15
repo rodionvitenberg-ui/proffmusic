@@ -100,6 +100,29 @@ def create_lemonsqueezy_checkout(order, locale='en'):
     return url
 
 
+def create_btcpay_invoice(order, locale='en'):
+    res = requests.post(
+        f"{settings.BTCPAY_URL}/api/v1/stores/{settings.BTCPAY_STORE_ID}/invoices",
+        json={
+            'amount': str(order.amount),
+            'currency': 'USD',
+            'metadata': {'orderId': str(order.id)},
+            'checkout': {
+                'redirectURL': f"{settings.SITE_URL}/{locale}/success?order_id={order.id}",
+            },
+        },
+        headers={'Authorization': f'token {settings.BTCPAY_API_KEY}'},
+        timeout=20,
+    )
+    res.raise_for_status()
+    data = res.json()
+    url = data.get('checkoutLink') or data.get('url')
+    order.provider = 'btcpay'
+    order.provider_payment_id = data.get('id', '')
+    order.save(update_fields=['provider', 'provider_payment_id'])
+    return url
+
+
 def send_order_email(order, download_url=None):
     """
     Генерирует ссылку и отправляет письмо.

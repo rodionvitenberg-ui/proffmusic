@@ -151,3 +151,59 @@ class LemonSqueezyWebhookTests(APITestCase):
         self.assertEqual(self.order.status, 'paid')
         self.assertEqual(self.order.provider_payment_id, 'ls_1')
         self.assertEqual(self.order.download_tokens.count(), 1)
+
+
+@override_settings(
+    PAYMENTS_BACKEND='live',
+    BTCPAY_WEBHOOK_SECRET='btcsecret',
+    EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend',
+)
+class BtcpayWebhookTests(APITestCase):
+    def setUp(self):
+        self.order = Order.objects.create(
+            email='a@b.com', amount='29.00', provider='btcpay',
+        )
+
+    def _post(self, payload, secret='btcsecret'):
+        body = json.dumps(payload).encode()
+        sig = 'sha256=' + hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+        return self.client.post(
+            '/api/orders/webhooks/btcpay/',
+            data=body,
+            content_type='application/json',
+            HTTP_BTCPAY_SIG=sig,
+        )
+
+    def test_bad_signature_leaves_pending(self):
+        payload = {
+            'type': 'InvoiceSettled',
+            'invoiceId': 'inv1',
+            'metadata': {'orderId': str(self.order.id)},
+        }
+        res = self._post(payload, secret='wrong')
+        self.assertEqual(res.status_code, 400)
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 'pending')
+
+    def test_settled_fulfills_once(self):
+        payload = {
+            'type': 'InvoiceSettled',
+            'invoiceId': 'inv1',
+            'metadata': {'orderId': str(self.order.id)},
+        }
+        self.assertEqual(self._post(payload).status_code, 200)
+        self.assertEqual(self._post(payload).status_code, 200)
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 'paid')
+        self.assertEqual(self.order.provider_payment_id, 'inv1')
+        self.assertEqual(self.order.download_tokens.count(), 1)
+
+    def test_processing_is_ignored(self):
+        payload = {
+            'type': 'InvoiceProcessing',
+            'invoiceId': 'inv1',
+            'metadata': {'orderId': str(self.order.id)},
+        }
+        self.assertEqual(self._post(payload).status_code, 200)
+        self.order.refresh_from_db()
+        self.assertEqual(self.order.status, 'pending')

@@ -17,7 +17,13 @@ from django.conf import settings as django_settings
 
 from .models import DownloadToken, Order, OrderItem
 from music.models import Track, Collection
-from .services import create_payment, create_lemonsqueezy_checkout, fulfill, send_order_email
+from .services import (
+    create_payment,
+    create_lemonsqueezy_checkout,
+    create_btcpay_invoice,
+    fulfill,
+    send_order_email,
+)
 
 ALLOWED_PROVIDERS = {'lemonsqueezy', 'btcpay'}
 
@@ -93,6 +99,13 @@ def checkout(request):
         if provider == 'lemonsqueezy':
             try:
                 payment_url = create_lemonsqueezy_checkout(order, locale)
+            except (requests.RequestException, KeyError, ValueError, TypeError):
+                return Response({"error": _("Unable to start payment. Try again.")}, status=502)
+            return Response({"order_id": order.id, "payment_url": payment_url})
+
+        if provider == 'btcpay':
+            try:
+                payment_url = create_btcpay_invoice(order, locale)
             except (requests.RequestException, KeyError, ValueError, TypeError):
                 return Response({"error": _("Unable to start payment. Try again.")}, status=502)
             return Response({"order_id": order.id, "payment_url": payment_url})
@@ -216,6 +229,34 @@ def lemonsqueezy_webhook(request):
     if not order:
         return Response({'error': 'Order not found'}, status=404)
     order.provider_payment_id = str(payload.get('data', {}).get('id', ''))
+    order.save(update_fields=['provider_payment_id'])
+    fulfill(order)
+    return Response({'ok': True})
+
+
+def _valid_btcpay_sig(body: bytes, header: str) -> bool:
+    secret = django_settings.BTCPAY_WEBHOOK_SECRET
+    if not secret or not header or not header.startswith('sha256='):
+        return False
+    expected = 'sha256=' + hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(expected, header)
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def btcpay_webhook(request):
+    body = request.body
+    if not _valid_btcpay_sig(body, request.headers.get('BTCPay-Sig', '')):
+        return Response({'error': 'Invalid signature'}, status=400)
+    payload = request.data
+    if payload.get('type') != 'InvoiceSettled':
+        return Response({'ok': True})
+    order_id = payload.get('metadata', {}).get('orderId')
+    order = Order.objects.filter(id=order_id).first()
+    if not order:
+        return Response({'error': 'Order not found'}, status=404)
+    order.provider_payment_id = str(payload.get('invoiceId', ''))
     order.save(update_fields=['provider_payment_id'])
     fulfill(order)
     return Response({'ok': True})
