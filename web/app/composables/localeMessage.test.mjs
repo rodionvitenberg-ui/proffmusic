@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
-const ru = JSON.parse(readFileSync(join(here, '../../i18n/locales/ru.json'), 'utf8'))
+const copy = JSON.parse(readFileSync(join(here, '../data/copy.json'), 'utf8'))
 const journal = JSON.parse(readFileSync(join(here, '../data/journal.json'), 'utf8'))
 
 function readLocalePath(root, key) {
@@ -15,12 +15,14 @@ function asList(value) {
   return Array.isArray(value) ? value : []
 }
 
-const paras = asList(readLocalePath(ru, 'legal.rulesParas'))
-assert.ok(paras.length >= 3)
-assert.equal(typeof paras[0], 'string')
-assert.equal(asList(readLocalePath(ru, 'journal.missing')).length, 0)
+for (const lang of ['ru', 'en']) {
+  const about = asList(readLocalePath(copy[lang], 'static.aboutParas'))
+  assert.ok(about.length >= 3, `${lang} aboutParas`)
+  assert.equal(typeof about[0], 'string')
+  assert.ok(about[0].length > 20)
+  assert.equal(asList(readLocalePath(copy[lang], 'legal.gdprParas')).length, 5)
+}
+
 assert.equal(journal.ru.length, 5)
 assert.equal(journal.en.length, 5)
-assert.equal(typeof journal.ru[0].title, 'string')
-assert.ok(Array.isArray(journal.ru[0].body))
 console.log('locale path ok')

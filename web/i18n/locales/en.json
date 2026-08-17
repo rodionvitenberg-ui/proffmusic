@@ -4,7 +4,7 @@
     "home": "Home",
     "music": "Catalog",
     "collections": "Collections",
-    "about": "About the Creator",
+    "about": "About",
     "license": "License",
     "contacts": "Contact",
     "journal": "Journal",
@@ -22,29 +22,13 @@
     "splashSub": "Professional original music",
     "fanTitle": "The Creator",
     "fanCta": "Contact the Creator",
-    "fanParas": [
-      "The boutique is kept by Kotsart HayprofFlex — the composer his circle simply calls Prof. His melodies are born in silence and settle into their purpose the way rare meteorites settle into an open palm: weightlessly and forever.",
-      "Some tracks stir the body, making the pulse beat in time; others fortify the spirit, gathering scattered thoughts into a single line. As rare as a meteorite — and therefore priceless.",
-      "If the sound you need is not yet in the catalog — approach him personally, and the master will compose a melody from the first idea to the final pause."
-    ],
     "newTitle": "New: fresh inspirations of the master",
     "popularTitle": "Collectors' favourites",
     "seeAll": "All"
   },
   "static": {
-    "aboutTitle": "About the Creator",
-    "aboutParas": [
-      "The ProffMusic boutique is kept by Kotsart HayprofFlex — the composer his circle simply calls Prof. His melodies are born in silence and settle into their purpose the way rare meteorites settle into an open palm: weightlessly and forever.",
-      "Every piece here is a living instrument, recorded with no intermediaries between soul and sound. Some tracks stir the body, making the pulse beat in time; others fortify the spirit, gathering scattered thoughts into a single line.",
-      "Prof works without haste and without formulas. If the finished sound is not there yet — he will compose it for you personally, from the first idea to the final pause."
-    ],
+    "aboutTitle": "About",
     "licenseTitle": "License",
-    "licenseParas": [
-      "Every purchase in the boutique is a commercial license between you and the keeper of the boutique. It grants the right to use the track in your works: video, advertising, podcasts, games and other projects.",
-      "Allowed: use the track in commercial and non-commercial projects without per-view fees; monetise content on any platform; make reasonable modifications — tempo, key, editing.",
-      "Not allowed: resell the track as a standalone product, pass it off as your own composition, or distribute the raw audio file without a purchase.",
-      "The license is perpetual and takes effect upon payment. If you need non-standard use — write to the creator personally."
-    ],
     "contactsTitle": "Contact the Creator",
     "contactsLead": "If you need a melody that is not yet in the catalog, write to Prof personally. He answers himself, with no intermediaries.",
     "contactsBody": "In your letter tell him: what the music is for, what mood, what instruments and what deadlines. The master will heed every word."
@@ -120,36 +104,8 @@
     "gdpr": "GDPR",
     "terms": "Terms",
     "rulesTitle": "Website Usage Rules",
-    "rulesParas": [
-      "The boutique is open to everyone who seeks a rare sound. Few but firm rules apply here, so that the catalog stays clean and communication stays respectful.",
-      "The content of the site — covers, titles, descriptions and texts — belongs to the keeper of the boutique. Do not copy it without permission and do not pass it off as your own.",
-      "Tracks may be listened to for preview and purchased for use. Circumventing protection or attempting to obtain a file bypassing purchase violates the rules and terminates access to the boutique.",
-      "In communication with the creator and other collectors, keep the order: no rudeness, spam or off-topic content. Violators lose access without warning.",
-      "The rules may be refined; all changes are published on this page and take effect upon publication."
-    ],
     "privacyTitle": "Privacy Policy",
-    "privacyParas": [
-      "The boutique collects only the data needed for the purpose: name, email and order details. Nothing extra — following the master's principle of never adding a single unnecessary note.",
-      "Email is used to deliver the track, confirm the purchase and answer letters. Order processing keeps purchase history so you can return to your tracks.",
-      "We do not sell or pass your data to third parties. Payment data is processed by the payment service directly — the boutique never sees or stores it.",
-      "The site may use standard technical analytics tools that help understand which pages are useful. They do not collect personal information about you.",
-      "If you have questions about data — write to the creator at shop{'@'}proffmusic.shop, and he will answer personally."
-    ],
     "gdprTitle": "Data Subject Rights: GDPR",
-    "gdprParas": [
-      "If you are in the European Economic Area, the data protection law (GDPR) grants you specific rights regarding your data. The boutique honours them in full.",
-      "You have the right to access your data, correct inaccuracies and delete your account along with order history if it is no longer needed.",
-      "You have the right to restrict processing, object to it and receive your data in a portable format. To do so write to shop{'@'}proffmusic.shop — the request is fulfilled within 30 days.",
-      "If you believe your rights have been violated, you may lodge a complaint with the data protection authority of your country.",
-      "Data is kept only as long as needed for the boutique to work: while the account lives or while the law requires keeping purchase records."
-    ],
-    "termsTitle": "Terms of Sale of Digital Goods",
-    "termsParas": [
-      "A purchase in the boutique is the transfer of a digital good: the audio file and a perpetual license for its use, as described on the 'License' page.",
-      "After payment you receive a download link. The link is valid for a limited time and is available in your profile — save the file once received.",
-      "Digital goods are not subject to return after download, as is proper for sound you have already received. If the file is corrupted or the purchase was not delivered — write to the creator, and he will make it right personally.",
-      "Use of the track is governed by the license: you purchase the right to apply the music in your projects, not to resell it as a standalone product.",
-      "Payment is processed by the payment service; the boutique does not store payment data. Prices are shown in the catalog and may change, but the price of your order is fixed at the moment of payment."
-    ]
+    "termsTitle": "Terms of Sale of Digital Goods"
   }
 }
