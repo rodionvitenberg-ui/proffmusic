@@ -1,0 +1,46 @@
+@font-face {
+  font-display: swap;
+  font-family: "Inria Serif";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/inria-serif/InriaSerif-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Inria Serif";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/inria-serif/InriaSerif-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/oswald/Oswald-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: Oswald;
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/oswald/Oswald-Bold.ttf) format("truetype");
+}
+
+:root {
+  --ff-inria: "Inria Serif", serif;
+  --ff-oswald: Oswald, sans-serif;
+  --bg: #0f0f0f;
+  --text: #fff;
+  --muted: #9a9a9a;
+  --near-black: #1a1a1a;
+  --border: #333;
+  --white: #fff;
+  --mint: #4ff8d2;
+  --veil-base: #0a0512;
+  --brand-primary: #009fdd;
+  --journal-link: #a78bfa;
+}
