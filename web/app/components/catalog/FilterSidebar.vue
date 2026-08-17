@@ -2,6 +2,7 @@
 import type { Category, Tag } from '~/types/catalog'
 
 const { list } = useApi()
+const { locale } = useI18n()
 const route = useRoute()
 const router = useRouter()
 
@@ -15,10 +16,17 @@ const activeTags = computed(() =>
     .filter(Boolean),
 )
 
-onMounted(async () => {
-  categories.value = await list<Category>('/api/categories/')
-  tags.value = await list<Tag>('/api/tags/')
-})
+async function loadFacets() {
+  const [nextCategories, nextTags] = await Promise.all([
+    list<Category>('/api/categories/'),
+    list<Tag>('/api/tags/'),
+  ])
+  categories.value = nextCategories
+  tags.value = nextTags
+}
+
+onMounted(loadFacets)
+watch(locale, loadFacets)
 
 function byType(type: string) {
   return tags.value.filter((t) => t.tag_type === type)
