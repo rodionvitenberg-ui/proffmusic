@@ -34,32 +34,3 @@ const article = computed(() => articles.value.find((a) => a.slug === slug))
     </template>
   </div>
 </template>
-
-<style scoped>
-.pm-page__breadcrumb {
-  margin: 0 0 1.5rem;
-}
-
-.pm-page__back {
-  color: #a78bfa;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.pm-page__back:hover {
-  text-decoration: underline;
-}
-
-.pm-page__lead {
-  margin: 0 0 1.5rem;
-  font-size: 1.2rem;
-  line-height: 1.7;
-  opacity: 0.85;
-}
-
-.pm-page__body--byline {
-  margin-top: 2.5rem;
-  font-style: italic;
-  opacity: 0.7;
-}
-</style>
