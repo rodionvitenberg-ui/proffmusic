@@ -263,7 +263,8 @@
   display: block;
   font-family: var(--ff-oswald);
   font-size: 1.35rem;
-  line-height: 1.1;
+  line-height: 1.15;
+  min-height: 2.3em;
   text-transform: uppercase;
 }
 

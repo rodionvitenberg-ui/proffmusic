@@ -13,6 +13,7 @@
 
 .pm-page__title {
   font-size: max(2.4rem, 5vw);
+  margin-bottom: 1.75rem;
   text-align: center;
 }
 
@@ -28,13 +29,13 @@
 .the-music__para {
   color: var(--text);
   font-family: var(--ff-inria);
-  line-height: 1.7;
+  font-size: var(--text-body);
+  line-height: 1.65;
 }
 
 .pm-page__body {
-  line-height: 1.6;
-  margin: 2rem auto 0;
-  max-width: 40rem;
+  margin: 1.4rem auto 0;
+  max-width: var(--measure);
 }
 
 .pm-page__body a {

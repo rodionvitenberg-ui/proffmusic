@@ -45,4 +45,8 @@
   --veil-base: #0a0512;
   --brand-primary: #009fdd;
   --journal-link: #a78bfa;
+  --text-body: clamp(1.35rem, 0.6vw + 1.15rem, 1.7rem);
+  --text-lead: clamp(1.5rem, 0.7vw + 1.25rem, 1.9rem);
+  --measure: 42rem;
+  --measure-wide: 48rem;
 }

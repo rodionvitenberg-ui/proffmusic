@@ -207,18 +207,12 @@
   background:#0f0f0f;
   background:var(--black);
   overflow:hidden;
-  padding-bottom:max(60px,calc(35.728px + min(100vw,1920px)*.06972));
-  padding-bottom:max(60px,calc(35.728px + var(--the-music-fluid-width)*.06972));
-  padding-top:max(60px,calc(35.728px + min(100vw,1920px)*.06473));
-  padding-top:max(60px,calc(35.728px + var(--the-music-fluid-width)*.06473));
+  padding-bottom:max(48px,4vw);
+  padding-top:max(48px,4vw);
   position:relative;
 }
 
-@media(min-width:1920px) {
-  .the-music {
-    padding-bottom:calc(160px + (max(1920px,min(100vw,2560px)) - 1920px)/16);
-  }
-}
+
 
 .the-music__inner {
   align-items:center;
@@ -232,7 +226,7 @@
   color:var(--white);
   font-family:Oswald,sans-serif;
   font-family:var(--ff-oswald),sans-serif;
-  font-size:max(60px,calc(-.679px + var(--the-music-fluid-width)*.16181));
+  font-size:max(30px,calc(-.34px + var(--the-music-fluid-width)*.0809));
   font-weight:700;
   line-height:1;
   pointer-events:none;
@@ -248,7 +242,7 @@
   height:128px;
   margin-left:auto;
   margin-right:auto;
-  margin-top:0;
+  margin-top:2rem;
   position:relative;
   width:100%;
   z-index:1;
@@ -386,14 +380,14 @@
 
 @media(min-width:641px) {
   .the-music__fan {
-    height:var(--the-music-fan-height,max(200px,calc(var(--the-music-fluid-width)*.2)));
-  margin-top:max(-60px,calc(var(--the-music-fluid-width)*-.03));
+    height:var(--the-music-fan-height,max(240px,calc(var(--the-music-fluid-width)*.28)));
+    margin-top:2.25rem;
   }
 }
 
 @media(max-width:768px) {
   .the-music__fan {
-    margin-top:-34px;
+    margin-top:2rem;
   }
 }
 
@@ -461,22 +455,23 @@ body.is-homepage main.pm-main {
 }
 
 .the-music__paras {
-  margin: 2rem auto 0;
-  max-width: 68rem;
+  margin: 1.5rem auto 0;
+  max-width: var(--measure-wide);
+  padding: 0 1.25rem;
   text-align: center;
 }
 
 .the-music__para {
-  margin: 0 auto 1.2rem;
-  max-width: 62rem;
+  margin: 0 auto 1rem;
+  max-width: var(--measure-wide);
 }
 
 .the-music__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.4rem;
+  gap: 1rem;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 1.25rem auto 0;
 }
 
 .the-music__more {
