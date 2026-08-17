@@ -34,11 +34,13 @@
   --ff-inria: "Inria Serif", serif;
   --ff-oswald: Oswald, sans-serif;
   --bg: #0f0f0f;
+  --black: #0f0f0f;
   --text: #fff;
   --muted: #9a9a9a;
   --near-black: #1a1a1a;
   --border: #333;
   --white: #fff;
+  --off-white: #fefefe;
   --mint: #4ff8d2;
   --veil-base: #0a0512;
   --brand-primary: #009fdd;

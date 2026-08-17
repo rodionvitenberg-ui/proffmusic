@@ -1,0 +1,48 @@
+/* Type roles. Sizes match the previous storefront. */
+
+.pm-page__title,
+.cat__title,
+.home-rail__title,
+.the-music__title {
+  color: var(--text);
+  font-family: var(--ff-oswald);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.pm-page__title {
+  font-size: max(2.4rem, 5vw);
+  text-align: center;
+}
+
+.cat__title {
+  font-size: max(2rem, 3.2vw);
+}
+
+.home-rail__title {
+  font-size: max(2rem, 4vw);
+}
+
+.pm-page__body,
+.the-music__para {
+  color: var(--text);
+  font-family: var(--ff-inria);
+  line-height: 1.7;
+}
+
+.pm-page__body {
+  line-height: 1.6;
+  margin: 2rem auto 0;
+  max-width: 40rem;
+}
+
+.pm-page__body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+a {
+  color: inherit;
+}

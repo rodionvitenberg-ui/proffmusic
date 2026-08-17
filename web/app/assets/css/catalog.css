@@ -1,0 +1,322 @@
+/* Catalog, cards, filters. */
+
+.cat {
+  --cat-gutter: max(20px, 4vw);
+  color: var(--text);
+  padding: 24px var(--cat-gutter) 120px;
+}
+
+.cat__head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.cat__title {
+  color: var(--text);
+  font-family: var(--ff-oswald);
+  font-size: max(2rem, 3.2vw);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.cat__layout {
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: minmax(180px, 220px) 1fr;
+}
+
+@media (max-width: 900px) {
+  .cat__layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cat-filters__toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .cat-filters__toggle {
+    background: none;
+    border: 1px solid var(--text);
+    color: var(--text);
+    cursor: pointer;
+    display: block;
+    font-family: var(--ff-oswald);
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    padding: 0.6rem 0.8rem;
+    text-transform: uppercase;
+    width: 100%;
+  }
+
+  .cat-filters__body {
+    display: none;
+  }
+
+  .cat-filters__body.is-open {
+    display: block;
+  }
+}
+
+.cat-filters__group {
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 0;
+}
+
+.cat-filters__head {
+  align-items: center;
+  background: none;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  width: 100%;
+}
+
+.cat-filters__head:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
+.cat-filters__label {
+  display: block;
+  font-family: var(--ff-oswald);
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.cat-filters__chev {
+  color: #cfcfcf;
+  font-family: var(--ff-oswald);
+  font-size: 1.1rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.cat-filters__head[aria-expanded='true'] .cat-filters__chev {
+  color: var(--text);
+}
+
+.cat-filters__opts {
+  margin-top: 0.65rem;
+}
+
+.cat-filters__opt {
+  background: none;
+  border: 0;
+  color: #cfcfcf;
+  cursor: pointer;
+  display: block;
+  text-align: left;
+  font-family: var(--ff-inria);
+  font-size: 1.3rem;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+  padding: 0.42rem 0;
+}
+
+.cat-filters__opt.is-on,
+.cat-filters__opt:hover,
+.cat-filters__opt:focus-visible {
+  color: var(--text);
+}
+
+.cat-filters__opt.is-on {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cat-filters__clear {
+  background: none;
+  border: 1px solid var(--text);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--ff-oswald);
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+  margin-top: 1rem;
+  padding: 0.5rem 0.8rem;
+  text-transform: uppercase;
+}
+
+.cat-grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.cat-card {
+  color: inherit;
+  display: block;
+}
+
+.cat-card__link {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.cat-card__link:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.cat-card__cover {
+  aspect-ratio: 1;
+  background: var(--near-black);
+  overflow: hidden;
+  position: relative;
+}
+
+.cat-card__cover .cat-card__link,
+.cat-card__cover .cat-card__link img {
+  height: 100%;
+  width: 100%;
+}
+
+.cat-card__cover img {
+  display: block;
+  object-fit: cover;
+}
+
+.cat-card__play {
+  align-items: center;
+  background: #fff;
+  border: 0;
+  border-radius: 50%;
+  color: var(--bg);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--ff-oswald);
+  font-size: 0.85rem;
+  height: 48px;
+  justify-content: center;
+  left: 50%;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+}
+
+.cat-card__cover:hover .cat-card__play,
+.cat-card__cover:focus-within .cat-card__play,
+.cat-card__play.is-on {
+  opacity: 1;
+}
+
+.cat-card--in-cart .cat-card__cover {
+  box-shadow:
+    0 0 0 2px rgb(79 248 210 / 0.55),
+    0 0 18px rgb(0 229 199 / 0.45),
+    0 0 42px rgb(0 229 199 / 0.22);
+}
+
+.cat-card--in-cart .cat-card__cart {
+  border-color: var(--mint);
+  color: var(--mint);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cat-card--in-cart .cat-card__cover {
+    animation: cat-card-glow-pulse 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes cat-card-glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 2px rgb(79 248 210 / 0.55),
+      0 0 18px rgb(0 229 199 / 0.45),
+      0 0 42px rgb(0 229 199 / 0.22);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 2px rgb(79 248 210 / 0.4),
+      0 0 12px rgb(0 229 199 / 0.3),
+      0 0 28px rgb(0 229 199 / 0.12);
+  }
+}
+
+.cat-card__meta {
+  margin-top: 0.75rem;
+}
+
+.cat-card__name {
+  color: var(--text);
+  display: block;
+  font-family: var(--ff-oswald);
+  font-size: 1.35rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.cat-card__row {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+}
+
+.cat-card__price-group {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  min-width: 0;
+}
+
+.cat-card__price {
+  font-family: var(--ff-inria);
+}
+
+.cat-card__purchases {
+  color: rgb(255 255 255 / 0.6);
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.cat-card__cart {
+  background: none;
+  border: 1px solid var(--text);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--ff-oswald);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  padding: 0.35rem 0.55rem;
+  text-transform: uppercase;
+}
+
+.cat-card__cart:focus-visible,
+.cat-card__play:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.cat-empty {
+  color: #bbb;
+  font-family: var(--ff-inria);
+  padding: 3rem 0;
+  text-align: center;
+}
+

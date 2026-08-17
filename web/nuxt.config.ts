@@ -3,11 +3,13 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@pinia/nuxt', '@nuxtjs/i18n'],
   css: [
-    '~/assets/css/vm.css',
     '~/assets/css/tokens.css',
     '~/assets/css/reset.css',
-    '~/assets/css/overrides.css',
+    '~/assets/css/type.css',
+    '~/assets/css/chrome.css',
+    '~/assets/css/home.css',
     '~/assets/css/catalog.css',
+    '~/assets/css/pages.css',
   ],
   i18n: {
     locales: [
