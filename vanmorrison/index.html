@@ -1,0 +1,31 @@
+<!doctype html>
+<html class="js" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/images/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png" />
+    <title>Van Morrison Official Website | Tours, Music, Songs</title>
+    <meta name="description" content="Study replica of the official Van Morrison site. Home, music and news." />
+    <script>
+      document.documentElement.classList.remove('no-js')
+      document.documentElement.classList.add('js')
+      if (document.cookie.split(';').some((c) => c.trim().indexOf('vm_splash_seen=') === 0)) {
+        document.documentElement.classList.add('site-splash-seen')
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      (function () {
+        const y = Number(new URLSearchParams(location.search).get('y') || 0)
+        if (!y) return
+        const tick = () => window.scrollTo(0, y)
+        const id = setInterval(tick, 50)
+        setTimeout(() => clearInterval(id), 2500)
+      })()
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

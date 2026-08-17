@@ -1,0 +1,109 @@
+/* Local replica extras. Original BEM sheet stays untouched. */
+html,
+body {
+  min-height: 100%;
+}
+
+#app {
+  min-height: 100%;
+}
+
+.site-nav {
+  visibility: hidden;
+}
+
+.site-header--nav-open .site-nav,
+html.nav-open .site-nav {
+  pointer-events: auto;
+}
+
+.upcoming-shows__more,
+.the-music__more,
+.concert-vault-featured__more {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 0;
+}
+
+.news-page .page-header {
+  padding: 120px 5vw 32px;
+}
+
+.news-page .page-header__heading {
+  font-family: var(--ff-oswald), sans-serif;
+  font-size: max(3.2rem, 6vw);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.music-entry {
+  min-height: 100dvh;
+  padding: 120px 5vw 80px;
+  position: relative;
+}
+
+.music-entry__title {
+  font-family: var(--ff-oswald), sans-serif;
+  font-size: max(2rem, 4vw);
+  text-transform: uppercase;
+}
+
+.site-footer__legal {
+  margin-top: 1.5rem;
+}
+
+.site-footer__legal-link {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+/* Source sheet hides these until GSAP/FOUC. We reveal immediately. */
+.album-card,
+.mode-toggle,
+.timeline-ui,
+.js-entry-reveal,
+.music-entry__all-link--top,
+.music-entry__arrow,
+.music-entry__img-container,
+.music-entry__title,
+.music-entry__track {
+  opacity: 1 !important;
+  animation: none !important;
+  visibility: visible !important;
+}
+
+.mode-toggle {
+  bottom: 28px;
+  gap: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.mode-toggle__btn {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--ff-oswald), sans-serif;
+  letter-spacing: 0.06em;
+  padding: 8px 14px;
+  text-transform: uppercase;
+}
+
+.site-hero__heading-fill,
+.site-hero__heading-outline {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+body.theme-dark {
+  color: var(--white);
+}

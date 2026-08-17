@@ -64,9 +64,9 @@ def create_lemonsqueezy_checkout(order, locale='en'):
                 },
                 'checkout_options': {
                     'locale': locale if locale in ('en', 'ru') else 'en',
-                    'background_color': '#1C1913',
-                    'button_color': '#D4A84B',
-                    'button_text_color': '#241C0F',
+                    'background_color': '#121018',
+                    'button_color': '#4E8CFF',
+                    'button_text_color': '#0B1020',
                 },
                 'checkout_data': {
                     'email': order.email,

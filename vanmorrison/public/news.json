@@ -1,0 +1,1734 @@
+{
+  "data": [
+    {
+      "id": 7261,
+      "title": "Van Morrison's Acclaimed Album Somebody Tried To Sell Me A Bridge Arrives On Vinyl For The First Time",
+      "slug": "van-morrisons-acclaimed-album-somebody-tried-to-sell-me-a-bridge-arrives-on-vinyl-for-the-first-time",
+      "url": "https://vanmorrison.com/news/van-morrisons-acclaimed-album-somebody-tried-to-sell-me-a-bridge-arrives-on-vinyl-for-the-first-time",
+      "postDate": "2026-06-16",
+      "excerpt": "Following its acclaimed release earlier this year, Van Morrison's Somebody Tried To Sell Me A Bridge is set to receive its first-ever vinyl edition, arriving as a deluxe double LP via Orangefield Records.",
+      "newsType": "albumNews",
+      "backgroundColour": "#f79b44",
+      "invertTextColour": true,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_260x260_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 260w, https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 520w, https://van-morrison.s3-assets.com/_780x780_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 780w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 520,
+          "height": 520
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_320x320_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 320w, https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 640w, https://van-morrison.s3-assets.com/_960x960_crop_center-center_80_none/7265/STTSMAB-Vinyl.webp 960w",
+          "sizes": "(min-width: 1024px) 360px, 70vw",
+          "width": 640,
+          "height": 640
+        }
+      },
+      "ctaLabel": "Buy Now",
+      "ctaUrl": "https://store.orangefieldrecords.com/product/somebody-tried-to-sell-me-a-bridge",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": true,
+      "featuredUseCustomData": true,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "Order Vinyl & CD",
+      "featuredPrimaryCtaUrl": "https://store.orangefieldrecords.com",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 7275,
+      "title": "Van Morrison to Open London’s New British Airways ARC with Landmark Five-Night Residency",
+      "slug": "van-morrison-to-open-londons-new-british-airways-arc-with-landmark-five-night-residency",
+      "url": "https://vanmorrison.com/news/van-morrison-to-open-londons-new-british-airways-arc-with-landmark-five-night-residency",
+      "postDate": "2026-06-15",
+      "excerpt": "Van Morrison is set to make London music history this autumn as he becomes the first artist ever to stage a residency at the newly opened British Airways ARC.",
+      "newsType": "article",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/7276/A5-VAN-MORRISON-ARC-2026.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 762,
+      "title": "New Album: Somebody Tried To Sell Me A Bridge",
+      "slug": "new-album-somebody-tried-to-sell-me-a-bridge",
+      "url": "https://vanmorrison.com/news/new-album-somebody-tried-to-sell-me-a-bridge",
+      "postDate": "2025-12-05",
+      "excerpt": "Van Morrison announces his new album Somebody, releasing January 23rd, a bold return to the blues with fresh takes on classics by B.B. King, Buddy Guy and Leadbelly.",
+      "newsType": "albumNews",
+      "backgroundColour": "#e5c8ff",
+      "invertTextColour": true,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_260x260_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 260w, https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 520w, https://van-morrison.s3-assets.com/_780x780_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 780w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 520,
+          "height": 520
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_320x320_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 320w, https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 640w, https://van-morrison.s3-assets.com/_960x960_crop_center-center_80_none/1632/Somebody-Tried-To-Sell-Me-A-Bridge_2026-03-26-150658_rmar.webp 960w",
+          "sizes": "(min-width: 1024px) 360px, 70vw",
+          "width": 640,
+          "height": 640
+        }
+      },
+      "ctaLabel": "Buy Now",
+      "ctaUrl": "https://store.orangefieldrecords.com/product/somebody-tried-to-sell-me-a-bridge",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 779,
+      "title": "80th Birthday Celebrations",
+      "slug": "80th-birthday-celebrations",
+      "url": "https://vanmorrison.com/news/80th-birthday-celebrations",
+      "postDate": "2025-09-06",
+      "excerpt": "In case you missed it, we recently marked a major milestone - Van's 80th birthday was celebrated in unforgettable style over the weekend.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1768/80th-Birthday-Celebrations.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 804,
+      "title": "New Album 'Remembering Now' Out Now",
+      "slug": "new-album-remembering-now-out-now",
+      "url": "https://vanmorrison.com/news/new-album-remembering-now-out-now",
+      "postDate": "2025-06-13",
+      "excerpt": "Van Morrison’s new album Remembering Now is out now. Marking his return to original music, it features a rich blend of soul, jazz, blues, folk, and country, including the singles Down to Joy and Cutting Corners.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1800/New-Album-Remembering-Now-Out-Now.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "Listen & Buy Now",
+      "ctaUrl": "https://vanmorrison.lnk.to/RememberingNow",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 818,
+      "title": "New Album: New Arrangements and Duets",
+      "slug": "new-album-new-arrangements-and-duets",
+      "url": "https://vanmorrison.com/news/new-album-new-arrangements-and-duets",
+      "postDate": "2024-10-15",
+      "excerpt": "",
+      "newsType": "albumNews",
+      "backgroundColour": "#9fd2f4",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_260x260_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 260w, https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 520w, https://van-morrison.s3-assets.com/_780x780_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 780w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 520,
+          "height": 520
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_320x320_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 320w, https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 640w, https://van-morrison.s3-assets.com/_960x960_crop_center-center_80_none/1812/New-Album-New-Arrangements-and-Duets.webp 960w",
+          "sizes": "(min-width: 1024px) 360px, 70vw",
+          "width": 640,
+          "height": 640
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 824,
+      "title": "New Album: Accentuate The Positive",
+      "slug": "new-album-accentuate-the-positive",
+      "url": "https://vanmorrison.com/news/new-album-accentuate-the-positive",
+      "postDate": "2023-09-26",
+      "excerpt": "The highly anticipated album, 'Accentuate The Positive' will be released on November 3rd!",
+      "newsType": "article",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/6632/VM_AccentuateThePositive_Cover_15Aug23.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 830,
+      "title": "Introducing Orangefield Records",
+      "slug": "introducing-orangefield-records",
+      "url": "https://vanmorrison.com/news/introducing-orangefield-records",
+      "postDate": "2023-07-28",
+      "excerpt": "Exclusive New Direct to Fan Online Store For Archive Material",
+      "newsType": "article",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1822/Introducing-Orangefield-Records.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 840,
+      "title": "New Album: Moving on Skiffle",
+      "slug": "new-album-moving-on-skiffle",
+      "url": "https://vanmorrison.com/news/new-album-moving-on-skiffle",
+      "postDate": "2022-10-25",
+      "excerpt": "",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1830/New-Album-Moving-on-Skiffle.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "PREORDER MOVING ON SKIFFLE TODAY",
+      "ctaUrl": "https://vanmorrison.lnk.to/MovingOnSkiffleSo/link",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 859,
+      "title": "New album: What’s It Gonna Take?",
+      "slug": "new-album-whats-it-gonna-take",
+      "url": "https://vanmorrison.com/news/new-album-whats-it-gonna-take",
+      "postDate": "2022-04-05",
+      "excerpt": "Van Morrison has announced details of his 43rd studio album. What’s It Gonna Take? is released on Exile Productions/Virgin on May 20th. Pretending - the first track taken from the album - is out now everywhere online.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/3406/New-album-What’s-It-Gonna-Take_2026-04-30-082351_gsbi.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "PREORDER 'WHAT'S IT GONNA TAKE?' TODAY",
+      "ctaUrl": "https://VanMorrison.lnk.to/WIGTSo",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 872,
+      "title": "Van Morrison launches third ‘Hardship Fund’ for local musicians and institutes fresh legal proceedings to challenge the blanket ban of live music in Northern Ireland",
+      "slug": "van-morrison-launches-third-hardship-fund-for-local-musicians-and-institutes-fresh-legal-proceedings-to-challenge-the-blanket-ban-of-live-music-in-northern-ireland",
+      "url": "https://vanmorrison.com/news/van-morrison-launches-third-hardship-fund-for-local-musicians-and-institutes-fresh-legal-proceedings-to-challenge-the-blanket-ban-of-live-music-in-northern-ireland",
+      "postDate": "2021-06-22",
+      "excerpt": "Van Morrison launched a third-round of his ‘Hardship Fund’ to support musicians in Northern Ireland.  During the pandemic Mr. Morrison has provided grants to local musicians who have been abandoned by government.",
+      "newsType": "article",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6637/Save-Live-Music.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6637/Save-Live-Music.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/6637/Save-Live-Music.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6637/Save-Live-Music.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/6637/Save-Live-Music.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6637/Save-Live-Music.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/6637/Save-Live-Music.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6637/Save-Live-Music.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/6637/Save-Live-Music.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 853,
+      "title": "Blues In Britain Review",
+      "slug": "blues-in-britain-review",
+      "url": "https://vanmorrison.com/news/blues-in-britain-review",
+      "postDate": "2021-05-17",
+      "excerpt": "Van Morrison: Latest Record Project Vol. 1\nExile/BMG Records",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/3425/Blues-In-Britain-Review_2026-04-30-082352_pgvm.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 890,
+      "title": "New Double-album ‘Latest Record Project: Volume 1’",
+      "slug": "new-double-album-latest-record-project-volume-1",
+      "url": "https://vanmorrison.com/news/new-double-album-latest-record-project-volume-1",
+      "postDate": "2021-03-03",
+      "excerpt": "Van Morrison new release ‘Latest Record Project: Volume 1’ is available now on Exile/BMG. His 42nd record and his most dynamic and contemporary album in years, ‘Latest Record Project: Volume 1’ is a 28-track delve into his ongoing love of blues, R&B, jazz and soul.",
+      "newsType": "albumNews",
+      "backgroundColour": "#df1b25",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_260x260_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 260w, https://van-morrison.s3-assets.com/_520x520_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 520w, https://van-morrison.s3-assets.com/_780x780_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 780w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 520,
+          "height": 520
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_320x320_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 320w, https://van-morrison.s3-assets.com/_640x640_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 640w, https://van-morrison.s3-assets.com/_960x960_crop_center-center_80_none/3437/New-Double-album-‘Latest-Record-Project-Volume-1’_2026-04-30-082353_qdki.webp 960w",
+          "sizes": "(min-width: 1024px) 360px, 70vw",
+          "width": 640,
+          "height": 640
+        }
+      },
+      "ctaLabel": "LISTEN HERE",
+      "ctaUrl": "https://vanmorrison.lnk.to/latestrecordprojectvol1PR",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 922,
+      "title": "Van Morrison Releases Three Chords and the Truth Expanded Edition",
+      "slug": "van-morrison-releases-three-chords-and-the-truth-expanded-edition",
+      "url": "https://vanmorrison.com/news/van-morrison-releases-three-chords-and-the-truth-expanded-edition",
+      "postDate": "2019-11-29",
+      "excerpt": "Van Morrison has released an Expanded Edition of his stunning new album - Three Chords And The Truth. The Expanded Edition includes four new mixes of the tracks ‘Three Chords And The Truth’, ‘Early Days’, ‘Nobody In Charge’ and ‘Does Love Conquer All?’ and is released today (November 29th 2019) on Exile/Caroline International.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1903/Van-Morrison-Releases-Three-Chords-and-the-Truth-Expanded-Edition.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "LISTEN NOW",
+      "ctaUrl": "https://VanMorrison.lnk.to/TCATTEXTNDSo",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 932,
+      "title": "Keep 'Er Lit",
+      "slug": "keep-er-lit",
+      "url": "https://vanmorrison.com/news/keep-er-lit",
+      "postDate": "2019-11-14",
+      "excerpt": "Selected Lyrics",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1912/Keep-Er-Lit.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1912/Keep-Er-Lit.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1912/Keep-Er-Lit.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1912/Keep-Er-Lit.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1912/Keep-Er-Lit.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1912/Keep-Er-Lit.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1912/Keep-Er-Lit.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1912/Keep-Er-Lit.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1912/Keep-Er-Lit.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 941,
+      "title": "Van Helps Celebrate as Ronnie Scott’s Turns 60",
+      "slug": "van-helps-celebrate-as-ronnie-scotts-turns-60",
+      "url": "https://vanmorrison.com/news/van-helps-celebrate-as-ronnie-scotts-turns-60",
+      "postDate": "2019-11-01",
+      "excerpt": "Van Morrison appeared as part of a glittering line up as Ronnie Scott’s celebrated its 60th birthday in style at The Royal Albert Hall on Wednesday 30th October",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/3481/Van-Helps-Celebrate-as-Ronnie-Scott’s-Turns-60_2026-04-30-082355_wnss.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 948,
+      "title": "Van Morrison Linen Hall Fundraiser",
+      "slug": "van-morrison-linen-hall-fundraiser",
+      "url": "https://vanmorrison.com/news/van-morrison-linen-hall-fundraiser",
+      "postDate": "2019-10-30",
+      "excerpt": "Belfast’s iconic Linen Hall Library is proud to present Van Morrison Live at the Lyric, Belfast on Sunday 5th January 2020.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1926/Van-Morrison-Linen-Hall-Fundraiser.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 959,
+      "title": "New Release: Three Chords And The Truth",
+      "slug": "new-release-three-chords-and-the-truth",
+      "url": "https://vanmorrison.com/news/new-release-three-chords-and-the-truth",
+      "postDate": "2019-09-18",
+      "excerpt": "Van Morrison has announced details of a new album - Three Chords And The Truth. It is available to order now on CD/vinyl and digital download from Exile/Caroline International.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1936/New-Release-Three-Chords-And-The-Truth.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "Order Now",
+      "ctaUrl": "https://vanmorrison.lnk.to/ThreeChordsAndTheTruthWE/",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 976,
+      "title": "Van Morrison wows in intimate gig at Seamus Heaney HomePlace",
+      "slug": "van-morrison-wows-in-intimate-gig-at-seamus-heaney-homeplace",
+      "url": "https://vanmorrison.com/news/van-morrison-wows-in-intimate-gig-at-seamus-heaney-homeplace",
+      "postDate": "2019-08-03",
+      "excerpt": "The legendary Van Morrison delighted fans at three sold out shows at the renowned Seamus Heaney HomePlace this week.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1952/Van-Morrison-wows-in-intimate-gig-at-Seamus-Heaney-HomePlace.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 992,
+      "title": "New Release: The Healing Game (Deluxe Edition)",
+      "slug": "new-release-the-healing-game-deluxe-edition",
+      "url": "https://vanmorrison.com/news/new-release-the-healing-game-deluxe-edition",
+      "postDate": "2019-02-05",
+      "excerpt": "3CD set features the original album plus 34 rare and previously unreleased studio and live performances\nReleased March 22nd",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1966/New-Release-The-Healing-Game-Deluxe-Edition.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "PREORDER 'THE HEALING GAME (DELUXE EDITION)'",
+      "ctaUrl": "https://vanmo.lnk.to/HealingGame",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1003,
+      "title": "The Prophet Speaks Out Now",
+      "slug": "the-prophet-speaks-out-now",
+      "url": "https://vanmorrison.com/news/the-prophet-speaks-out-now",
+      "postDate": "2018-12-07",
+      "excerpt": "Van Morrison releases 40th studio album & announces US dates for 2019.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1976/The-Prophet-Speaks-Out-Now.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "BUY 'The Prophet Speaks' Today",
+      "ctaUrl": "https://vanmorrison.lnk.to/TPSWE/",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1018,
+      "title": "New Release: Got To Go Where The Love Is",
+      "slug": "new-release-got-to-go-where-the-love-is",
+      "url": "https://vanmorrison.com/news/new-release-got-to-go-where-the-love-is",
+      "postDate": "2018-10-25",
+      "excerpt": "Van Morrison releases a new track 'Got To Go Where The Love Is' today.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/1990/New-Release-Got-To-Go-Where-The-Love-Is.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1041,
+      "title": "Astral Weeks Revisited",
+      "slug": "astral-weeks-revisited",
+      "url": "https://vanmorrison.com/news/astral-weeks-revisited",
+      "postDate": "2018-07-09",
+      "excerpt": "Jay Berliner and Tony Fitzgibbon join Van to relive Astral Weeks",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2010/Astral-Weeks-Revisited.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1047,
+      "title": "You're Driving Me Crazy in the Press",
+      "slug": "youre-driving-me-crazy-in-the-press",
+      "url": "https://vanmorrison.com/news/youre-driving-me-crazy-in-the-press",
+      "postDate": "2018-05-10",
+      "excerpt": "You're Driving Me Crazy is the exciting collaborative album from Van Morrison and Joey DeFrancesco. Since it's release on 27th April the album has been met with critical acclaim and has entered the Billboard Jazz Chart at #1 as well as enjoying further success all over the world.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2015/Youre-Driving-Me-Crazy-in-the-Press.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "Buy You're Driving Me Crazy",
+      "ctaUrl": "https://vanmo.lnk.to/ydmc-albm-p",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1058,
+      "title": "Van Morrison and Joey DeFrancesco perform exclusive live tracks with Jamie Cullum",
+      "slug": "van-morrison-and-joey-defrancesco-perform-exclusive-live-tracks-with-jamie-cullum",
+      "url": "https://vanmorrison.com/news/van-morrison-and-joey-defrancesco-perform-exclusive-live-tracks-with-jamie-cullum",
+      "postDate": "2018-05-01",
+      "excerpt": "",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2025/Van-Morrison-and-Joey-DeFrancesco-perform-exclusive-live-tracks-with-Jamie-Cullum.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1075,
+      "title": "Van Morrison releases new album You're Driving Me Crazy",
+      "slug": "van-morrison-releases-new-album-youre-driving-me-crazy",
+      "url": "https://vanmorrison.com/news/van-morrison-releases-new-album-youre-driving-me-crazy",
+      "postDate": "2018-03-07",
+      "excerpt": "Van Morrison Joins Forces with Jazz Organ Virtuoso Joey DeFrancesco on You're Driving Me Crazy, a New Studio Album from Legacy Recordings Available Friday, April 27.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2039/Van-Morrison-releases-new-album-Youre-Driving-Me-Crazy.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1084,
+      "title": "Van Morrison Performs at Paul Jones and Friends Annual Charity Gig",
+      "slug": "van-morrison-performs-at-paul-jones-and-friends-annual-charity-gig",
+      "url": "https://vanmorrison.com/news/van-morrison-performs-at-paul-jones-and-friends-annual-charity-gig",
+      "postDate": "2018-01-10",
+      "excerpt": "Van reunites with friends to help raise money for prostate cancer charity",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2047/Van-Morrison-Performs-at-Paul-Jones-and-Friends-Annual-Charity-Gig.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1098,
+      "title": "Van Morrison releases new album Versatile",
+      "slug": "van-morrison-releases-new-album-versatile",
+      "url": "https://vanmorrison.com/news/van-morrison-releases-new-album-versatile",
+      "postDate": "2017-12-01",
+      "excerpt": "Following the massive success of his 37th studio album Roll With the Punches (which charted at No 4 in the UK this September), Van Morrison releases his 38th today.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2059/Van-Morrison-releases-new-album-Versatile.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "Buy 'Versatile' Today",
+      "ctaUrl": "https://VanMorrison.lnk.to/VMVRTPR",
+      "ctaTarget": "_blank",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1111,
+      "title": "Out Now: Roll With The Punches",
+      "slug": "out-now-roll-with-the-punches",
+      "url": "https://vanmorrison.com/news/out-now-roll-with-the-punches",
+      "postDate": "2017-09-22",
+      "excerpt": "Roll With The Punches, Van Morrison’s new 15 track album is released September 22nd.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2071/Out-Now-Roll-With-The-Punches.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1156,
+      "title": "Van Morrison to receive Americana Lifetime Achievement Award",
+      "slug": "van-morrison-to-receive-americana-lifetime-achievement-award",
+      "url": "https://vanmorrison.com/news/van-morrison-to-receive-americana-lifetime-achievement-award",
+      "postDate": "2017-05-12",
+      "excerpt": "Legendary Artist Will Headline Ascend Amphitheater During AMERICANAFEST 2017",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2110/Van-Morrison-to-receive-Americana-Lifetime-Achievement-Award.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1166,
+      "title": "Van Morrison confirmed for the Eden Sessions",
+      "slug": "van-morrison-confirmed-for-the-eden-sessions",
+      "url": "https://vanmorrison.com/news/van-morrison-confirmed-for-the-eden-sessions",
+      "postDate": "2017-04-03",
+      "excerpt": "Sir Van Morrison is the latest stellar name to be announced for this summer’s Eden Sessions. This will be his first performance in Cornwall in 16 years.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2118/Van-Morrison-confirmed-for-the-Eden-Sessions.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1171,
+      "title": "Legacy Recordings Set to Release Van Morrison - The Authorized Bang Collection",
+      "slug": "legacy-recordings-set-to-release-van-morrison-the-authorized-bang-collection",
+      "url": "https://vanmorrison.com/news/legacy-recordings-set-to-release-van-morrison-the-authorized-bang-collection",
+      "postDate": "2017-03-31",
+      "excerpt": "Legacy Recordings, the catalog division of Sony Music Entertainment, is proud to announce the release of Van Morrison - The Authorized Bang Collection on April 28, 2017.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2122/Legacy-Recordings-Set-to-Release-Van-Morrison-The-Authorized-Bang-Collection.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1185,
+      "title": "Van Morrison in fine voice at Ace Hotel in Los Angeles",
+      "slug": "van-morrison-in-fine-voice-at-ace-hotel-in-los-angeles",
+      "url": "https://vanmorrison.com/news/van-morrison-in-fine-voice-at-ace-hotel-in-los-angeles",
+      "postDate": "2017-03-18",
+      "excerpt": "​Van Morrison must be feeling fine with his muse these days. His latest and 36th studio album, “Keep Me Singing,” arrived last fall, featured all originals but one, and cracked the Top 10 on the Billboard 200. \n\nAnd after a few years where he didn’t come around Southern California much anymore he arrived Friday for the first of three nights at the Ace Hotel in downtown Los Angeles just a little over a year from a pair of sold-out shows at the Shrine Auditorium just down the road.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2134/Van-Morrison-in-fine-voice-at-Ace-Hotel-in-Los-Angeles.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1197,
+      "title": "Top award for Keep Me Singing",
+      "slug": "top-award-for-keep-me-singing",
+      "url": "https://vanmorrison.com/news/top-award-for-keep-me-singing",
+      "postDate": "2017-02-03",
+      "excerpt": "This week celebrates the first birthday of the Official Americana Albums Chart – the UK’s first dedicated chart for Americana music, compiled by the Official Charts Company, in conjunction with the UK Americana Music Association.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2144/Top-award-for-Keep-Me-Singing.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1204,
+      "title": "Shhhhh, and get in your seat; Van Morrison is on stage",
+      "slug": "shhhhh-and-get-in-your-seat-van-morrison-is-on-stage",
+      "url": "https://vanmorrison.com/news/shhhhh-and-get-in-your-seat-van-morrison-is-on-stage",
+      "postDate": "2017-01-18",
+      "excerpt": "​Tampa Bay Times Wednesday, January 18, 2017 John Romano, Times Columnist CLEARWATER — You are out of practice. I get that.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2150/Shhhhh-and-get-in-your-seat-Van-Morrison-is-on-stage.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1274,
+      "title": "Van Morrison mesmerises fans during a sublime Radio 2 In Concert performance",
+      "slug": "van-morrison-mesmerises-fans-during-a-sublime-radio-2-in-concert-performance",
+      "url": "https://vanmorrison.com/news/van-morrison-mesmerises-fans-during-a-sublime-radio-2-in-concert-performance",
+      "postDate": "2016-09-29",
+      "excerpt": "BBC Radio 2 In Concert offered a rare chance to see a maestro at the top of his game this week, as the recently-knighted Sir Van Morrison performed at The BBC Radio Theatre on Thursday 29th September.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2208/Van-Morrison-mesmerises-fans-during-a-sublime-Radio-2-In-Concert-performance.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1284,
+      "title": "The 25th Annual Aspects Festival was 'Lit Up Inside'",
+      "slug": "the-25th-annual-aspects-festival-was-lit-up-inside",
+      "url": "https://vanmorrison.com/news/the-25th-annual-aspects-festival-was-lit-up-inside",
+      "postDate": "2016-09-23",
+      "excerpt": "Van Morrison, a man whose legendary blend of mystic poetry and soulful music has inspired and uplifted audiences throughout an extraordinary career, delivered a memorable performance at this year's Aspects Festival.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2216/The-25th-Annual-Aspects-Festival-was-Lit-Up-Inside.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1309,
+      "title": "New Studio Album Announced",
+      "slug": "new-studio-album-announced",
+      "url": "https://vanmorrison.com/news/new-studio-album-announced",
+      "postDate": "2016-06-29",
+      "excerpt": "VAN MORRISON WILL RELEASE A BRAND NEW STUDIO ALBUM ‘KEEP ME SINGING’ ON SEPTEMBER 30. VAN WILL ALSO PLAY 7 LIVE DATES ACROSS THE UK IN NOVEMBER",
+      "newsType": "article",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6652/496218167.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6652/496218167.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/6652/496218167.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/6652/496218167.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/6652/496218167.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6652/496218167.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/6652/496218167.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/6652/496218167.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/6652/496218167.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1315,
+      "title": "...It's Too Late To Stop Now... Volumes II, III, IV & DVD - Review Round-Up",
+      "slug": "its-too-late-to-stop-now-volumes-ii-iii-iv-dvd-review-round-up",
+      "url": "https://vanmorrison.com/news/its-too-late-to-stop-now-volumes-ii-iii-iv-dvd-review-round-up",
+      "postDate": "2016-06-24",
+      "excerpt": "Read a round-up what the reviews are writing about the latest release.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/3834/Its-Too-Late-To-Stop-Now_2026-04-30-082412_pdfe.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1321,
+      "title": "John F. Kennedy Center for the Performing Arts: Gold Medal in the Arts Gala 2016",
+      "slug": "john-f-kennedy-center-for-the-performing-arts-gold-medal-in-the-arts-gala-2016",
+      "url": "https://vanmorrison.com/news/john-f-kennedy-center-for-the-performing-arts-gold-medal-in-the-arts-gala-2016",
+      "postDate": "2016-06-21",
+      "excerpt": "Sir Van was honoured at this year's Gold Medal in the Arts Gala 2016.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2245/John-F.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2245/John-F.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2245/John-F.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2245/John-F.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2245/John-F.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2245/John-F.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2245/John-F.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2245/John-F.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2245/John-F.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1425,
+      "title": "Here Comes The Knight",
+      "slug": "here-comes-the-knight",
+      "url": "https://vanmorrison.com/news/here-comes-the-knight",
+      "postDate": "2016-02-04",
+      "excerpt": "It's been a very special day indeed.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2381/Here-Comes-The-Knight.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1468,
+      "title": "Van Shines at The Shrine",
+      "slug": "van-shines-at-the-shrine",
+      "url": "https://vanmorrison.com/news/van-shines-at-the-shrine",
+      "postDate": "2016-01-16",
+      "excerpt": "Van has performed two fantastic shows at The Shrine in LA. On the Saturday night, Van was joined on stage for two songs by surprise guest, Sir Tom Jones.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2460/Van-Shines-at-The-Shrine.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    },
+    {
+      "id": 1493,
+      "title": "Cyprus Avenue concerts captured in print",
+      "slug": "cyprus-avenue-concerts-captured-in-print",
+      "url": "https://vanmorrison.com/news/cyprus-avenue-concerts-captured-in-print",
+      "postDate": "2015-12-16",
+      "excerpt": "Now on sale, ‘Caught One More Time’ is a beautiful limited edition 60-page book commemorating Van’s 70th Birthday Cyprus Avenue concerts in August.",
+      "newsType": "",
+      "backgroundColour": "",
+      "invertTextColour": false,
+      "featuredImageUrl": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp",
+      "featuredImage": {
+        "card": {
+          "src": "https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_370x247_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 370w, https://van-morrison.s3-assets.com/_740x494_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 740w, https://van-morrison.s3-assets.com/_1110x741_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 1110w",
+          "sizes": "(min-width: 1024px) 35vw, 100vw",
+          "width": 740,
+          "height": 494
+        },
+        "featured": {
+          "src": "https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp",
+          "srcset": "https://van-morrison.s3-assets.com/_480x270_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 480w, https://van-morrison.s3-assets.com/_960x540_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 960w, https://van-morrison.s3-assets.com/_1280x720_crop_center-center_80_none/2512/Cyprus-Avenue-concerts-captured-in-print.webp 1280w",
+          "sizes": "(min-width: 1024px) 30vw, 100vw",
+          "width": 960,
+          "height": 540
+        }
+      },
+      "ctaLabel": "",
+      "ctaUrl": "",
+      "ctaTarget": "",
+      "isFeaturedNewsArticle": false,
+      "featuredUseCustomData": false,
+      "featuredTitle": "",
+      "featuredPrimaryCtaLabel": "",
+      "featuredPrimaryCtaUrl": "",
+      "featuredPrimaryCtaTarget": "",
+      "featuredSecondaryCtaLabel": "",
+      "featuredSecondaryCtaUrl": "",
+      "featuredSecondaryCtaTarget": ""
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "total": 43,
+      "count": 43,
+      "per_page": 9999,
+      "current_page": 1,
+      "total_pages": 1,
+      "links": {}
+    }
+  }
+}
