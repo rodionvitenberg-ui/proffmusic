@@ -1,10 +1,8 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework import serializers
 from orders.models import Order
-from orders.serializers import OrderSerializer # Сейчас создадим его
 from .models import User
 from .serializers import UserSerializer
 from orders.serializers import OrderHistorySerializer

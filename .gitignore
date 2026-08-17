@@ -12,15 +12,15 @@
 coverage/
 .coverage
 
-# --- Frontend (Next.js / Node) ---
+# --- Frontend (Nuxt / Node) ---
 node_modules/
-.next/
+.nuxt/
+.output/
 out/
 dist/
 build/
 .turbo/
 *.tsbuildinfo
-next-env.d.ts
 .dockerignore
 
 # --- Backend (Python / Django) ---
@@ -55,3 +55,7 @@ backend/ДЛЯ САЙТА
 
 # --- Случайные файлы ---
 front
+
+/skills
+/skills-interface
+/skills3

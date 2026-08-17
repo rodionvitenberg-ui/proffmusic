@@ -207,7 +207,7 @@
   background:#0f0f0f;
   background:var(--black);
   overflow:hidden;
-  padding-bottom:max(48px,4vw);
+  padding-bottom:max(12px,1.25vw);
   padding-top:max(48px,4vw);
   position:relative;
 }
@@ -443,7 +443,13 @@ body.is-homepage main.pm-main {
 }
 
 .home-page .home-rail {
-  background: rgb(15 15 15 / 0.55);
+  background: transparent;
+  padding-bottom: max(32px, 4vw);
+  padding-top: max(12px, 1.5vw);
+}
+
+.home-page .home-rail + .home-rail {
+  padding-top: max(20px, 2.5vw);
 }
 
 .home-page .site-hero {

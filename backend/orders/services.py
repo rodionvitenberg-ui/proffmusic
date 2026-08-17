@@ -1,35 +1,15 @@
-import uuid
+import logging
+
 import requests
 from django.conf import settings
 from django.core.mail import send_mail
-from .models import Order, DownloadToken
+from django.db.models import F
 
-def check_access(user, email, product):
-    """
-    Проверяет, купил ли пользователь данный продукт (Трек или Сборник).
-    """
-    orders = Order.objects.filter(status='paid')
-    
-    if user and user.is_authenticated:
-        orders = orders.filter(user=user)
-    elif email:
-        orders = orders.filter(email=email)
-    else:
-        return False
+from music.models import Track
 
-    for order in orders:
-        for item in order.items.all():
-            if item.track == product or item.collection == product:
-                return True
-                
-    return False
+from .models import DownloadToken
 
-def generate_download_links(order):
-    """
-    Создаёт ОДНУ мастер-ссылку на весь заказ.
-    """
-    token, created = DownloadToken.objects.get_or_create(order=order)
-    return [token]
+logger = logging.getLogger(__name__)
 
 
 def fulfill(order):
@@ -38,6 +18,9 @@ def fulfill(order):
         return token
     order.status = 'paid'
     order.save(update_fields=['status'])
+    for item in order.items.all():
+        if item.track_id:
+            Track.objects.filter(id=item.track_id).update(purchases_count=F('purchases_count') + 1)
     download_url = f"{settings.SITE_URL}/api/orders/download/{token.token}/"
     send_order_email(order, download_url)
     return token
@@ -128,9 +111,7 @@ def send_order_email(order, download_url=None):
     Генерирует ссылку и отправляет письмо.
     """
     if download_url is None:
-        from .services import generate_download_links
-        tokens = generate_download_links(order)
-        master_token = tokens[0]
+        master_token, _ = DownloadToken.objects.get_or_create(order=order)
         download_url = f"{settings.SITE_URL}/api/orders/download/{master_token.token}/"
 
     subject = f"Your order #{str(order.id)[:8]} is ready!"
@@ -151,6 +132,6 @@ The link is valid for 48 hours.
             [order.email],
             fail_silently=False,
         )
-        print(f"✅ Email sent to {order.email}")
+        logger.info("Email sent to %s", order.email)
     except Exception as e:
-        print(f"❌ Error sending email: {e}")
+        logger.error("Error sending email: %s", e)

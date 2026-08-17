@@ -1,21 +1,17 @@
+import logging
 import os
-from django.db import models
+import uuid
+
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from django.utils.translation import get_language
+from django.db import models
 from pytils.translit import slugify
-import uuid
-from datetime import timedelta
+
+from .tools import localized
+
+logger = logging.getLogger(__name__)
 
 protected_storage = FileSystemStorage(location=settings.PROTECTED_MEDIA_ROOT)
-
-
-def _localized(ru_value, en_value):
-    """Возвращает значение в зависимости от активного языка."""
-    lang = get_language() or settings.LANGUAGE_CODE
-    if lang == 'en' and en_value:
-        return en_value
-    return ru_value
 
 
 class Category(models.Model):
@@ -32,7 +28,7 @@ class Category(models.Model):
 
     @property
     def name(self):
-        return _localized(self.name_ru, self.name_en) or self.name_ru
+        return localized(self.name_ru, self.name_en)
 
     def __str__(self):
         return self.name
@@ -58,7 +54,7 @@ class Tag(models.Model):
 
     @property
     def name(self):
-        return _localized(self.name_ru, self.name_en) or self.name_ru
+        return localized(self.name_ru, self.name_en)
 
     def __str__(self):
         return f"{self.name} ({self.get_tag_type_display()})"
@@ -78,7 +74,7 @@ class Track(models.Model):
     description_full_ru = models.TextField("Полное описание (RU)", blank=True)
     description_full_en = models.TextField("Полное описание (EN)", blank=True)
 
-    cover_image = models.ImageField("Обложка", upload_to='covers/%Y/%m/', help_text="1200x630px, темная эстетика")
+    cover_image = models.ImageField("Обложка", upload_to='covers/%Y/%m/', help_text="квадрат, тёмная эстетика")
 
     audio_file_preview = models.FileField(
         "Аудиопример (MP3)",
@@ -95,7 +91,9 @@ class Track(models.Model):
     )
 
     price = models.DecimalField("Price (USD)", max_digits=10, decimal_places=2)
+    purchases_count = models.PositiveIntegerField("Куплено раз", default=0)
     is_new = models.BooleanField("Выводить в новинках", default=True, help_text="Галочка для блока Новинки")
+    is_popular = models.BooleanField("Выводить в популярном", default=False, help_text="Галочка для блока Популярное")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -119,15 +117,15 @@ class Track(models.Model):
     # --- Локализованные свойства (для совместимости и API) ---
     @property
     def title(self):
-        return _localized(self.title_ru, self.title_en) or self.title_ru
+        return localized(self.title_ru, self.title_en)
 
     @property
     def description_short(self):
-        return _localized(self.description_short_ru, self.description_short_en) or self.description_short_ru
+        return localized(self.description_short_ru, self.description_short_en)
 
     @property
     def description_full(self):
-        return _localized(self.description_full_ru, self.description_full_en) or self.description_full_ru
+        return localized(self.description_full_ru, self.description_full_en)
 
     class Meta:
         verbose_name = "Трек"
@@ -148,27 +146,21 @@ class Track(models.Model):
             self.slug = f"{base_slug}-{unique_suffix}"
 
         # 2. Сохраняем оригинал на диск
-        print(">>> [DEBUG] Начало сохранения. Записываем оригинал...")
         super().save(*args, **kwargs)
-        print(f">>> [DEBUG] Оригинал сохранен. Путь: {self.audio_file_full.path if self.audio_file_full else 'NET FILE'}")
+        logger.debug("Оригинал сохранен. Путь: %s", self.audio_file_full.path if self.audio_file_full else 'NET FILE')
 
         need_update = False
 
         # 3. Проверка условий
-        print(f">>> [DEBUG] Галочка: {self.auto_generate_preview}, Файл есть: {bool(self.audio_file_full)}")
-
         if self.auto_generate_preview and self.audio_file_full:
             try:
-                print(">>> [DEBUG] Заходим в блок генерации...")
                 from media_engine.services import generate_preview
 
                 # Проверяем путь перед отправкой
                 full_path = self.audio_file_full.path
                 if not os.path.exists(full_path):
-                    print(f">>> [ERROR] Файл не найден по пути: {full_path}")
+                    logger.error("Файл не найден по пути: %s", full_path)
                     raise FileNotFoundError("Файл физически отсутствует на диске!")
-
-                print(f">>> [DEBUG] Отправляем в ffmpeg: {full_path}")
 
                 # Генерируем
                 preview_content = generate_preview(
@@ -178,27 +170,19 @@ class Track(models.Model):
                 )
 
                 if preview_content:
-                    print(f">>> [DEBUG] Превью успешно создано! Размер: {len(preview_content)} байт")
-
                     # Сохраняем файл в поле
                     self.audio_file_preview.save(preview_content.name, preview_content, save=False)
-                    print(">>> [DEBUG] Превью привязано к модели")
-
                     self.auto_generate_preview = False
                     need_update = True
                 else:
-                    print(">>> [ERROR] Сервис вернул None (пустой файл)")
+                    logger.error("Сервис вернул None (пустой файл)")
 
-            except Exception as e:
-                print(f">>> [CRITICAL ERROR] Ошибка внутри генерации: {e}")
-                import traceback
-                print(traceback.format_exc())
+            except Exception:
+                logger.exception("Ошибка внутри генерации превью")
 
         # 4. Вторичное сохранение
         if need_update:
-            print(">>> [DEBUG] Обновляем запись в БД...")
             super().save(update_fields=['audio_file_preview', 'auto_generate_preview', 'duration'])
-            print(">>> [DEBUG] УСПЕХ!")
 
 
 class Collection(models.Model):
@@ -206,7 +190,7 @@ class Collection(models.Model):
     title_ru = models.CharField("Название сборника (RU)", max_length=200, blank=True, default='')
     title_en = models.CharField("Название сборника (EN)", max_length=200, blank=True, default='')
     slug = models.SlugField(unique=True, blank=True)
-    cover_image = models.ImageField("Обложка", upload_to='collections/%Y/%m/')
+    cover_image = models.ImageField("Обложка", upload_to='collections/%Y/%m/', help_text="квадрат, тёмная эстетика")
     description_ru = models.TextField("Описание (RU)", blank=True, default='')
     description_en = models.TextField("Описание (EN)", blank=True, default='')
     price = models.DecimalField("Price (USD)", max_digits=10, decimal_places=2)
@@ -220,11 +204,11 @@ class Collection(models.Model):
     # --- Локализованные свойства ---
     @property
     def title(self):
-        return _localized(self.title_ru, self.title_en) or self.title_ru
+        return localized(self.title_ru, self.title_en)
 
     @property
     def description(self):
-        return _localized(self.description_ru, self.description_en) or self.description_ru
+        return localized(self.description_ru, self.description_en)
 
     class Meta:
         verbose_name = "Сборник"

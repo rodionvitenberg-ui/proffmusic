@@ -13,7 +13,7 @@
        ├── /media/            → /var/www/proffmusic/backend/media/
        ├── /protected_media/  → /var/www/proffmusic/protected_media/ (internal)
        ├── /api/, /admin/     → Gunicorn 127.0.0.1:8000  (systemd: proffmusic-backend)
-       └── /                  → Next.js :3000            (PM2: proffmusic-frontend)
+       └── /                  → Nuxt :3000               (PM2: proffmusic-web)
 ```
 
 ---
@@ -72,7 +72,7 @@ sudo bash setup.sh
 6. ⚛️ `npm ci` + `npm run build`
 7. 🗄️ Миграции + `collectstatic`
 8. ⚙️ Systemd-сервис `proffmusic-backend` (Gunicorn)
-9. ⚡ PM2-процесс `proffmusic-frontend` (Next.js)
+9. ⚡ PM2-процесс `proffmusic-web` (Nuxt, `web/`)
 10. 🌐 Nginx server-блок для `proffmusic.shop`
 
 ---
@@ -90,8 +90,8 @@ sudo nano /var/www/proffmusic/.env
 SECRET_KEY=⭐ сгенерируйте: python -c "import secrets; print(secrets.token_urlsafe(50))"
 DEBUG=False
 ALLOWED_HOSTS=proffmusic.shop,www.proffmusic.shop,localhost,127.0.0.1
-CSRF_TRUSTED_ORIGINS=https://proffmusic.shop,https://www.proffmusic.shop,http://localhost:3000
-CORS_ALLOWED_ORIGINS=https://proffmusic.shop,https://www.proffmusic.shop,http://localhost:3000,http://127.0.0.1:3000
+CSRF_TRUSTED_ORIGINS=https://proffmusic.shop,https://www.proffmusic.shop,http://localhost:3002
+CORS_ALLOWED_ORIGINS=https://proffmusic.shop,https://www.proffmusic.shop,http://localhost:3002,http://127.0.0.1:3002
 
 # --- Database (PostgreSQL) ---
 DB_NAME=proffmusic
@@ -105,9 +105,8 @@ EMAIL_HOST_PASSWORD=⭐ ваш-app-password
 # --- Site ---
 SITE_URL=https://proffmusic.shop
 
-# --- Frontend (Next.js) ---
-NEXT_PUBLIC_API_URL=https://proffmusic.shop
-NEXT_PUBLIC_SITE_URL=https://proffmusic.shop
+# --- Frontend (Nuxt, web/) ---
+NUXT_PUBLIC_API_URL=
 ```
 
 После заполнения **перезапустите `setup.sh`**, если ещё не запускали его с корректным паролем:
@@ -134,25 +133,24 @@ sudo systemctl status proffmusic-backend
 curl -I http://127.0.0.1:8000/api/
 ```
 
-**Frontend (Next.js через PM2):**
+**Frontend (Nuxt через PM2):**
 
 ```bash
 sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 status
-sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 logs proffmusic-frontend --lines 20
+sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 logs proffmusic-web --lines 20
 curl -I http://127.0.0.1:3000
 ```
 
 ---
 
-## Шаг 6. Копирование медиафайлов и исходников
+## Шаг 6. Копирование аудио
 
-Папки `backend/media/`, `protected_media/` и `backend/ДЛЯ САЙТА/` **не находятся в git** (они в `.gitignore`). Скопируйте их с локальной машины:
+Превью и полные файлы **не в git**. Обложки едут вместе с репозиторием (`backend/music/data/covers/`, `collection_covers/`). Не копируйте `ДЛЯ САЙТА/` и не гоняйте старые команды генерации постеров.
 
 ```bash
 # С локального компьютера:
-rsync -av backend/media/ user@server:/var/www/proffmusic/backend/media/
-rsync -av protected_media/ user@server:/var/www/proffmusic/protected_media/
-rsync -av "backend/ДЛЯ САЙТА/" "user@server:/var/www/proffmusic/backend/ДЛЯ САЙТА/"
+rsync -av backend/media/previews/ user@server:/var/www/proffmusic/backend/media/previews/
+rsync -av protected_media/tracks/ user@server:/var/www/proffmusic/protected_media/tracks/
 ```
 
 После копирования восстановите права:
@@ -163,12 +161,14 @@ sudo chown -R www-data:www-data /var/www/proffmusic
 
 ---
 
-## Шаг 7. Загрузка каталога музыки
+## Шаг 7. Каталог = снимок бутика
 
 ```bash
 cd /var/www/proffmusic/backend
-sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" python manage.py load_music
+sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" python manage.py seed_catalog
 ```
+
+Команда поднимает 27 треков и 5 сборников с текущими слагами, текстами Проффа и квадратными кадрами. Она не рисует обложки и не придумывает описания. Если WAV ещё не доехали — строки всё равно появятся, в логе будет `missing_audio=N`.
 
 ---
 
@@ -197,7 +197,7 @@ curl -I https://proffmusic.shop/admin/
 
 # Логи (при проблемах)
 sudo journalctl -u proffmusic-backend -n 30
-sudo tail -f /var/www/.pm2/logs/proffmusic-frontend-error.log
+sudo tail -f /var/www/.pm2/logs/proffmusic-web-error.log
 ```
 
 ---
@@ -226,10 +226,11 @@ cd /var/www/proffmusic
 sudo git pull
 cd backend && sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" pip install -r requirements.txt
 sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" python manage.py migrate --noinput
+sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" python manage.py seed_catalog
 sudo -u www-data env PATH="/var/www/proffmusic/backend/venv/bin:$PATH" python manage.py collectstatic --noinput
-cd ../frontend && sudo npm ci && sudo npm run build
+cd ../web && sudo npm ci && sudo npm run build
 sudo systemctl restart proffmusic-backend
-sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 restart proffmusic-frontend
+sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 restart proffmusic-web
 ```
 
 ---
@@ -240,7 +241,7 @@ sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 restart proffmusic-frontend
 |---------|---------|
 | `curl` к `http://127.0.0.1:8000` не отвечает | `sudo systemctl status proffmusic-backend`, `sudo journalctl -u proffmusic-backend -n 50` |
 | `curl` к `http://127.0.0.1:3000` не отвечает | `sudo -u www-data env PM2_HOME=/var/www/.pm2 pm2 status`, проверьте логи PM2 |
-| 502 Bad Gateway на сайте | Один из процессов (backend/frontend) не запущен — проверьте выше |
+| 502 Bad Gateway на сайте | Один из процессов (backend/web) не запущен — проверьте выше |
 | 403 при обращении к static/media | Проверьте права: `sudo chown -R www-data:www-data /var/www/proffmusic` |
 | Есть ошибка про host | Проверьте `ALLOWED_HOSTS` в `.env` |
 | Админка без стилей | Перезапустите `collectstatic` и проверьте `alias` в nginx-конфиге |

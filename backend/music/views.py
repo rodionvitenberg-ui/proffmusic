@@ -4,13 +4,12 @@ from django.utils.translation import gettext as _
 from .models import Track, Category, Tag, Collection
 from .serializers import TrackSerializer, CategorySerializer, TagSerializer, CollectionSerializer
 from .filters import TrackFilter
-import os
-import zipfile
-import io
 from django.http import HttpResponse, Http404
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAdminUser
 from django.shortcuts import get_object_or_404
+from orders.zip_utils import build_order_zip
+from orders.models import OrderItem
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
@@ -59,26 +58,20 @@ def download_collection_zip(request, slug):
     Генерирует ZIP-архив со всеми треками сборника на лету.
     """
     collection = get_object_or_404(Collection, slug=slug)
-    tracks = collection.tracks.all()
 
-    if not tracks.exists():
+    if not collection.tracks.exists():
         raise Http404(_("В этом сборнике нет треков."))
 
-    zip_buffer = io.BytesIO()
+    # Переиспользуем общий хелпер: коллекция описывается как один коллекционный item
+    item = OrderItem(track=None, collection=collection)
+    zip_buffer = build_order_zip([item])
 
-    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-        for track in tracks:
-            if track.audio_file_full:
-                file_path = track.audio_file_full.path
-                if os.path.exists(file_path):
-                    filename = f"{track.slug}.{file_path.split('.')[-1]}"
-                    zip_file.write(file_path, arcname=filename)
-
-    zip_buffer.seek(0)
+    if zip_buffer is None:
+        raise Http404(_("Файлы для скачивания не найдены."))
 
     filename = f"{collection.slug}.zip"
     response = HttpResponse(zip_buffer, content_type='application/zip')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
-    
+
     return response
 

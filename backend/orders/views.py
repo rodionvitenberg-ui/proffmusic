@@ -1,8 +1,7 @@
 import os
-import zipfile
-import io
 import hashlib
 import hmac
+import logging
 
 import requests
 from django.http import HttpResponse, Http404, HttpResponseForbidden, FileResponse
@@ -11,7 +10,7 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 
 from django.conf import settings as django_settings
 
@@ -24,6 +23,9 @@ from .services import (
     fulfill,
     send_order_email,
 )
+from .zip_utils import build_order_zip
+
+logger = logging.getLogger(__name__)
 
 ALLOWED_PROVIDERS = {'lemonsqueezy', 'btcpay'}
 
@@ -88,14 +90,13 @@ def checkout(request):
         order.amount = total_amount
         order.save()
 
+        locale = data.get('locale', 'en')
         if django_settings.PAYMENTS_BACKEND == 'mock':
-            success_url = create_payment(order, ip)
+            success_url = create_payment(order, ip, locale)
             return Response({
                 "order_id": order.id,
                 "payment_url": success_url
             })
-
-        locale = data.get('locale', 'en')
         if provider == 'lemonsqueezy':
             try:
                 payment_url = create_lemonsqueezy_checkout(order, locale)
@@ -113,7 +114,7 @@ def checkout(request):
         return Response({"error": _("Unable to start payment. Try again.")}, status=503)
 
     except Exception as e:
-        print(f"Checkout Error: {e}")
+        logger.exception("Checkout error")
         return Response({"error": _("Ошибка при создании заказа")}, status=500)
 
 
@@ -153,44 +154,10 @@ def download_file_by_token(request, token):
         return FileResponse(open(file_path, 'rb'), as_attachment=True, filename=filename)
 
     # СЦЕНАРИЙ 2: Несколько товаров или Сборник (генерируем ZIP)
-    zip_buffer = io.BytesIO()
-    has_files = False
+    zip_buffer = build_order_zip(items)
 
-    try:
-        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-            for item in items:
-                # Если это ТРЕК
-                if item.track and item.track.audio_file_full:
-                    fpath = item.track.audio_file_full.path
-                    if os.path.exists(fpath):
-                        ext = os.path.splitext(fpath)[1]
-                        fname = f"{item.track.slug}{ext}"
-                        zip_file.write(fpath, arcname=fname)
-                        has_files = True
-                
-                # Если это СБОРНИК (достаем все треки внутри)
-                elif item.collection:
-                    collection_slug = item.collection.slug
-                    # Если у сборника есть треки (m2m связь)
-                    tracks = item.collection.tracks.all()
-                    
-                    for track in tracks:
-                        if track.audio_file_full:
-                            fpath = track.audio_file_full.path
-                            if os.path.exists(fpath):
-                                ext = os.path.splitext(fpath)[1]
-                                fname = f"{track.slug}{ext}"
-                                # Кладем в папку с именем сборника
-                                zip_file.write(fpath, arcname=f"{collection_slug}/{fname}")
-                                has_files = True
-    except Exception as e:
-        print(f"Zip Error: {e}")
-        return HttpResponse(_("Ошибка при создании архива"), status=500)
-
-    if not has_files:
+    if zip_buffer is None:
         raise Http404(_("Файлы для скачивания не найдены (возможно, они не загружены в админку)."))
-
-    zip_buffer.seek(0)
 
     # Увеличиваем счетчик
     download_link.usage_count += 1
@@ -199,7 +166,7 @@ def download_file_by_token(request, token):
     filename = f"proffmusic_order_{str(order.id)[:8]}.zip"
     response = HttpResponse(zip_buffer, content_type='application/zip')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
-    
+
     return response
 
 

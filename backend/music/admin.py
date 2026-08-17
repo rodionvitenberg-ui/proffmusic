@@ -17,10 +17,13 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Track)
 class TrackAdmin(admin.ModelAdmin):
     # Поля, которые видны в списке
-    list_display = ('title', 'category', 'price', 'is_new', 'created_at', 'play_audio')
+    list_display = ('title', 'category', 'price', 'purchases_count', 'is_new', 'is_popular', 'created_at', 'play_audio')
+
+    # Счётчик покупок — только чтение (меняется через оплату)
+    readonly_fields = ('purchases_count',)
 
     # Фильтры справа (очень удобно для управления каталогом)
-    list_filter = ('is_new', 'category', 'tags__tag_type')
+    list_filter = ('is_new', 'is_popular', 'category', 'tags__tag_type')
 
     # Поиск
     search_fields = ('title_ru', 'title_en', 'description_full_ru', 'description_full_en')
@@ -33,7 +36,7 @@ class TrackAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Названия", {
-            "fields": ("title_ru", "title_en", "slug", "category", "tags", "is_new")
+            "fields": ("title_ru", "title_en", "slug", "category", "tags", "is_new", "is_popular")
         }),
         ("Цена и описание", {
             "fields": ("price", "description_short_ru", "description_short_en", "description_full_ru", "description_full_en", "cover_image")

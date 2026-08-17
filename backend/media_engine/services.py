@@ -1,6 +1,10 @@
-import subprocess
+import logging
 import os
+import subprocess
+
 from django.core.files.base import ContentFile
+
+logger = logging.getLogger(__name__)
 
 def generate_preview(file_path, start_sec=0, duration_sec=30, fade_sec=2):
     """
@@ -40,9 +44,9 @@ def generate_preview(file_path, start_sec=0, duration_sec=30, fade_sec=2):
         
         # Проверка на пустоту
         if not mp3_data:
-            print(">>> [FFMPEG ERROR] FFmpeg вернул пустой результат!")
+            logger.error("FFmpeg вернул пустой результат!")
             if process.stderr:
-                print(f">>> LOG: {process.stderr.decode('utf-8')}")
+                logger.error("FFmpeg stderr: %s", process.stderr.decode('utf-8'))
             return None
 
         file_name = os.path.basename(file_path)
@@ -52,9 +56,9 @@ def generate_preview(file_path, start_sec=0, duration_sec=30, fade_sec=2):
 
     except subprocess.CalledProcessError as e:
         error_message = e.stderr.decode('utf-8') if e.stderr else "Unknown FFmpeg error"
-        print(f">>> [FFMPEG CRITICAL]: {error_message}")
+        logger.error("FFmpeg critical: %s", error_message)
         return None
-        
+
     except Exception as e:
-        print(f">>> [GENERATE ERROR]: {e}")
+        logger.exception("Preview generation error")
         return None

@@ -1,0 +1,110 @@
+{
+  "1": {
+    "title_en": "Atmospheric 1",
+    "prompt": "An empty dark interior larger than a house, seen from just inside the threshold. A single doorway behind the camera is only implied; ahead, dust hangs in one thin shaft of muted violet light between bare walls. The air feels as if it is humming and nothing has happened yet. No people, no furniture."
+  },
+  "2": {
+    "title_en": "Atmospheric 2",
+    "prompt": "The same kind of dark room, but the door is already gone. Furniture outlines dissolve into thick haze; time feels heavier; the camera has barely moved. A thought could lose its way here. No threshold, no figure."
+  },
+  "3": {
+    "title_en": "Majestic Organ",
+    "prompt": "Cathedral organ pipes standing to their full height, filling the frame like a wall of metal that decided to speak first. One long chord of pale gold light across the pipes. No congregation, no sheet music, no player visible."
+  },
+  "4": {
+    "title_en": "Majestic 2",
+    "prompt": "A slow procession of dark-clothed musicians with bows raised, walking along a stone hall rather than standing like a pillar. Motion, not a monument. Faces in shadow, grandeur leading forward."
+  },
+  "5": {
+    "title_en": "Driving Rock",
+    "prompt": "A close electric guitar hitting the chest on the first strike: sweat, cracked lacquer, a snare behind it, hard red-amber light. No lyricism, no apology, only now. No band faces, no stage logo."
+  },
+  "6": {
+    "title_en": "Driving 2",
+    "prompt": "A clenched hand holding a guitar neck in a grimy mid-road light. Less flash, more grip: the instrument insists rather than shouts. Dust, worn leather strap, the middle of a long drive."
+  },
+  "7": {
+    "title_en": "Fast Violin 2",
+    "prompt": "A violin bow cutting the air like a blade, almost not touching the strings, heavy motion blur. A chase, not a song. Cold steel light, no pause, no face."
+  },
+  "8": {
+    "title_en": "Fast Violin",
+    "prompt": "A running figure seen from the side, violin tucked, the bow still shaping a phrase before it flees. Human hurry: a breath, an answer. Warmer than a blade, still fast."
+  },
+  "9": {
+    "title_en": "Violin 1",
+    "prompt": "Someone standing at a tall night window in an empty room, violin hanging from one hand, not yet playing. A confession that has no name. Soft sidelight, one voice, a question left open."
+  },
+  "10": {
+    "title_en": "Violin 2",
+    "prompt": "A violin resting on a wooden chair in warm sidelight after a conversation has ended. The bow lies across the seat. A glance aside, older and quieter than a beginning. Empty room, no player."
+  },
+  "11": {
+    "title_en": "Violin 3",
+    "prompt": "An emptied concert hall after everyone has stood up. One dry violin left on a chair, house lights dying. Tiredness, no pretty exit, no applause. Distant, a little farther away."
+  },
+  "12": {
+    "title_en": "Walking On",
+    "prompt": "Closed stage curtains, a pair of composed dress shoes taking the first step before the name is spoken. The hall is waiting on the other side. Short pride, no march, no spotlight yet."
+  },
+  "13": {
+    "title_en": "Playful Bed 2",
+    "prompt": "A warm room after the first laugh: glasses on a table, the ice already cracked, elbows not quite so high. The feast has started and must not sink. Soft amber, no clowning, no banner."
+  },
+  "14": {
+    "title_en": "Playful Bed",
+    "prompt": "A light gathering where people are not yet friends and no longer strangers. Shoulders lift on their own. Good spirits with no joke and no toast. Clean warm interior, no party hats."
+  },
+  "15": {
+    "title_en": "Star on Stage",
+    "prompt": "A single figure already standing in a theatrical spotlight, the dark hall looking up. Not an entrance — the light is already on. More shine than run-up. Face small in the frame, no microphone logo."
+  },
+  "16": {
+    "title_en": "Fanfares",
+    "prompt": "A short flash of brass instruments catching a burst of gold light, then implied silence. News, not noise. Tight crop on bells and valves, no players' faces, no banner."
+  },
+  "17": {
+    "title_en": "Starry Sleep",
+    "prompt": "A thin blanket in a dark room through which a near night sky is still visible. Sleep that is not dark. Overhead light off. No clock, no phone, lids allowed to grow heavy."
+  },
+  "18": {
+    "title_en": "Relaxation",
+    "prompt": "An empty armchair in an even warm room where someone has finally sat down. The day lifted from the shoulders. No cosmos, no fog, no candles-as-spa cliché. A quiet exhale."
+  },
+  "19": {
+    "title_en": "Bright Path",
+    "prompt": "A dirt path at dusk, a lone figure carrying a small lantern — not fireworks, a light carried long enough. Hope that walks. The road growing clearer ahead. No sunrise burst."
+  },
+  "20": {
+    "title_en": "Morning Fog",
+    "prompt": "Cold wet grass at dawn under low fog, sound kept close to the ground. A promise of sun, but the sun is still behind the hill. Dew, no height for its own sake, no figure."
+  },
+  "21": {
+    "title_en": "Echo of Spring",
+    "prompt": "Bare late-winter branches and a single early blossom, poorer than a garden. An echo, warm and a little untrue, like memory. No garlands, no full bloom, no pastel postcard."
+  },
+  "22": {
+    "title_en": "Summer Afro",
+    "prompt": "A sunlit dusty market road, hand drums in the dust, heat in the palms, colour louder than speech. A sun that cannot whisper. Open air between the hits. No carnival float, no flag."
+  },
+  "23": {
+    "title_en": "Reserved Afro",
+    "prompt": "The same south, but on a shaded verandah: percussion closer to the ear than to the square. Rhythm remains, heat does not strike the temples. Body, not carnival. Deep shade, one drum."
+  },
+  "24": {
+    "title_en": "Business Bed 2",
+    "prompt": "A meeting table after the first slide: even tone, a little less metal in the voice. Someone already seated, not fidgeting. Trust, not an entrance effect. No logo on the screen."
+  },
+  "25": {
+    "title_en": "Business Bed",
+    "prompt": "A reserved boardroom pulse: nothing extra, everything to the point, without coldness. Empty chairs in a clean line, even gait, no poster inspiration, no skyline cliché."
+  },
+  "26": {
+    "title_en": "Moving Bed",
+    "prompt": "A glass office corridor in motion: a figure walking, tech that walks rather than hums in a basement. Loose in the shoulders, pulling the frame forward. Short promo energy. No screens with readable UI."
+  },
+  "27": {
+    "title_en": "Pulse Bed",
+    "prompt": "A night office with one shared light, a cursor that does not blink in vain, a faint LED pulse like current in the wall. The heart of a machine while people argue upstairs. No fashion, no dance floor."
+  }
+}

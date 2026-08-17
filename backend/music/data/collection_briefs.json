@@ -1,0 +1,22 @@
+{
+  "1": {
+    "title_en": "For YouTube",
+    "prompt": "A dark editing desk at the first second of someone else's film: a blank monitor just catching the first frame of a picture, dust in a thin violet shaft, a character arriving before boredom can. No interface, no play button, no platform logo, no readable UI."
+  },
+  "2": {
+    "title_en": "For Cinema",
+    "prompt": "An emptied cinema after the credits: a single projector beam still crossing rows of dark red seats. The hall is a companion, not a bed. No violin, no audience, no marquee lettering."
+  },
+  "3": {
+    "title_en": "Corporate Music",
+    "prompt": "A hotel ballroom foyer just before an evening: warm lights coming up, a few dark-clothed figures arriving, shoulders lifting on their own. People not yet friends and no longer strangers. No name badges with writing, no banner, no toast."
+  },
+  "4": {
+    "title_en": "Meditation & Relax",
+    "prompt": "A figure seated on the floor of a dim quiet room, back to the camera, an open night window, permission to exhale. Fog of breath in cool air. No spa candles, no yoga studio brand, no lake postcard."
+  },
+  "5": {
+    "title_en": "Advertising & Promo",
+    "prompt": "A dusk city street in one short flash: a shop window catching amber for a blink, a hand mid-gesture, colour saying something before anyone can. Heat in the palms, a pulse under the pavement. No billboard text, no brand logo, no carnival."
+  }
+}

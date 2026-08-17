@@ -5,7 +5,7 @@
 #
 # Схема процессов:
 #   - Backend:  Django + Gunicorn (systemd: proffmusic-backend)
-#   - Frontend: Next.js (PM2: proffmusic-frontend)
+#   - Frontend: Nuxt (PM2: proffmusic-web)
 #   - Nginx:    отдельный server-блок для proffmusic.shop
 # ============================================
 
@@ -31,7 +31,7 @@ mkdir -p $PROJECT_DIR
 mkdir -p $PROJECT_DIR/backend/media
 mkdir -p $PROJECT_DIR/backend/staticfiles
 mkdir -p $PROJECT_DIR/protected_media/tracks
-mkdir -p $PROJECT_DIR/frontend
+mkdir -p $PROJECT_DIR/web
 
 # 2. Клонирование проекта
 echo "📦 Pulling project from GitHub..."
@@ -81,9 +81,9 @@ source venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-# 7. Frontend
-echo "⚛️ Setting up Next.js frontend..."
-cd $PROJECT_DIR/frontend
+# 7. Frontend (Nuxt)
+echo "⚛️ Setting up Nuxt storefront (web/)..."
+cd $PROJECT_DIR/web
 npm ci
 npm run build
 
@@ -120,15 +120,16 @@ systemctl daemon-reload
 systemctl enable proffmusic-backend
 systemctl restart proffmusic-backend
 
-# 10. PM2 для Next.js (frontend)
-echo "⚡ Setting up PM2 for frontend..."
+# 10. PM2 для Nuxt (web/)
+echo "⚡ Setting up PM2 for Nuxt storefront..."
 export PM2_HOME=$PM2_HOME
 mkdir -p $PM2_HOME
 chown -R www-data:www-data $PM2_HOME
 
-# Запускаем PM2 от www-data (может понадобиться --unsafe-perm при установке)
-cd $PROJECT_DIR/frontend
-sudo -u www-data env PM2_HOME=$PM2_HOME pm2 start npm --name proffmusic-frontend -- start -- -p 3000
+sudo -u www-data env PM2_HOME=$PM2_HOME pm2 delete proffmusic-frontend 2>/dev/null || true
+sudo -u www-data env PM2_HOME=$PM2_HOME pm2 delete proffmusic-web 2>/dev/null || true
+cd $PROJECT_DIR/web
+sudo -u www-data env PM2_HOME=$PM2_HOME PORT=3000 HOST=127.0.0.1 pm2 start .output/server/index.mjs --name proffmusic-web
 sudo -u www-data env PM2_HOME=$PM2_HOME pm2 save
 sudo -u www-data env PM2_HOME=$PM2_HOME pm2 startup systemd -u www-data --hp /var/www 2>/dev/null || echo "PM2 startup уже настроен"
 
@@ -145,9 +146,9 @@ echo ""
 echo "📝 Дальнейшие шаги:"
 echo "   1. Заполните /var/www/proffmusic/.env реальными значениями"
 echo "   2. Перезапустите backend: systemctl restart proffmusic-backend"
-echo "   3. Скопируйте медиафайлы: rsync -av backend/media/ <server>:/var/www/proffmusic/backend/media/"
-echo "   4. Скопируйте защищённые файлы: rsync -av protected_media/ <server>:/var/www/proffmusic/protected_media/"
-echo "   5. Загрузите каталог: cd /var/www/proffmusic/backend && source venv/bin/activate && python manage.py load_music"
+echo "   3. Скопируйте превью: rsync -av backend/media/previews/ <server>:/var/www/proffmusic/backend/media/previews/"
+echo "   4. Скопируйте полные файлы: rsync -av protected_media/tracks/ <server>:/var/www/proffmusic/protected_media/tracks/"
+echo "   5. Каталог: cd /var/www/proffmusic/backend && source venv/bin/activate && python manage.py seed_catalog"
 echo "   6. Настройте SSL: certbot --nginx -d $DOMAIN -d www.$DOMAIN"
 echo ""
 echo "🌍 Сайт будет доступен по адресу: https://$DOMAIN"

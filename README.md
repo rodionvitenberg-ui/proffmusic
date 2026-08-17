@@ -1,6 +1,6 @@
 # ProffMusic 🎵
 
-Professional original music marketplace. Built with Next.js 16 + Django 6 REST Framework + PostgreSQL.
+Professional original music marketplace. Built with Nuxt 4 (Vue 3) + Django 6 REST Framework + PostgreSQL.
 
 ## Architecture
 
@@ -9,11 +9,11 @@ proffmusic/
 ├── backend/           # Django REST API + Admin
 │   ├── core/          # Django project settings
 │   ├── music/         # Tracks, Collections, Categories, Tags
-│   ├── orders/        # Orders, Checkout, Mock payment, Downloads
+│   ├── orders/        # Orders, checkout, payments (LS/BTCPay), downloads
 │   ├── users/         # Custom User model (email-based auth)
-│   └── media_engine/  # Preview generation via ffmpeg
-├── frontend/          # Next.js 16 storefront
-│   └── app/           # Pages & components
+│   └── media_engine/  # ffmpeg preview generation (no models)
+├── web/               # Nuxt 4 storefront (Vue 3)
+├── vanmorrison/       # Isolated Van Morrison replica (donor CSS)
 ├── nginx/             # Production Nginx config
 ├── protected_media/   # Downloaded files (protected by Nginx internal)
 ├── .env.example
@@ -34,13 +34,15 @@ python manage.py migrate --noinput
 python manage.py runserver
 ```
 
-### Frontend
+### Frontend (Nuxt)
 
 ```bash
-cd frontend
+cd web
 npm install
-npm run dev
+npm run dev -- --port 3002
 ```
+
+Open http://localhost:3002/ru
 
 ### Required services
 
@@ -65,15 +67,13 @@ certbot --nginx -d proffmusic.shop -d www.proffmusic.shop
 
 ## Features
 
-- 🎵 Track catalog with infinite scroll, filters, and search
+- 🎵 Track catalog with filters
 - 🔐 JWT authentication (login/register via email)
-- 🛒 Cart & mock checkout (no real payment)
+- 🛒 Cart, checkout, profile and order history
 - 📥 Download purchased tracks (single or ZIP archive)
 - 📧 Email delivery of download links
-- 🎧 In-browser audio player (WaveSurfer.js)
-- 🖼️ Card-flip UI for track details
-- 🌙 Dark theme with custom Zodiak font
-- 📊 Yandex.Metrika analytics
+- 🎧 In-browser preview player
+- 🌙 Dark Van Morrison skin (Oswald / Inria Serif)
 - 🛡️ Protected file storage (Nginx internal)
 - ⚡ FFmpeg auto-preview generation from admin panel
 
@@ -81,11 +81,13 @@ certbot --nginx -d proffmusic.shop -d www.proffmusic.shop
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | Next.js 16, React 19, TypeScript, Tailwind 4 |
+| Frontend | Nuxt 4, Vue 3, TypeScript, Pinia, GSAP, OGL |
 | Backend | Django 6, DRF 3.16, PostgreSQL 16 |
 | Auth | Djoser + SimpleJWT (email-based) |
-| Audio | WaveSurfer.js, Mutagen, FFmpeg |
-| Infra | Nginx, Gunicorn, systemd |
+| Audio | FFmpeg (preview generation), native `<audio>` player |
+| Visual | OGL (WebGL home backdrop), GSAP (motion) |
+| Payments | Lemon Squeezy (cards), BTCPay (Bitcoin), mock (dev) |
+| Infra | Nginx, Gunicorn (systemd), PM2 (Nuxt) |
 
 ## Environment Variables
 
